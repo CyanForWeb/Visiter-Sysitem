@@ -1,0 +1,23 @@
+{% extends './Guest_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>客人のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+      <p class="memo">※メモ：この画面は、その他客人の質問フォーム画面2です。</p>
+
+      <p>貴方の名前を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>貴方/会社の住所を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>貴方の連絡先を記入してください：<br>
+      <input type="text" size="30"></p><br>
+
+      <a href="{% url 'Guest_other_form3' %}" class="btn_01"><p>次の質問に答える</p></a><br>
+      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      </div>
+
+{% endblock %}

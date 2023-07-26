@@ -1,0 +1,29 @@
+
+
+仮想環境立ち上げ
+source myvenv/bin/activate
+
+RunServer
+python manage.py runserver
+
+ローカルサーバー
+python -m http.server 8080
+
+URL
+http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/
+
+マイグレーション
+python manage.py makemigrations ⚫︎⚫︎　（マイグレーションファイル削除後に実行）
+python manage.py migrate ⚫︎⚫︎　（マイグレーション実行）
+
+クリエイトスーパーユーザー
+python manage.py createsuperuser
+
+gitにコードをアップする
+git status
+git add --all .
+git status
+git commit -m "Changed the HTML for the site."
+git push
+

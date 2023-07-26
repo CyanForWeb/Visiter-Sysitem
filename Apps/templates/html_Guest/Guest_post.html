@@ -1,0 +1,19 @@
+{% extends './Guest_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>客人のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+      <p class="memo">※メモ：この画面は、ポスト投函で宛名カメラ判定する画面です。</p>
+      <p>荷物の宛名（氏名）をカメラで読み取ってください。</p>
+      <p class="memo">※メモ：ここでは、宛名読み取りカメラを配置します。</p>
+      <br>
+      <a href="{% url 'Guest_post_end1' %}" class="btn_01"><p>宛名 読み取り開始</p></a><br>
+      <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p><br>
+      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      </div>
+
+{% endblock %}

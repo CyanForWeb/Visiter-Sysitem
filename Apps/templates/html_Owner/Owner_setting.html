@@ -1,0 +1,20 @@
+{% extends './Owner_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>住民のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+      <p class="memo">※メモ：この画面は、住人の設定画面です</p>
+      <br>
+      <p>はじめにお読みください（iftttの設定説明）</p>
+      <p>「配達員」ボタンの有効時間設定</p>
+      <p>住民氏名の設定</p>
+      <p>家の位置情報の設定</p><br>
+
+      <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
+      </div>
+
+{% endblock %}

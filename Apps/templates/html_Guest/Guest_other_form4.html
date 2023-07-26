@@ -1,0 +1,32 @@
+{% extends './Guest_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>客人のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+      <p class="memo">※メモ：この画面は、その他客人の質問フォーム画面4です。</p>
+      <p class="memo">※メモ：ここでは、謎のアンケートを配置します。</p>
+
+      <p>今日の日付を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>今日の曜日を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>今日の天気を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>今日の交通手段を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>貴方が知っている雑学/豆知識を記入してください：<br>
+      <input type="text" size="30"></p>
+      <p>最後に一言を記入してください：<br>
+      <input type="text" size="30"></p>
+
+      <br>
+      <p>以上で、質問は終了です。「送信」ボタンを押してください。</p>
+      <a href="{% url 'Guest_other_end' %}" class="btn_01"><p>送信</p></a><br>
+      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      </div>
+
+{% endblock %}

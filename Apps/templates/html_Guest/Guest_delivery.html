@@ -1,0 +1,18 @@
+{% extends './Guest_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>客人（配達員）の画面</h1>
+      </div>
+
+      <div class="content">
+      <p class="memo">※メモ：この画面は、配達員の画面です。</p>
+      <p>荷物の宛名(氏名)をカメラで読み取ってください</p>
+      <p class="memo">※メモ：ここでは、カメラ読み取り機能を配置します。</p>
+      <br>
+      <a href="{% url 'Guest_delivery_stamp' %}" class="btn_01"><p>宛名 読み取り開始</p></a><br>
+      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      </div>
+
+{% endblock %}
