@@ -74,13 +74,13 @@ button.btn_06 {
 	padding: 1rem 4rem;
 	font-weight: bold;
 	border-radius: 100vh;
-	border-bottom: 7px solid #0686b2;
-	background: #27acd9;
+	border-bottom: 7px solid #FF6347;
+	background: #FF7F50;
 	color: #fff;
 }
 button.btn_06:hover {
 	margin-top: 6px;
-	border-bottom: 1px solid #0686b2;
+	border-bottom: 1px solid #FF6347;
 	color: #fff;
 }
 

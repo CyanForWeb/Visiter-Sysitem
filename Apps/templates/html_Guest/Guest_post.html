@@ -9,9 +9,31 @@
       <div class="content">
       <p class="memo">※メモ：この画面は、ポスト投函で宛名カメラ判定する画面です。</p>
       <p>荷物の宛名（氏名）をカメラで読み取ってください。</p>
-      <p class="memo">※メモ：ここでは、宛名読み取りカメラを配置します。</p>
       <br>
-      <a href="{% url 'Guest_post_end1' %}" class="btn_01"><p>宛名 読み取り開始</p></a><br>
+
+      <div id="app">
+        <div class="text-center pt-3">
+            <!-- Status によって表示ブロックを切り替える -->
+            <!-- play： カメラの映像を画面にリアルタイムで表示 -->
+            <div ref="canvas-container" style="width:500px;margin:0 auto;">
+                <canvas ref="canvas"></canvas>
+            </div>
+            <div v-if="status=='play'">
+                <button class="btn_06" @click="takeSnapshot">
+                    宛名　読み取り開始
+                </button>
+            </div>
+            <!-- pause： スナップショットをOCRにかけてテキストを取得 -->
+            <div v-if="status=='reading'">
+                読み取り中です...
+            </div>
+        </div><br>
+      </div><br>
+      <!-- JavaScriptを読み込み -->
+      <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
+      <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+      <script src="{% static 'js/Guest_address_camera.js' %}"></script><br>
+
       <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p><br>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
