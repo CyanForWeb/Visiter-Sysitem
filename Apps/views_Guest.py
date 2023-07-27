@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 
+#iftttを使って送信する機能
+import requests
+import json
+
 
 def home(request):
     return render(request, 'html_Guest/Guest_home.html', )
@@ -12,6 +16,13 @@ def other(request):
     return render(request, 'html_Guest/Guest_other.html', )
 
 def other_form1(request):
+    #POSTリクエストを送信　STARTを押して質問フォーム１の画面になったら住民に通知
+    headers = {"Content-Type": "application/json"}
+    cookies = {"test_cookie": "aaa"}
+    data = json.dumps({"test": "hoge"})
+    #住民のiftttのkeyを入力する↓
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    
     return render(request, 'html_Guest/Guest_other_form1.html', )
 
 def other_form2(request):
