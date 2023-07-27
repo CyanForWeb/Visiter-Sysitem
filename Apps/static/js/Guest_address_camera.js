@@ -58,7 +58,10 @@ Vue.createApp({
                   const result_name = str.includes(name);
                   if(result_name==true){
                     //次の画面に行く
-                    location.href = 'http://127.0.0.1:8000/Guest_post_end1';
+                    if(status=='delivery_stamp'){
+                      //住民に通知機能
+                    }
+                    location.href = url;
                   }else{
                     //読み取りアラートを出す
                     const message = '正常に読み取れませんでした。\n再度読み取りを実行するか、\n来訪目的の選択画面に戻り、「その他」から手続きを行ってください。';

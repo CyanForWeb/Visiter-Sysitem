@@ -27,3 +27,7 @@ git status
 git commit -m "Changed the HTML for the site."
 git push
 
+gitから最新コードをローカルにもってくる
+git log
+git pull origin master
+git log

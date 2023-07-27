@@ -32,6 +32,9 @@
       <!-- JavaScriptを読み込み -->
       <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
       <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+      <script type="text/javascript">
+        var url = 'http://127.0.0.1:8000/Guest_post_end1';
+      </script>
       <script src="{% static 'js/Guest_address_camera.js' %}"></script><br>
 
       <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p><br>

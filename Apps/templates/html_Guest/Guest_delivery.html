@@ -7,34 +7,12 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、配達員の画面です。</p>
-      <p>荷物の宛名(氏名)をカメラで読み取ってください</p>
+      <p class="memo">※メモ：この画面は、ハンコ有無の確認画面です。</p>
+      <p class="memo">※メモ：ハンコ必要ボタンを押すと住民に通知</p>
+      <p>置き配が可能な方は、玄関前に荷物を置いてください。</p>
+      <p>ハンコが必要な方は、以下の「ハンコ」ボタンを押してください</p>
       <br>
-
-      <div id="app">
-        <div class="text-center pt-3">
-            <!-- Status によって表示ブロックを切り替える -->
-            <!-- play： カメラの映像を画面にリアルタイムで表示 -->
-            <div ref="canvas-container" style="width:500px;margin:0 auto;">
-                <canvas ref="canvas"></canvas>
-            </div>
-            <div v-if="status=='play'">
-                <button class="btn_06" @click="takeSnapshot">
-                    宛名　読み取り開始
-                </button>
-            </div>
-            <!-- pause： スナップショットをOCRにかけてテキストを取得 -->
-            <div v-if="status=='reading'">
-                読み取り中です...
-            </div>
-        </div><br>
-      </div><br>
-      <!-- JavaScriptを読み込み -->
-      <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
-      <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
-      <script src="{% static 'js/Guest_address_camera.js' %}"></script><br>
-
-      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">ハンコ</a><br>
       </div>
 
 {% endblock %}

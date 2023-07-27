@@ -22,8 +22,8 @@ urlpatterns = [
     path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),#最後の画面
     path('Guest_other_end', views_Guest.other_end, name='Guest_other_end'),#最後の画面
     #配達員　画面
-    path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#宛名カメラ判定画面
-    path('Guest_delivery_stamp', views_Guest.delivery_stamp, name='Guest_delivery_stamp'),#ハンコ有無の確認画面
+    path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面
+    path('Guest_delivery_camera', views_Guest.delivery_camera, name='Guest_delivery_camera'),#宛名カメラ判定画面
     path('Guest_delivery_end1', views_Guest.delivery_end1, name='Guest_delivery_end1'),#最後の画面
     #ポスト投函　画面
     path('Guest_post', views_Guest.post, name='Guest_post'),#宛名カメラ判定画面
