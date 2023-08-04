@@ -9,10 +9,9 @@
       <div class="content">
       <p class="memo">※メモ：この画面は、住人の設定画面です</p>
       <br>
-      <p>はじめにお読みください（iftttの設定説明）</p>
-      <p>「配達員」ボタンの有効時間設定</p>
-      <p>住民氏名の設定</p>
-      <p>家の位置情報の設定</p><br>
+      <a href="{% url 'Owner_setting_time' %}"><p>配達員ボタン　有効時間の設定</p></a><br>
+      <a href="{% url 'Owner_setting_home' %}"><p>家の詳細設定</p></a><br>
+
 
       <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
       </div>

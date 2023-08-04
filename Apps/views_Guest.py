@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from .models import *
 
 #iftttを使って送信する機能
 import requests

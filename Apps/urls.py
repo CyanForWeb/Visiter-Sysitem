@@ -5,8 +5,12 @@ urlpatterns = [
 
 #住民のWebアプリに使用するURL
     path('Owner_home', views_Owner.home, name='Owner_home'),#一番最初にアクセスする画面
-    path('Owner_setting', views_Owner.setting, name='Owner_setting'),#一番最初にアクセスする画面
-    path('Owner_seeform', views_Owner.seeform, name='Owner_seeform'),#一番最初にアクセスする画面
+    path('Owner_setting', views_Owner.setting, name='Owner_setting'),
+    path('Owner_setting_time', views_Owner.setting_time, name='Owner_setting_time'),
+    path('Owner_setting_home', views_Owner.setting_home, name='Owner_setting_home'),
+    path('Owner_setting_end', views_Owner.setting_end, name='Owner_setting_end'),
+    path('Owner_seeform', views_Owner.seeform, name='Owner_seeform'),
+    path('Owner_seeform_detail', views_Owner.seeform_detail, name='Owner_seeform_detail'),
 
 #アポ済みのWebアプリに使用するURL
     path('Appt_home', views_Appt.home, name='Appt_home'),#一番最初にアクセスする画面
@@ -16,10 +20,10 @@ urlpatterns = [
     path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
     #その他　客人画面
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面
-    path('Guest_other_form1', views_Guest.other_form1, name='Guest_other_form1'),#最後の画面
-    path('Guest_other_form2', views_Guest.other_form2, name='Guest_other_form2'),#最後の画面
-    path('Guest_other_form3', views_Guest.other_form3, name='Guest_other_form3'),#最後の画面
-    path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),#最後の画面
+    path('Guest_other_form1', views_Guest.other_form1, name='Guest_other_form1'),
+    path('Guest_other_form2', views_Guest.other_form2, name='Guest_other_form2'),
+    path('Guest_other_form3', views_Guest.other_form3, name='Guest_other_form3'),
+    path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),
     path('Guest_other_end', views_Guest.other_end, name='Guest_other_end'),#最後の画面
     #配達員　画面
     path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面
