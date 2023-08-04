@@ -7,11 +7,16 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：質問フォーム途中の謎の動画を流す画面です。</p>
       <p class="memo">※メモ：ここでは、謎の動画を配置します。</p>
-      <p>動画が終了しましたら、「次の質問に答える」ボタンを押して進んでください。</p>
-      <a href="{% url 'Guest_other_form4' %}" class="btn_01">次の質問に答える</a><br>
-      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
+      <p class="memo">動画が終了したら、約10秒後に次のページにジャンプする</p>
+      <p>※約10秒後に次の質問回答フォームに移動します...</p>
+      <video src="{% static 'video/video.mov' %}" alt="謎の動画" width="1080" height="720" autoplay muted playsinline></video>
       </div>
+
+      <script type="text/javascript">
+        setTimeout(() => {
+          window.location.href = "{% url 'Guest_other_form4' %}";
+        },10000);
+      </script>
 
 {% endblock %}
