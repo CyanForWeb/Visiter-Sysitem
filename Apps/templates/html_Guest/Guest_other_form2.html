@@ -7,16 +7,19 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、その他客人の質問フォーム画面2です。</p>
 
+      <form method="POST">
+      {% csrf_token %}
       <p>貴方の名前を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form2_name" type="text" size="50"></p>
       <p>貴方/会社の住所を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form2_address" type="text" size="50"></p>
       <p>貴方の連絡先を記入してください：<br>
-      <input type="text" size="30"></p><br>
+      <input name="form2_contact" type="text" size="50"></p><br>
+      <button name="form2_submit"  class="btn_06">次の質問に答える</button>
+      </form>
 
-      <a href="{% url 'Guest_other_form3' %}" class="btn_01">次の質問に答える</a><br>
+      <br>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
 

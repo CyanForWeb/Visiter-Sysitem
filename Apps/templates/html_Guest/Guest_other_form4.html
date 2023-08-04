@@ -7,25 +7,26 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、その他客人の質問フォーム画面4です。</p>
-      <p class="memo">※メモ：ここでは、謎のアンケートを配置します。</p>
-
+      <form method="POST">
+      {% csrf_token %}
       <p>今日の日付を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form4_date" type="text" size="20"></p>
       <p>今日の曜日を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form4_day" type="text" size="20"></p>
       <p>今日の天気を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form4_weather" type="text" size="20"></p>
       <p>今日の交通手段を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form4_transportation" type="text" size="50"></p>
       <p>貴方が知っている雑学/豆知識を記入してください：<br>
-      <input type="text" size="30"></p>
+      <input name="form4_trivia" type="text" size="300"></p>
       <p>最後に一言を記入してください：<br>
-      <input type="text" size="30"></p>
-
+      <input name="form4_message" type="text" size="300"></p>
       <br>
       <p>以上で、質問は終了です。「送信」ボタンを押してください。</p>
-      <a href="{% url 'Guest_other_end' %}" class="btn_01">送信</a><br>
+      <button name="form4_submit" class="btn_06">送信</button>
+      </form>
+
+      <br>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
 

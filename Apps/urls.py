@@ -20,11 +20,8 @@ urlpatterns = [
     path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
     #その他　客人画面
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面
-    path('Guest_other_form1', views_Guest.other_form1, name='Guest_other_form1'),
-    path('Guest_other_form2', views_Guest.other_form2, name='Guest_other_form2'),
-    path('Guest_other_form3', views_Guest.other_form3, name='Guest_other_form3'),
+    path('Guest_other_form', views_Guest.other_form, name='Guest_other_form'),
     path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),
-    path('Guest_other_end', views_Guest.other_end, name='Guest_other_end'),#最後の画面
     #配達員　画面
     path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面
     path('Guest_delivery_camera', views_Guest.delivery_camera, name='Guest_delivery_camera'),#宛名カメラ判定画面
