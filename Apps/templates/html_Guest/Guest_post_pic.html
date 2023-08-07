@@ -7,12 +7,81 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、ポスト投函の投函物を撮影・送信する画面です。</p>
-      <p>投函物の写真を撮り、送信ボタンを押してください。</p>
+      <p>投函物の写真を撮り、住人に届けることができます。</p>
+      <p>撮影ボタンを押してください</p>
       <br>
 
-      <a href="{% url 'Guest_post_end2' %}" class="btn_01">送信</a><br>
-      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
-      </div>
+      <p>①撮影ボタンを押してください</p>
+      <video id="video" width="640" height="480" autoplay></video>
+      <button id="captureBtn" class="btn_06">撮影</button><br>
+      <p id="submitMsg">②送信ボタンを押してください</p>
+      <button id="submitBtn" class="btn_06">送信</button>
+      <canvas id="canvas" width="640" height="480"></canvas>
+      <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.style.display = "none";//none=非表示
+        const submitMsg = document.getElementById('submitMsg');
+        submitMsg.style.display = "none";//none=非表示
+        const constraints = { video: { width: 640, height: 480 } };
+
+        // カメラを起動
+        async function initCamera() {
+        		try {
+        				const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        				video.srcObject = stream;
+        		} catch (err) {
+        				console.error('カメラの起動に失敗しました: ', err);
+        		}
+        }
+
+        // スナップショットを撮影して保存
+        function captureSnapshot() {
+        	const context = canvas.getContext('2d');
+        	context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        	const snapshotData_base64 = canvas.toDataURL('image/png');
+          const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');
+
+        	// 送信ボタンが押されたことを検知してサーバーに送信
+        	submitBtn.addEventListener('click', () => {
+        			fetch('/save_snapshot/', {
+        					method: 'POST',
+        					headers: {
+        							'Content-Type': 'application/json',
+        							'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
+        					},
+        					body: JSON.stringify({ 'snapshotData': snapshotData , 'visitor':'Post_2'}),
+        			})
+        			.then(response => {
+        				if (!response.ok) {
+        						throw new Error('サーバーへの送信に失敗しました');
+        				}
+        				return response.json();
+        		})
+        		.then(data => {
+              //リダイレクトフラグをチェック
+              if (data.redirect){
+                window.location.href = 'Guest_post_end2';
+              }else{
+              console.log(data.message); // サーバーからの応答をコンソールに表示
+              }
+        		})
+        		.catch(error => console.error(error.message));
+        	});
+        }
+
+        // ページがロードされた時にカメラを起動する
+        window.onload = () => initCamera();
+
+        // 撮影ボタンがクリックされた時にスナップショットを撮影する
+        captureBtn.addEventListener('click', () => {
+          submitBtn.style.display = "block";//block=表示
+          submitMsg.style.display = "block";//block=表示
+          captureSnapshot()
+        });
+      </script>
+
 
 {% endblock %}

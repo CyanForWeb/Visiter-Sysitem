@@ -7,38 +7,87 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、ポスト投函で宛名カメラ判定する画面です。</p>
-      <p>荷物の宛名（氏名）をカメラで読み取ってください。</p>
+      <p>荷物／不在票の宛名（氏名）の判定を行います。</p>
+      <p>判定が正常に終了すると、郵便受けを利用できるようになります。</p>
+      <p>荷物／不在票の宛名（氏名）をカメラで読み取ってください。</p><br>
+      <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
       <br>
 
-      <div id="app">
-        <div class="text-center pt-3">
-            <!-- Status によって表示ブロックを切り替える -->
-            <!-- play： カメラの映像を画面にリアルタイムで表示 -->
-            <div ref="canvas-container" style="width:500px;margin:0 auto;">
-                <canvas ref="canvas"></canvas>
-            </div>
-            <div v-if="status=='play'">
-                <button class="btn_06" @click="takeSnapshot">
-                    宛名　読み取り開始
-                </button>
-            </div>
-            <!-- pause： スナップショットをOCRにかけてテキストを取得 -->
-            <div v-if="status=='reading'">
-                読み取り中です...
-            </div>
-        </div><br>
-      </div><br>
-      <!-- JavaScriptを読み込み -->
-      <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
-      <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
-      <script type="text/javascript">
-        var url = 'http://127.0.0.1:8000/Guest_post_end1';
-      </script>
-      <script src="{% static 'js/Guest_address_camera.js' %}"></script><br>
-
-      <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p><br>
+      <p>①撮影ボタンを押してください</p>
+      <video id="video" width="640" height="480" autoplay></video>
+      <button id="captureBtn" class="btn_06">撮影</button><br>
+      <p id="submitMsg">②読み取り開始ボタンを押してください</p>
+      <button id="submitBtn" class="btn_06">読み取り開始</button>
+      <canvas id="canvas" width="640" height="480"></canvas>
+      <br>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
+
+
+      <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.style.display = "none";//none=非表示
+        const submitMsg = document.getElementById('submitMsg');
+        submitMsg.style.display = "none";//none=非表示
+        const constraints = { video: { width: 640, height: 480 } };
+
+        // カメラを起動
+        async function initCamera() {
+        		try {
+        				const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        				video.srcObject = stream;
+        		} catch (err) {
+        				console.error('カメラの起動に失敗しました: ', err);
+        		}
+        }
+
+        // スナップショットを撮影して保存
+        function captureSnapshot() {
+        	const context = canvas.getContext('2d');
+        	context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        	const snapshotData_base64 = canvas.toDataURL('image/png');
+          const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');
+
+        	// 送信ボタンが押されたことを検知してサーバーに送信
+        	submitBtn.addEventListener('click', () => {
+        			fetch('/save_snapshot/', {
+        					method: 'POST',
+        					headers: {
+        							'Content-Type': 'application/json',
+        							'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
+        					},
+        					body: JSON.stringify({ 'snapshotData': snapshotData , 'visitor':'Post_1'}),
+        			})
+        			.then(response => {
+        				if (!response.ok) {
+        						throw new Error('サーバーへの送信に失敗しました');
+        				}
+        				return response.json();
+        		})
+        		.then(data => {
+              //リダイレクトフラグをチェック
+              if (data.redirect){
+                window.location.href = 'Guest_post_end1';
+              }else{
+              console.log(data.message); // サーバーからの応答をコンソールに表示
+              }
+        		})
+        		.catch(error => console.error(error.message));
+        	});
+        }
+
+        // ページがロードされた時にカメラを起動する
+        window.onload = () => initCamera();
+
+        // 撮影ボタンがクリックされた時にスナップショットを撮影する
+        captureBtn.addEventListener('click', () => {
+          submitBtn.style.display = "block";//block=表示
+          submitMsg.style.display = "block";//block=表示
+          captureSnapshot()
+        });
+      </script>
 
 {% endblock %}

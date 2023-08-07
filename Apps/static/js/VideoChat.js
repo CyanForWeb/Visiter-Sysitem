@@ -51,6 +51,8 @@ const token = new SkyWayAuthToken({
 
   const myId = document.getElementById('my-id');
   const joinButton = document.getElementById('join');
+  const joiningMsg = document.getElementById('joining');
+  joiningMsg.style.display = "none";//none=非表示
   const closeButton = document.getElementById('close');
   closeButton.style.display = "none";//none=非表示
   const videoChat = document.getElementById('videoChat');
@@ -62,8 +64,8 @@ const token = new SkyWayAuthToken({
   await localVideo.play();
 
   joinButton.onclick = async () => {
-    joinButton.textContent = "参加中...";
-    //if (roomNameInput.value === '') return;
+    joinButton.style.display = "none";//参加ボタンを非表示にする
+    joiningMsg.style.display = "block";//参加中...というメッセージを表示する
     closeButton.style.display = "block";//終了ボタンを表示する
 
     const context = await SkyWayContext.Create(token);

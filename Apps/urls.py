@@ -31,4 +31,7 @@ urlpatterns = [
     path('Guest_post_end1', views_Guest.post_end1, name='Guest_post_end1'),#最後の画面１
     path('Guest_post_pic', views_Guest.post_pic, name='Guest_post_pic'),#投函物写真撮って送る画面
     path('Guest_post_end2', views_Guest.post_end2, name='Guest_post_end2'),#最後の画面２
+
+#カメラ機能で使用するURL
+    path('save_snapshot/', views_Guest.save_snapshot, name='save_snapshot'),
 ]
