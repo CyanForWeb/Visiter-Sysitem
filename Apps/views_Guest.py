@@ -26,19 +26,18 @@ def other(request):
     return render(request, 'html_Guest/Guest_other.html', )
 
 def other_form(request): #質問フォーム1~3に移る際に使用
-    #POSTリクエストを送信　STARTを押して質問フォーム１の画面になったら住民に通知
-    headers = {"Content-Type": "application/json"}
-    cookies = {"test_cookie": "aaa"}
-    data = json.dumps({"test": "hoge"})
-    #住民のiftttのkeyを入力する↓
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-
     if request.method == 'POST':
         #form1内容をdbに保存して、for2に遷移
         if "form1_submit" in request.POST: #ボタンが押されたら...
             form1 = request.POST.get('form1')
             Other_DB.objects.create(form1=form1) #Other_DBに値を保存
             Visitor_DB.objects.create(visitor='Other') #Visitor_DBに客人種類を保存
+            #POSTリクエストを送信　質問フォーム１が送信されたら：住民に通知
+            headers = {"Content-Type": "application/json"}
+            cookies = {"test_cookie": "aaa"}
+            data = json.dumps({"value1": "質問フォームが開始され、用件が入力されました！"})
+            #住民のiftttのkeyを入力する↓
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_form2.html')
         #form2内容をdbに保存して、for3に遷移
         if "form2_submit" in request.POST: #ボタンが押されたら...
@@ -48,12 +47,26 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             Other_DB.objects.update(form2_name=form2_name,
                                     form2_address=form2_address,
                                     form2_contact=form2_contact) #Other_DBに値を保存
+            #POSTリクエストを送信　質問フォーム１が送信されたら：住民に通知
+            headers = {"Content-Type": "application/json"}
+            cookies = {"test_cookie": "aaa"}
+            data = json.dumps({"value1": "名前、住所、連絡先が入力されました！"})
+            #住民のiftttのkeyを入力する↓
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_form3.html')
     return render(request, 'html_Guest/Guest_other_form1.html')
 
-def other_form4(request): #質問フォーム3→4に移る時に使用
+def other_form4(request): #質問フォーム3→4に移る時に使う
     #form4に遷移したらform3のdbにmessage格納
     Other_DB.objects.update(form3 = "謎の動画閲覧終了")
+
+    #POSTリクエストを送信　謎の動画の視聴が終わったら：住民に通知　ここの位置を確認する
+    headers = {"Content-Type": "application/json"}
+    cookies = {"test_cookie": "aaa"}
+    data = json.dumps({"value1": "謎の動画の視聴も終わりました！"})
+    #住民のiftttのkeyを入力する↓
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+
     if request.method == 'POST':
         #form4の内容をdbに保存して、endに遷移
         if "form4_submit" in request.POST: #ボタンが押されたら...
@@ -69,6 +82,12 @@ def other_form4(request): #質問フォーム3→4に移る時に使用
                                     form4_transportation=form4_transportation,
                                     form4_trivia=form4_trivia,
                                     form4_message=form4_message) #Other_DBに値を保存
+            #POSTリクエストを送信　最後の質問も答えきったら：住民に通知
+            headers = {"Content-Type": "application/json"}
+            cookies = {"test_cookie": "aaa"}
+            data = json.dumps({"value1": "お客さんは全ての質問の回答を終えました！"})
+            #住民のiftttのkeyを入力する↓
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_end.html')
     return render(request, 'html_Guest/Guest_other_form4.html')
 
@@ -81,10 +100,10 @@ def delivery_camera(request):
     return render(request, 'html_Guest/Guest_delivery_camera.html', )
 
 def delivery_end1(request):
-    #POSTリクエストを送信　STARTを押して質問フォーム１の画面になったら住民に通知
+    #POSTリクエストを送信　ハンコが必要な荷物がきたら：住民に通知
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
-    data = json.dumps({"test": "hoge"})
+    data = json.dumps({"value1": "ハンコが必要な荷物です！今すぐ玄関へ！"})
     #住民のiftttのkeyを入力する↓
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_delivery_end1.html', )
@@ -95,12 +114,24 @@ def post(request):
     return render(request, 'html_Guest/Guest_post.html', )
 
 def post_end1(request):
+    #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
+    headers = {"Content-Type": "application/json"}
+    cookies = {"test_cookie": "aaa"}
+    data = json.dumps({"value1": "宛名がある郵便物が投函されました！"})
+    #住民のiftttのkeyを入力する↓
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end1.html', )
 
 def post_pic(request):
     return render(request, 'html_Guest/Guest_post_pic.html')
 
 def post_end2(request):
+    #POSTリクエストを送信　郵便物が撮影されたら：住民に通知
+    headers = {"Content-Type": "application/json"}
+    cookies = {"test_cookie": "aaa"}
+    data = json.dumps({"value1": "チラシが撮影されました！"})
+    #住民のiftttのkeyを入力する↓
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end2.html', )
 
 #---------カメラ機能---------------
