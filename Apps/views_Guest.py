@@ -47,7 +47,7 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             Other_DB.objects.update(form2_name=form2_name,
                                     form2_address=form2_address,
                                     form2_contact=form2_contact) #Other_DBに値を保存
-            #POSTリクエストを送信　質問フォーム１が送信されたら：住民に通知
+            #POSTリクエストを送信　質問フォーム2が送信されたら：住民に通知
             headers = {"Content-Type": "application/json"}
             cookies = {"test_cookie": "aaa"}
             data = json.dumps({"value1": "名前、住所、連絡先が入力されました！"})
@@ -57,16 +57,16 @@ def other_form(request): #質問フォーム1~3に移る際に使用
     return render(request, 'html_Guest/Guest_other_form1.html')
 
 def other_form4(request): #質問フォーム3→4に移る時に使う
-    #form4に遷移したらform3のdbにmessage格納
-    Other_DB.objects.update(form3 = "謎の動画閲覧終了")
+    if request.method == 'GET':
+        #form4に遷移したらform3のdbにmessage格納
+        Other_DB.objects.update(form3 = "謎の動画閲覧終了")
 
-    #POSTリクエストを送信　謎の動画の視聴が終わったら：住民に通知　ここの位置を確認する
-    headers = {"Content-Type": "application/json"}
-    cookies = {"test_cookie": "aaa"}
-    data = json.dumps({"value1": "謎の動画の視聴も終わりました！"})
-    #住民のiftttのkeyを入力する↓
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-
+        #POSTリクエストを送信　謎の動画の視聴が終わったら：住民に通知　ここの位置を確認する
+        headers = {"Content-Type": "application/json"}
+        cookies = {"test_cookie": "aaa"}
+        data = json.dumps({"value1": "謎の動画の視聴も終わりました！"})
+        #住民のiftttのkeyを入力する↓
+        requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     if request.method == 'POST':
         #form4の内容をdbに保存して、endに遷移
         if "form4_submit" in request.POST: #ボタンが押されたら...
