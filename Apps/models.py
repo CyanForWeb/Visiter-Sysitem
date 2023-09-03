@@ -19,8 +19,9 @@ class Owner_Time_DB(models.Model):
 
 #客人からの通知を保存するために使用する
 class Visitor_DB(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True)
     visitor = models.TextField(max_length=10)
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(null=True)
     def __str__(self):
         return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 
@@ -32,34 +33,32 @@ class Visitor_Message_DB(models.Model):
 
 class Appt_DB(models.Model):
     visitor = models.TextField(default="Appt")
-    date = models.DateTimeField(default=datetime.now())
-    finish_date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(null=True)
     video_status = models.IntegerField(default=0)
     def __str__(self):
         return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 
 class Delivery_DB(models.Model):
     visitor = models.TextField(default="Delivery")
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(null=True)
     img = models.ImageField(upload_to="delivery", blank=True, null=True)
     def __str__(self):
         return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 
 class Post_DB(models.Model):
     visitor = models.TextField(max_length=10)
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(null=True)
     img = models.ImageField(upload_to="post/", blank=True, null=True)
     def __str__(self):
         return self.visitor+"："+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 
 class Other_DB(models.Model):
     visitor = models.TextField(default="Other")
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(null=True)
     video_status = models.IntegerField(default=0)
     form1 = models.TextField(max_length=500)
     form2_name = models.TextField(max_length=50)
     form2_address = models.TextField(max_length=50)
-    form2_contact = models.TextField(max_length=50)
     form3 = models.TextField(max_length=10)
     form4_date = models.TextField(max_length=20)
     form4_day = models.TextField(max_length=20)

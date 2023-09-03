@@ -1,0 +1,32 @@
+{% extends './Owner_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>住民のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+
+      <h3>誰かが来訪しています</h3>
+      <h3>{{ obj.date }}</h3>
+
+      <ul>
+      <li><p>来訪用件</p>{{ obj.form1 }}</li>
+      <li><p>名前</p>{{ obj.form2_name }}</li>
+      <li><p>住所</p>{{ obj.form2_address }}</li>
+      <li><p>動画視聴有無</p>{{ obj.form3 }}</li>
+      <li><p>日付</p>{{ obj.form4_date }}</li>
+      <li><p>曜日</p>{{ obj.form4_day }}</li>
+      <li><p>天気</p>{{ obj.form4_weather }}</li>
+      <li><p>交通手段</p>{{ obj.form4_transportation }}</li>
+      <li><p>雑学/豆知識</p>{{ obj.form4_trivia }}</li>
+      <li><p>最後に一言</p>{{ obj.form4_message }}</li>
+      </ul>
+
+      <br>
+      <a href="{% url 'Owner_seeform' %}"><p>履歴画面に戻る</p></a>
+      <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
+      </div>
+
+{% endblock %}

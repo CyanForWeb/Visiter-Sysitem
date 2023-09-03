@@ -7,11 +7,15 @@
       </div>
 
       <div class="content">
-      <p class="memo">※メモ：この画面は、回答フォームを閲覧する画面です</p>
+        <p>リスト機能でvisitor_dbを日付順に表示する</p>
+
+          {% for obj in object_list %}
+          <li>
+              <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.date }}：{{ obj.visitor }}</a>
+          </li>
+          {% endfor %}
+
       <br>
-
-      <a href="{% url 'Owner_seeform_detail' %}"><p>O月O日 O時頃</p></a><br>
-
       <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
       </div>
 

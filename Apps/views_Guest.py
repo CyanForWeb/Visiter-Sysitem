@@ -29,9 +29,10 @@ def other_form(request): #質問フォーム1~3に移る際に使用
     if request.method == 'POST':
         #form1内容をdbに保存して、for2に遷移
         if "form1_submit" in request.POST: #ボタンが押されたら...
+            day_time = datetime.now() #今の日付時間を設定
+            Visitor_DB.objects.create(date=day_time,visitor='Other') #Visitor_DBに客人種類を保存
             form1 = request.POST.get('form1')
-            Other_DB.objects.create(form1=form1) #Other_DBに値を保存
-            Visitor_DB.objects.create(visitor='Other') #Visitor_DBに客人種類を保存
+            Other_DB.objects.create(date=day_time, form1=form1) #Other_DBに値を保存
             #POSTリクエストを送信　質問フォーム１が送信されたら：住民に通知
             headers = {"Content-Type": "application/json"}
             cookies = {"test_cookie": "aaa"}
@@ -43,10 +44,8 @@ def other_form(request): #質問フォーム1~3に移る際に使用
         if "form2_submit" in request.POST: #ボタンが押されたら...
             form2_name = request.POST.get('form2_name')
             form2_address = request.POST.get('form2_address')
-            form2_contact = request.POST.get('form2_contact')
             Other_DB.objects.update(form2_name=form2_name,
-                                    form2_address=form2_address,
-                                    form2_contact=form2_contact) #Other_DBに値を保存
+                                    form2_address=form2_address) #Other_DBに値を保存
             #POSTリクエストを送信　質問フォーム2が送信されたら：住民に通知
             headers = {"Content-Type": "application/json"}
             cookies = {"test_cookie": "aaa"}
@@ -134,25 +133,29 @@ def post_end2(request):
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end2.html', )
 
-#---------カメラ機能---------------
+
+#---------カメラ撮影した画像をdbに保存する機能---------------
 def save_snapshot(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         snapshot_data = data.get('snapshotData', None)
         visitor_data = data.get('visitor', None)
-        Visitor_DB.objects.create(visitor=visitor_data)#Visitor_DBに客人種類を保存
+        day_time = datetime.now() #今の日付時間を設定
+        Visitor_DB.objects.create(date=day_time, visitor=visitor_data)#Visitor_DBに客人種類を保存
         if snapshot_data:
             # Base64形式のデータをデコードしてPost_DBに保存
             image_data = base64.b64decode(snapshot_data)
             #保存する際のファイル名を指定
             filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
             #DBにimage_dataとvisitor情報を保存
-            if visitor_data == 'Delivery':
-                post_db = Delivery_DB()
-                post_db.img.save(filename, ContentFile(image_data))
-            else :
+            if visitor_data == 'Delivery': #客人がdeliveryだったら
+                delivery_db = Delivery_DB()
+                delivery_db.date = day_time
+                delivery_db.img.save(filename, ContentFile(image_data))
+            else : #客人がpostだったら
                 post_db = Post_DB()
                 post_db.visitor = visitor_data
+                post_db.date = day_time
                 post_db.img.save(filename, ContentFile(image_data))
             return JsonResponse({'redirect': True})
     return JsonResponse({'message': 'スナップショットの保存に失敗しました。'}, status=400)
