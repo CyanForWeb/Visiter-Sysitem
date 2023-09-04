@@ -29,46 +29,43 @@ def seeform(request):
 def seeform_detail(request, id):
     obj = Visitor_DB.objects.get(pk=id)
     context = {}
+
     if obj.visitor=='Appt':
-        context = appt_context(request,obj)
+        visit = appt_context(request,obj)
+        context = {'obj':visit,'mes':obj,}
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
     elif obj.visitor=='Delivery':
-        context = delivery_context(obj)
+        visit = delivery_context(obj)
+        context = {'obj':visit,'mes':obj,}
         return render(request, 'html_Owner/Owner_seeform_detail.html', context)
     elif obj.visitor=='Other':
-        context = other_context(request,obj)
+        visit = other_context(request,obj)
+        context = {'obj':visit,'mes':obj,}
         return render(request, 'html_Owner/Owner_seeform_detail_Other.html', context)
     else:
-        context = post_context(obj)
+        visit = post_context(obj)
+        context = {'obj':visit,'mes':obj,}
         return render(request, 'html_Owner/Owner_seeform_detail.html', context)
-    return render(request, 'html_Owner/Owner_seeform_detail.html', context)
+
+    if "join_button" in request.POST:#ボタンが押されたら...
+        visit.video_status = 1
+        visit.save()
+    #return render(request, 'html_Owner/Owner_seeform_detail.html', context)
 
 
 #visitorの種類ごとにcontextの内容を格納する
 def appt_context(request,obj):
     visit = Appt_DB.objects.get(date=obj.date)
-    if request.method == 'POST':
-        if "join" in request.POST:#ボタンが押されたら...
-            visit.video_status = 1
-            visit.save()
-    context = {'obj':visit,'mes':obj,}
-    return context
+    return visit
 #visitorの種類ごとにcontextの内容を格納する
 def delivery_context(obj):
     visit = Delivery_DB.objects.get(date=obj.date)
-    context = {'obj':visit,'mes':obj,}
-    return context
+    return visit
 #visitorの種類ごとにcontextの内容を格納する
 def other_context(request,obj):
     visit = Other_DB.objects.get(date=obj.date)
-    if request.method == 'POST':
-        if "join" in request.POST:#ボタンが押されたら...
-            visit.video_status = 1
-            visit.save()
-    context = {'obj':visit,'mes':obj,}
-    return context
+    return visit
 #visitorの種類ごとにcontextの内容を格納する
 def post_context(obj):
     visit = Post_DB.objects.get(date=obj.date)
-    context = {'obj':visit,'mes':obj,}
-    return context
+    return visit
