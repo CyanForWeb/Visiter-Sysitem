@@ -8,21 +8,39 @@
 
       <div class="content">
 
-      <h3>誰かが来訪しています</h3>
-      <h3>{{ obj.date }}</h3>
+      <h3>{{ mes.message }}（{{ obj.date }}）</h3><br>
 
       <ul>
-      <li><p>来訪用件</p>{{ obj.form1 }}</li>
-      <li><p>名前</p>{{ obj.form2_name }}</li>
-      <li><p>住所</p>{{ obj.form2_address }}</li>
-      <li><p>動画視聴有無</p>{{ obj.form3 }}</li>
-      <li><p>日付</p>{{ obj.form4_date }}</li>
-      <li><p>曜日</p>{{ obj.form4_day }}</li>
-      <li><p>天気</p>{{ obj.form4_weather }}</li>
-      <li><p>交通手段</p>{{ obj.form4_transportation }}</li>
-      <li><p>雑学/豆知識</p>{{ obj.form4_trivia }}</li>
-      <li><p>最後に一言</p>{{ obj.form4_message }}</li>
+      <li>来訪用件<p>{{ obj.form1 }}</p></li>
+      <li>名前<p>{{ obj.form2_name }}</p></li>
+      <li>住所<p>{{ obj.form2_address }}</p></li>
+      <li>動画視聴有無<p>{{ obj.form3 }}</p></li>
+      <li>日付<p>{{ obj.form4_date }}</p></li>
+      <li>曜日<p>{{ obj.form4_day }}</p></li>
+      <li>天気<p>{{ obj.form4_weather }}</p></li>
+      <li>交通手段<p>{{ obj.form4_transportation }}</p></li>
+      <li>雑学/豆知識<p>{{ obj.form4_trivia }}</p></li>
+      <li>最後に一言<p>{{ obj.form4_message }}</p></li>
       </ul>
+
+      <!--ビデオチャットを表示する機能-->
+      <div id="videoChat">
+      <div style="visibility:hidden;">
+       <input id="room-name" value="VideoRoom"/>
+       <span id="my-id"></span><br>
+      </div>
+      <hr size="10">
+      <button id="join" name="join" class="btn_06">ビデオチャット開始</button><br>
+      <p id="joining">参加中...</p>
+      <div id="close">
+      <button class="btn_06">ビデオチャット終了</button><br>
+      </div>
+      <video id="local-video" width="400px" muted playsinline></video>
+      <div id="button-area"></div>
+      <div id="remote-media-area"></div>
+      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+      <script src="{% static 'js/VideoChat.js' %}"></script><br>
+      </div>
 
       <br>
       <a href="{% url 'Owner_seeform' %}"><p>履歴画面に戻る</p></a>

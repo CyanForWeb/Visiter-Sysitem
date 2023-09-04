@@ -30,7 +30,8 @@ def other_form(request): #質問フォーム1~3に移る際に使用
         #form1内容をdbに保存して、for2に遷移
         if "form1_submit" in request.POST: #ボタンが押されたら...
             day_time = datetime.now() #今の日付時間を設定
-            Visitor_DB.objects.create(date=day_time,visitor='Other') #Visitor_DBに客人種類を保存
+            mes = Visitor_Message_DB.objects.get(visitor='Other')
+            Visitor_DB.objects.create(date=day_time,visitor='Other',message=mes.message) #Visitor_DBに客人種類を保存
             form1 = request.POST.get('form1')
             Other_DB.objects.create(date=day_time, form1=form1) #Other_DBに値を保存
             #POSTリクエストを送信　質問フォーム１が送信されたら：住民に通知
@@ -141,7 +142,8 @@ def save_snapshot(request):
         snapshot_data = data.get('snapshotData', None)
         visitor_data = data.get('visitor', None)
         day_time = datetime.now() #今の日付時間を設定
-        Visitor_DB.objects.create(date=day_time, visitor=visitor_data)#Visitor_DBに客人種類を保存
+        mes = Visitor_Message_DB.objects.get(visitor=visitor_data)
+        Visitor_DB.objects.create(date=day_time, visitor=visitor_data,message=mes.message)#Visitor_DBに客人種類を保存
         if snapshot_data:
             # Base64形式のデータをデコードしてPost_DBに保存
             image_data = base64.b64decode(snapshot_data)

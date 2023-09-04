@@ -22,6 +22,7 @@ class Visitor_DB(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True)
     visitor = models.TextField(max_length=10)
     date = models.DateTimeField(null=True)
+    message = models.TextField(max_length=20, null=True)
     def __str__(self):
         return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 

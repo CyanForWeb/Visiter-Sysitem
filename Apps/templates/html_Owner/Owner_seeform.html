@@ -7,11 +7,12 @@
       </div>
 
       <div class="content">
-        <p>リスト機能でvisitor_dbを日付順に表示する</p>
 
           {% for obj in object_list %}
           <li>
-              <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.date }}：{{ obj.visitor }}</a>
+              {{ obj.date }}：<br>
+              <a href="{% url 'Owner_seeform_detail' obj.id %}">　　{{ obj.message }}</a>
+              <p></p>
           </li>
           {% endfor %}
 
