@@ -29,7 +29,6 @@ def seeform(request):
 def seeform_detail(request, id):
     obj = Visitor_DB.objects.get(pk=id)
     context = {}
-    #visitorの種類ごとにcontextの内容を格納する
     if obj.visitor=='Appt':
         context = appt_context(request,obj)
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
@@ -48,8 +47,10 @@ def seeform_detail(request, id):
 #visitorの種類ごとにcontextの内容を格納する
 def appt_context(request,obj):
     visit = Appt_DB.objects.get(date=obj.date)
-    if "join" in request.POST:#ボタンが押されたら...
-        visit.objects.update(video_status=1)
+    if request.method == 'POST':
+        if "join" in request.POST:#ボタンが押されたら...
+            visit.video_status = 1
+            visit.save()
     context = {'obj':visit,'mes':obj,}
     return context
 #visitorの種類ごとにcontextの内容を格納する
@@ -60,8 +61,10 @@ def delivery_context(obj):
 #visitorの種類ごとにcontextの内容を格納する
 def other_context(request,obj):
     visit = Other_DB.objects.get(date=obj.date)
-    if "join" in request.POST:#ボタンが押されたら...
-        visit.objects.update(video_status=1)
+    if request.method == 'POST':
+        if "join" in request.POST:#ボタンが押されたら...
+            visit.video_status = 1
+            visit.save()
     context = {'obj':visit,'mes':obj,}
     return context
 #visitorの種類ごとにcontextの内容を格納する
