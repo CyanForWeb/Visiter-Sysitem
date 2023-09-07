@@ -10,31 +10,16 @@
 
       <h3>{{ mes.message }}（{{ obj.date }}）</h3>
 
-      <!--ビデオチャットを表示する機能-->
+
       <form method="POST">
       {% csrf_token %}
-      <div id="videoChat">
-      <div style="visibility:hidden;">
-       <input id="room-name" value="VideoRoom"/>
-       <span id="my-id"></span><br>
-      </div>
-      <hr size="10">
-      <button id="join" name="join_button" class="btn_06">ビデオチャット開始</button><br>
-      <p id="joining">参加中...</p>
-      <div id="close">
-      <button class="btn_06">ビデオチャット終了</button><br>
-      </div>
-      <video id="local-video" width="400px" muted playsinline></video>
-      <div id="button-area"></div>
-      <div id="remote-media-area"></div>
-      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-      <script src="{% static 'js/VideoChat.js' %}"></script><br>
-      </div>
+      <button name="video_button" class="btn_06">ビデオチャットを行う</button>
+      </form>
 
       <br>
       <a href="{% url 'Owner_seeform' %}"><p>履歴画面に戻る</p></a>
       <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
       </div>
-      </form>
+
 
 {% endblock %}

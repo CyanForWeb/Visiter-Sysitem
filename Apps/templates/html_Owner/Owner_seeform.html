@@ -9,14 +9,15 @@
       <div class="content">
 
           {% for obj in object_list %}
+          <hr size="10">
           <li>
               {{ obj.date }}：<br>
               <a href="{% url 'Owner_seeform_detail' obj.id %}">　　{{ obj.message }}</a>
               <p></p>
-              <hr size="10">
           </li>
           {% endfor %}
-
+          <hr size="10">
+          
       <br>
       <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
       </div>
