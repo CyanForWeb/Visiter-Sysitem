@@ -12,11 +12,10 @@
         <p>※荷物の宛名(氏名)をカメラで読み取ってください。</p>
       <br>
 
-      <h2>①撮影ボタンを押してください</h2>
+      <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
       <video id="video" width="640" height="480" autoplay></video>
       <button id="captureBtn" class="btn_06">撮影</button><br>
       <hr>
-      <h2 id="submitMsg">②読み取り開始ボタンを押してください</h2>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
       <canvas id="canvas" width="640" height="480"></canvas>
       <br>
@@ -26,11 +25,11 @@
       <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
+        canvas.style.display = "none";//none=非表示
         const captureBtn = document.getElementById('captureBtn');
+        captureBtn.style.display = "none";
         const submitBtn = document.getElementById('submitBtn');
-        submitBtn.style.display = "none";//none=非表示
         const submitMsg = document.getElementById('submitMsg');
-        submitMsg.style.display = "none";//none=非表示
         const constraints = { video: { width: 640, height: 480 } };
 
         // カメラを起動
@@ -51,7 +50,7 @@
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');
 
         	// 送信ボタンが押されたことを検知してサーバーに送信
-        	submitBtn.addEventListener('click', () => {
+        	//submitBtn.addEventListener('click', () => {
         			fetch('/save_snapshot/', {
         					method: 'POST',
         					headers: {
@@ -75,16 +74,16 @@
               }
         		})
         		.catch(error => console.error(error.message));
-        	});
+        	//});
         }
 
         // ページがロードされた時にカメラを起動する
         window.onload = () => initCamera();
 
         // 撮影ボタンがクリックされた時にスナップショットを撮影する
-        captureBtn.addEventListener('click', () => {
-          submitBtn.style.display = "block";//block=表示
-          submitMsg.style.display = "block";//block=表示
+        submitBtn.addEventListener('click', () => {
+          //submitBtn.style.display = "block";//block=表示
+          //submitMsg.style.display = "block";//block=表示
           captureSnapshot()
         });
       </script>

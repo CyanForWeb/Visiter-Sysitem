@@ -13,10 +13,9 @@
       <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
       <br>
 
-      <h2>①撮影ボタンを押してください</h2>
+      <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
       <video id="video" width="640" height="480" autoplay></video>
       <button id="captureBtn" class="btn_06">撮影</button><br>
-      <h2 id="submitMsg">②読み取り開始ボタンを押してください</h2>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
       <canvas id="canvas" width="640" height="480"></canvas>
       <br>
@@ -27,11 +26,11 @@
       <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
+        canvas.style.display = "none";
         const captureBtn = document.getElementById('captureBtn');
+        captureBtn.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
-        submitBtn.style.display = "none";//none=非表示
         const submitMsg = document.getElementById('submitMsg');
-        submitMsg.style.display = "none";//none=非表示
         const constraints = { video: { width: 640, height: 480 } };
 
         // カメラを起動
@@ -52,40 +51,41 @@
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');
 
         	// 送信ボタンが押されたことを検知してサーバーに送信
-        	submitBtn.addEventListener('click', () => {
-        			fetch('/save_snapshot/', {
-        					method: 'POST',
-        					headers: {
-        							'Content-Type': 'application/json',
-        							'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
-        					},
-        					body: JSON.stringify({ 'snapshotData': snapshotData , 'visitor':'Post_1'}),
-        			})
-        			.then(response => {
-        				if (!response.ok) {
-        						throw new Error('サーバーへの送信に失敗しました');
-        				}
-        				return response.json();
+        	//submitBtn.addEventListener('click', () => {
+            console.log("message");
+        		fetch('/save_snapshot/', {
+        				method: 'POST',
+        				headers: {
+        					 'Content-Type': 'application/json',
+        					 'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
+        				},
+        				body: JSON.stringify({ 'snapshotData': snapshotData , 'visitor':'Post_1'}),
+        		})
+        		.then(response => {
+        			if (!response.ok) {
+        					throw new Error('サーバーへの送信に失敗しました');
+        			}
+        			return response.json();
         		})
         		.then(data => {
               //リダイレクトフラグをチェック
               if (data.redirect){
-                window.location.href = 'Guest_post_end1';
+                 window.location.href = 'Guest_post_end1';
               }else{
-              console.log(data.message); // サーバーからの応答をコンソールに表示
+                 console.log(data.message); // サーバーからの応答をコンソールに表示
               }
         		})
         		.catch(error => console.error(error.message));
-        	});
+        	//});
         }
 
         // ページがロードされた時にカメラを起動する
         window.onload = () => initCamera();
 
         // 撮影ボタンがクリックされた時にスナップショットを撮影する
-        captureBtn.addEventListener('click', () => {
-          submitBtn.style.display = "block";//block=表示
-          submitMsg.style.display = "block";//block=表示
+        submitBtn.addEventListener('click', () => {
+          //submitBtn.style.display = "block";//block=表示
+          //submitMsg.style.display = "block";//block=表示
           captureSnapshot()
         });
       </script>
