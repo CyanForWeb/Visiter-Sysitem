@@ -18,6 +18,8 @@ urlpatterns = [
 #アポ済みのWebアプリに使用するURL
     path('Appt_home', views_Appt.home, name='Appt_home'),#一番最初にアクセスする画面
     path('Appt_end', views_Appt.end, name='Appt_end'),#最後の画面
+    path('save_qrcode/', views_Appt.save_qrcode, name='save_qrcode'),
+    path('save_geolocation/', views_Appt.save_geolocation, name='save_geolocation'),
 
 #客人のWebアプリに使用するURL
     path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
