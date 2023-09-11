@@ -24,7 +24,8 @@ class Visitor_DB(models.Model):
     date = models.DateTimeField(null=True)
     message = models.TextField(max_length=20, null=True)
     def __str__(self):
-        return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
+        #return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
+        return self.visitor
 
 class Visitor_Message_DB(models.Model):
     visitor = models.TextField(max_length=10)
@@ -37,7 +38,8 @@ class Appt_DB(models.Model):
     date = models.DateTimeField(null=True)
     video_status = models.IntegerField(default=0)
     def __str__(self):
-        return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
+        #return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
+        return self.visitor
 
 class Delivery_DB(models.Model):
     visitor = models.TextField(default="Delivery")

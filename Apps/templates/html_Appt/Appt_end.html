@@ -11,6 +11,8 @@
       <h2>住民を呼び出しています。少々お待ちください。</h2>
       <img src="{% static 'video/video.png' %}" alt="待ち時間の動画" width="300" height="200"></img>
 
+      <p>Video Status: <span id="video_status">0</span></p>
+
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat">
       <div style="visibility:hidden;">
@@ -21,7 +23,7 @@
       <button id="join" class="btn_06">ビデオチャット開始</button><br>
       <p id="joining">参加中...</p>
       <div id="close">
-      <button class="btn_06">ビデオチャット終了</button><br>
+      <button class="btn_06" id='endBtn'>ビデオチャット終了</button><br>
       </div>
       <video id="local-video" width="400px" muted playsinline></video>
       <div id="button-area"></div>
@@ -29,6 +31,41 @@
       <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
       <script src="{% static 'js/VideoChat.js' %}"></script><br>
       </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        const video = document.getElementById('videoChat');
+        video.style.display = "none";//none=非表示
+
+        function updateVideoStatus() {
+            $.ajax({
+                url: "{% url 'check_video_status' %}",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#video_status').text(data.video_status);
+                    if (data.video_status == 1) {
+                        // ビデオステータスが1の場合、メッセージを表示
+                        video.style.display = "block";//表示
+                    }
+                }
+            });
+        }
+
+        // ページ読み込み時に最新のビデオステータスを取得
+        updateVideoStatus();
+
+        // 5秒ごとにビデオステータスをチェック
+        setInterval(updateVideoStatus, 8000);
+
+        const btn = document.getElementById('endBtn');
+        // 終了ボタンがクリックされた時に非表示にする
+        btn.addEventListener('click', () => {
+          video.style.display = "none";//block=表示
+        });
+
+      </script>
 
       </div>
 

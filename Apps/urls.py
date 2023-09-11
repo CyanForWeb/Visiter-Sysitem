@@ -20,6 +20,7 @@ urlpatterns = [
     path('Appt_end', views_Appt.end, name='Appt_end'),#最後の画面
     path('save_qrcode/', views_Appt.save_qrcode, name='save_qrcode'),
     path('save_geolocation/', views_Appt.save_geolocation, name='save_geolocation'),
+    path('check_video_status', views_Appt.check_video_status, name='check_video_status'),#ビデオステータスの確認
 
 #客人のWebアプリに使用するURL
     path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
@@ -27,6 +28,7 @@ urlpatterns = [
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面
     path('Guest_other_form', views_Guest.other_form, name='Guest_other_form'),
     path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),
+    path('other_check_video_status', views_Guest.other_check_video_status, name='other_check_video_status'),#ビデオステータスの確認
     #配達員　画面
     path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面
     path('Guest_delivery_camera', views_Guest.delivery_camera, name='Guest_delivery_camera'),#宛名カメラ判定画面

@@ -91,6 +91,15 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
             return render(request, 'html_Guest/Guest_other_end.html')
     return render(request, 'html_Guest/Guest_other_form4.html')
 
+def other_check_video_status(request):
+    if request.is_ajax():
+        # レコードの最新のvideo_statusを取得
+        latest_appt = Other_DB.objects.latest('pk')
+        data = {
+            'video_status': latest_appt.video_status,
+        }
+        return JsonResponse(data)
+
 
 #-------配達員　の画面で使用する機能たち---------------------------
 def delivery(request):
