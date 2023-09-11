@@ -51,11 +51,12 @@ def save_qrcode(request):
             requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
             return JsonResponse({'redirect': True})
         else:
+            #デバックの時に使う
             #保存する際のファイル名を指定
-            filename = f"NG{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
-            f = open('media/appt/'+filename, "w")
-            f.write(qrData)
-            f.close()
+            #filename = f"NG{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
+            #f = open('media/appt/'+filename, "w")
+            #f.write(qrData)
+            #f.close()
             return JsonResponse({'redirect': False,'message':'QRコードが登録されていません。正しいQRコードを読み込んでください。'})
     return JsonResponse({'message': 'スナップショットの保存に失敗しました。'}, status=400)
 
