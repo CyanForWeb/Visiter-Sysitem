@@ -51,6 +51,7 @@ const token = new SkyWayAuthToken({
 
   const myId = document.getElementById('my-id');
   const joinButton = document.getElementById('join');
+  const message = document.getElementById('message');
   const joiningMsg = document.getElementById('joining');
   joiningMsg.style.display = "none";//none=非表示
   const closeButton = document.getElementById('close');
@@ -67,6 +68,7 @@ const token = new SkyWayAuthToken({
     joinButton.style.display = "none";//参加ボタンを非表示にする
     joiningMsg.style.display = "block";//参加中...というメッセージを表示する
     closeButton.style.display = "block";//終了ボタンを表示する
+    message.style.display = "none";//参加しましょうメッセージを非表示にする
 
     const context = await SkyWayContext.Create(token);
     const room = await SkyWayRoom.FindOrCreate(context, {

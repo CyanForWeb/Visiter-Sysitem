@@ -18,8 +18,8 @@ def setting_home(request):
 def setting_end(request):
     return render(request, 'html_Owner/Owner_setting_end.html', )
 
-def videochat(request):
-    return render(request, 'html_Owner/Owner_VideoChat.html', )
+#def videochat(request):
+#    return render(request, 'html_Owner/VideoChat.html', )
 
 def seeform(request):
     #db内容を日付順に並べ替える
@@ -33,7 +33,6 @@ def seeform_detail(request, id):
     obj = Visitor_DB.objects.get(pk=id)
     context = {}
 
-
     if obj.visitor=='Appt':
         visit = appt_context(request,obj)
         context = {'obj':visit,'mes':obj,}
@@ -41,6 +40,10 @@ def seeform_detail(request, id):
             visit.video_status = 1
             visit.save()
             return render(request, 'html_Owner/VideoChat.html',)
+        if "exit_button" in request.POST:#ボタンが押されたら...
+            visit.video_status = 0
+            visit.save()
+            return render(request, 'html_Owner/Owner_home.html', )
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
     elif obj.visitor=='Delivery':
         visit = delivery_context(obj)
@@ -53,6 +56,10 @@ def seeform_detail(request, id):
             visit.video_status = 1
             visit.save()
             return render(request, 'html_Owner/VideoChat.html',)
+        if "exit_button" in request.POST:#ボタンが押されたら...
+            visit.video_status = 0
+            visit.save()
+            return render(request, 'html_Owner/Owner_home.html', )
         return render(request, 'html_Owner/Owner_seeform_detail_Other.html', context)
     else:
         visit = post_context(obj)

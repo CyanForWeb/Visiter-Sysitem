@@ -26,6 +26,28 @@
       <div class="content">
       <h2>郵便受けの鍵がすぐに解除されますので、投函をお願いします。</h2>
       <p>※郵便受けの鍵は、ただいまから60秒で閉じられますので、ご注意ください。</p>
+
+      <h1 id='count' style='text-align:center'></h1>
+      <h2 id='message' style='text-align:center'>ポストを施錠しました</h2>
+      <script>
+        let count = 10;
+        document.getElementById("message").style.display = "none";//非表示
+
+        window.onload = function(){
+          setTimeout(counter,5000);
+        }
+
+        function counter(){
+          if(count<0){
+            document.getElementById("count").style.display = "none";//非表示
+            document.getElementById("message").style.display = "block";//表示
+          }
+          document.getElementById("count").innerHTML = count;
+          count--;
+          setTimeout(counter, 1000);
+        }
+      </script>
+
       <p>投函が終了しましたら、本画面を閉じてください。</p>
       </div>
 

@@ -12,7 +12,7 @@ urlpatterns = [
     path('Owner_seeform', views_Owner.seeform, name='Owner_seeform'),
     #path('Owner_seeform_detail', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     path('<int:id>', views_Owner.seeform_detail, name='Owner_seeform_detail'),
-    path('VideoChat', views_Owner.videochat, name='VideoChat'),
+    #path('<int:id>', views_Owner.videochat, name='VideoChat'),
 
 
 #アポ済みのWebアプリに使用するURL

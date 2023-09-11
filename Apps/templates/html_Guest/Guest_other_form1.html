@@ -11,7 +11,7 @@
       <form method="post">
       {% csrf_token %}
       <p>来訪されたご用件を記入してください：</p><br>
-      <input type="text" name="form1" size="500"/><br>
+      <input type="text" required="required" name="form1" size="500"></input><br>
       <button name="form1_submit" class="btn_06">次の質問に答える</button>
       </form>
 
