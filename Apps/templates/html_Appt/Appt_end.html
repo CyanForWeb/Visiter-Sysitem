@@ -10,6 +10,22 @@
 
       <h2>住民を呼び出しています。少々お待ちください。</h2>
       <img src="{% static 'video/video.png' %}" alt="待ち時間の動画" width="300" height="200"></img>
+      <!--待ち時間動画-->
+      <div id="video01" poster="" >
+        <p>動画が表示されない際のメッセージ.</p>
+      </div>
+      <div id="video02" poster="" muted playsinline controls metadata style="display: none;">
+        <p>動画が表示されない際のメッセージ.</p>
+      </div>
+      <div id="video03" poster="" muted playsinline controls metadata style="display: none;">
+        <p>動画が表示されない際のメッセージ.</p>
+      </div>
+      <div id="video04" poster="" muted playsinline controls metadata style="display: none;">
+        <p>動画が表示されない際のメッセージ.</p>
+      </div>
+      <div id="video05" poster="" muted playsinline controls metadata style="display: none;">
+        <p>動画が表示されない際のメッセージ.</p>
+      </div>
 
       <p>Video Status: <span id="video_status">0</span></p>
 
@@ -38,6 +54,17 @@
       <script>
         const video = document.getElementById('videoChat');
         video.style.display = "none";//none=非表示
+        //待ち時間動画
+        var video01 = document.getElementById("video01");//17秒
+        video01.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='1080' height='720'autoplay muted></video>";
+        var video02 = document.getElementById("video02");//19秒
+        video02.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='1080' height='720'autoplay muted></video>";
+        var video03 = document.getElementById("video03");//16秒
+        video03.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='1080' height='720'autoplay muted></video>";
+        var video04 = document.getElementById("video04");//61秒
+        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='1080' height='720'autoplay muted></video>";
+        var video05 = document.getElementById("video05");//41秒
+        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='1080' height='720'autoplay muted></video>";
 
         function updateVideoStatus() {
             $.ajax({
@@ -49,6 +76,11 @@
                     if (data.video_status == 1) {
                         // ビデオステータスが1の場合、メッセージを表示
                         video.style.display = "block";//表示
+                        video01.style.display ="none";
+                        video02.style.display ="none";
+                        video03.style.display ="none";
+                        video04.style.display ="none";
+                        video05.style.display ="none";
                     }
                 }
             });
@@ -65,6 +97,34 @@
         btn.addEventListener('click', () => {
           video.style.display = "none";//block=表示
         });
+
+
+  
+         // video01の再生が終わった場合
+        setTimeout(() =>{
+            video01.style.display ="none";
+            video02.style.display ="block";
+        },17000)
+          // video02の再生が終わった場合
+        setTimeout(() =>{
+            video02.style.display ="none";
+            video03.style.display ="block";
+        },36000)
+          // video03の再生が終わった場合
+        setTimeout(() =>{
+            video03.style.display ="none";
+            video04.style.display ="block";
+        },52000)
+          // video04の再生が終わった場合
+        setTimeout(() =>{
+            video04.style.display ="none";
+            video05.style.display ="block";
+        },113000)
+          // video05の再生が終わった場合
+        setTimeout(() =>{
+            video05.style.display ="none";
+            video01.style.display ="block";
+        },154000)
 
       </script>
 
