@@ -9,7 +9,7 @@
       <div class="content">
 
       <h2>住民を呼び出しています。少々お待ちください。</h2>
-      <img src="{% static 'video/video.png' %}" alt="待ち時間の動画" width="300" height="200"></img>
+      <!--<img src="{% static 'video/video.png' %}" alt="待ち時間の動画" width="300" height="200"></img>-->
       <!--待ち時間動画-->
       <div id="video01" poster="" >
         <p>動画が表示されない際のメッセージ.</p>
@@ -75,19 +75,16 @@
                 success: function(data) {
                     $('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
-                        // ビデオステータスが1の場合表示
-                        video.style.display = "block";//表示
-<<<<<<< HEAD
-                        video01.style.display ="none";
-                        video02.style.display ="none";
-                        video03.style.display ="none";
-                        video04.style.display ="none";
-                        video05.style.display ="none";
-=======
+                      // ビデオステータスが1の場合表示
+                      video.style.display = "block";//表示
+                      video01.style.display ="none";
+                      video02.style.display ="none";
+                      video03.style.display ="none";
+                      video04.style.display ="none";
+                      video05.style.display ="none";
                     }else if(data.video_status == 0){
                       // ビデオステータスが0の場合非表示
                       video.style.display = "none";//非表示
->>>>>>> 94df2a5 (Risa 9/17更新)
                     }
                 }
             });
@@ -106,7 +103,7 @@
         });
 
 
-  
+
          // video01の再生が終わった場合
         setTimeout(() =>{
             video01.style.display ="none";

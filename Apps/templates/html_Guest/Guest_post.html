@@ -3,22 +3,22 @@
 
 {% block content %}
       <div class="page-header">
-          <h1>客人(郵便受け)のWebアプリ</h1>
+          <h1>郵便受けのWebアプリ</h1>
       </div>
 
       <div class="content">
-      <h2>荷物／不在票の宛名（氏名）の判定を行います。</h2>
-      <p>※判定が正常に終了すると、郵便受けを利用できるようになります。</p>
-      <p>※荷物／不在票の宛名（氏名）をカメラで読み取ってください。</p><br>
-      <p>宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
+      <h2>荷物／不在票の宛名の判定を行います。</h2>
+      <p>※ 宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
       <br>
 
       <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
+      <p>※ 判定が正常に終了すると、郵便受けを利用できるようになります。</p>
       <video id="video" width="640" height="480" autoplay></video>
       <button id="captureBtn" class="btn_06">撮影</button><br>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
       <canvas id="canvas" width="640" height="480"></canvas>
       <br>
+      <hr>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
 

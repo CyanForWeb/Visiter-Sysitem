@@ -3,7 +3,7 @@
 
 {% block content %}
       <div class="page-header">
-          <h1>客人(その他)のWebアプリ</h1>
+          <h1>その他のWebアプリ</h1>
       </div>
 
       <div class="content">
@@ -11,11 +11,11 @@
       <form method="POST">
       {% csrf_token %}
       <p>貴方の名前を記入してください：<br>
-      <input name="form2_name" type="text" size="50" required></p>
+      <input name="form2_name" type="text" required style="width:100%; height:50px;"></p>
       <p>貴方/会社の住所を記入してください：<br>
-      <input name="form2_address" type="text" size="50" required></p>
+      <input name="form2_address" type="text" required style="width:100%; height:50px;"></p>
       <p>貴方の連絡先を記入してください：<br>
-      <input name="form2_contact" type="text" size="50" required></p><br>
+      <input name="form2_contact" type="text" required style="width:100%; height:50px;"></p><br>
       <button name="form2_submit"  class="btn_06">次の質問に答える</button>
       </form>
 

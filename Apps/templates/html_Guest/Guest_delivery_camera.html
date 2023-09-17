@@ -3,22 +3,21 @@
 
 {% block content %}
       <div class="page-header">
-          <h1>客人（配達員）の画面</h1>
+          <h1>配達員の画面</h1>
       </div>
 
       <div class="content">
-        <h2 >荷物の宛名(氏名)の判定を行います。</h2>
-        <p>※判定が正常に終了すると、住人に通知が行きます。</p>
-        <p>※荷物の宛名(氏名)をカメラで読み取ってください。</p>
+        <h2 >荷物の宛名の判定を行います。</h2>
       <br>
 
-      <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
+      <h3>宛名を画角に入れて読み取り開始ボタンを押してください。</h3>
+      <p>※ 判定が正常に終了すると、住人に通知が行きます。</p>
+
       <video id="video" width="640" height="480" autoplay></video>
       <button id="captureBtn" class="btn_06">撮影</button><br>
-      <hr>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
       <canvas id="canvas" width="640" height="480"></canvas>
-      <br>
+      <hr>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
 

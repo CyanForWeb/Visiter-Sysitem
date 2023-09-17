@@ -3,17 +3,17 @@
 
 {% block content %}
       <div class="page-header">
-          <h1>客人（配達員）の画面</h1>
+          <h1>配達員の画面</h1>
       </div>
 
       <div class="content">
-      <p>置き配が可能な方は、玄関前に荷物を置いてください。</p>
-      <p>ハンコが必要な方は、「ハンコ」ボタンを押してください。</p>
+      <h2>置き配が可能な方は、玄関前に荷物を置いてください。</h2>
       <br>
-      <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">ハンコ</a><br>
+      <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">ハンコが必要な方はこちら</a><br>
+      <br>
+
       <p>ハンコが必要な方へ。<br>
         ただいま対応できません。「不在通知」ボタンを押してください。</p>
-      <br>
       <a href="{% url 'Guest_post' %}" class="btn_01">不在通知</a><br>
       </div>
 
