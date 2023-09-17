@@ -1,3 +1,0 @@
-Pillowのインストール
- pip install Pillow
-

@@ -44,10 +44,11 @@
       </div>
       <video id="local-video" width="400px" muted playsinline></video>
       <div id="button-area"></div>
-      <div id="remote-media-area"></div>
+      <!--<div id="remote-media-area"></div>-->
       <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
       <script src="{% static 'js/VideoChat.js' %}"></script><br>
       </div>
+
 
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -74,13 +75,19 @@
                 success: function(data) {
                     $('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
-                        // ビデオステータスが1の場合、メッセージを表示
+                        // ビデオステータスが1の場合表示
                         video.style.display = "block";//表示
+<<<<<<< HEAD
                         video01.style.display ="none";
                         video02.style.display ="none";
                         video03.style.display ="none";
                         video04.style.display ="none";
                         video05.style.display ="none";
+=======
+                    }else if(data.video_status == 0){
+                      // ビデオステータスが0の場合非表示
+                      video.style.display = "none";//非表示
+>>>>>>> 94df2a5 (Risa 9/17更新)
                     }
                 }
             });

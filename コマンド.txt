@@ -1,33 +1,37 @@
 
 
-仮想環境立ち上げ
+【仮想環境立ち上げ】
 source myvenv/bin/activate
 
-RunServer
+【RunServer】
 python manage.py runserver
 
-ローカルサーバー
+【ローカルサーバー】
 python -m http.server 8080
 
-URL
+【URL】
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/
 
-マイグレーション
+【マイグレーション】
 python manage.py makemigrations ⚫︎⚫︎　（マイグレーションファイル削除後に実行）
 python manage.py migrate ⚫︎⚫︎　（マイグレーション実行）
 
-クリエイトスーパーユーザー
+【クリエイトスーパーユーザー】
 python manage.py createsuperuser
 
-gitにコードをアップする
+【gitにコードをアップする】
 git status
 git add --all .
 git status
 git commit -m "Changed the HTML for the site."
 git push
 
-gitから最新コードをローカルにもってくる
+【gitから最新コードをローカルにもってくる】
 git log
 git pull origin master
 git log
+
+【PythonAnyWhere】
+cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
+git pull

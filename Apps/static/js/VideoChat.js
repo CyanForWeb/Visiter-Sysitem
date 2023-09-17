@@ -43,6 +43,22 @@ const token = new SkyWayAuthToken({
   },
 }).encode('h2EJA53oF6yRNdzuYXWeaoRbyTBWHsRD0oiyx/FzZWM=');
 
+document.addEventListener('DOMContentLoaded', function() {
+    const videoToggle = document.getElementById('videoToggle');
+    const localVideo = document.getElementById('local-video');
+    const status = document.getElementById('status');
+
+    videoToggle.addEventListener('change', function() {
+      if (this.checked) {
+        localVideo.style.display = 'block';
+        status.textContent = 'カメラ ON';
+      } else {
+        localVideo.style.display = 'none';
+        status.textContent = 'カメラ OFF';
+      }
+    });
+  });
+
 (async () => {
   const localVideo = document.getElementById('local-video');
   const buttonArea = document.getElementById('button-area');
@@ -51,6 +67,7 @@ const token = new SkyWayAuthToken({
 
   const myId = document.getElementById('my-id');
   const joinButton = document.getElementById('join');
+
   const message = document.getElementById('message');
   const joiningMsg = document.getElementById('joining');
   joiningMsg.style.display = "none";//none=非表示
@@ -82,6 +99,7 @@ const token = new SkyWayAuthToken({
     await me.publish(audio);
     await me.publish(video);
 
+    //ここから
     //相手の映像と音声をsubscribeする
     const subscribeAndAttach = (publication) => {
       if (publication.publisher.id === me.id) return;
@@ -94,25 +112,41 @@ const token = new SkyWayAuthToken({
       subscribeButton.onclick = async () => {
         const { stream } = await me.subscribe(publication.id);
 
-        let newMedia;
-        switch (stream.track.kind) {
+        //let newMedia;
+        switch (stream.contentType) {
+        //switch (stream.track.kind) {
           case 'video':
-            newMedia = document.createElement('video');
-            newMedia.playsInline = true;
-            newMedia.autoplay = true;
+            //newMedia = document.createElement('video');
+            //newMedia.playsInline = true;
+            //newMedia.autoplay = true;
+            {
+            const elm = document.createElement('video');
+            elm.playsInline = true;
+            elm.autoplay = true;
+            stream.attach(elm);
+            remoteMediaArea.appendChild(elm);
+            }
             break;
           case 'audio':
-            newMedia = document.createElement('audio');
-            newMedia.controls = true;
-            newMedia.autoplay = true;
+            //newMedia = document.createElement('audio');
+            //newMedia.controls = true;
+            //newMedia.autoplay = true;
+            {
+            const elm = document.createElement('audio');
+            //elm.controls = true;
+            elm.autoplay = true;
+            stream.attach(elm);
+            remoteMediaArea.appendChild(elm);
+            }
             break;
-          default:
-            return;
+          //default:
+          //  return;
         }
-        stream.attach(newMedia);
-        remoteMediaArea.appendChild(newMedia);
+        //stream.attach(newMedia);
+        //remoteMediaArea.appendChild(newMedia);
       };
     };
+    //ここまで
 
     room.publications.forEach(subscribeAndAttach);
     room.onStreamPublished.add((e) => subscribeAndAttach(e.publication));
