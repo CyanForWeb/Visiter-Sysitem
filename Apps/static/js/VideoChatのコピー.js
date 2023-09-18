@@ -43,24 +43,10 @@ const token = new SkyWayAuthToken({
   },
 }).encode('h2EJA53oF6yRNdzuYXWeaoRbyTBWHsRD0oiyx/FzZWM=');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const videoToggle = document.getElementById('videoToggle');
-    const localVideo = document.getElementById('local-video');
-    const status = document.getElementById('status');
-
-    videoToggle.addEventListener('change', function() {
-      if (this.checked) {
-        localVideo.style.display = 'block';
-        status.textContent = 'カメラ ON';
-      } else {
-        localVideo.style.display = 'none';
-        status.textContent = 'カメラ OFF';
-      }
-    });
-  });
-
 (async () => {
-  const localVideo = document.getElementById('local-video');
+  const kind = document.getElementById('kind').title;
+
+  var localVideo;
   const buttonArea = document.getElementById('button-area');
   const remoteMediaArea = document.getElementById('remote-media-area');
   const roomNameInput = document.getElementById('room-name');
@@ -76,28 +62,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const videoChat = document.getElementById('videoChat');
   videoChat.style.display = "block";//block=表示する
 
-  const { audio, video } =
-    await SkyWayStreamFactory.createMicrophoneAudioAndCameraStream();
-  video.attach(localVideo);
-  await localVideo.play();
+  const audio = await SkyWayStreamFactory.createMicrophoneAudioStream();
+  if(kind=='visitor'){
+    localVideo = document.getElementById('local-video');
+    const video = await SkyWayStreamFactory.createCameraVideoStream();
+    //const { audio, video } =
+    //  await SkyWayStreamFactory.createMicrophoneAudioAndCameraStream();
+    video.attach(localVideo);
+    await localVideo.play();
+  }
+  //else if(kind=='owner'){
+  //  const { audio } =
+  //    await SkyWayStreamFactory.createMicrophoneAudioStream();
+  //}
 
   joinButton.onclick = async () => {
     joinButton.style.display = "none";//参加ボタンを非表示にする
     joiningMsg.style.display = "block";//参加中...というメッセージを表示する
-    closeButton.style.display = "block";//終了ボタンを表示する
-    message.style.display = "none";//参加しましょうメッセージを非表示にする
+    closeButton.style.display = "block";//退出ボタンを表示する
+    message.style.display = "none";//参加しましょうor参加ボタンを押してくださいメッセージを非表示にする
 
     const context = await SkyWayContext.Create(token);
     const room = await SkyWayRoom.FindOrCreate(context, {
       type: 'p2p',
-      name: roomNameInput.value,
+      name: 'VideoRoom',
     });
     const me = await room.join();
 
     //myId.textContent = me.id;
 
     await me.publish(audio);
-    await me.publish(video);
+    if(kind=='visitor'){
+      await me.publish(video);
+    }
 
     //ここから
     //相手の映像と音声をsubscribeする
@@ -105,20 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (publication.publisher.id === me.id) return;
 
       const subscribeButton = document.createElement('button');
-
       subscribeButton.textContent = `参加者の ${publication.contentType} を表示　`;
+
       buttonArea.appendChild(subscribeButton);
 
       subscribeButton.onclick = async () => {
         const { stream } = await me.subscribe(publication.id);
 
-        //let newMedia;
         switch (stream.contentType) {
-        //switch (stream.track.kind) {
           case 'video':
-            //newMedia = document.createElement('video');
-            //newMedia.playsInline = true;
-            //newMedia.autoplay = true;
             {
             const elm = document.createElement('video');
             elm.playsInline = true;
@@ -128,9 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             break;
           case 'audio':
-            //newMedia = document.createElement('audio');
-            //newMedia.controls = true;
-            //newMedia.autoplay = true;
             {
             const elm = document.createElement('audio');
             //elm.controls = true;
@@ -139,11 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
             remoteMediaArea.appendChild(elm);
             }
             break;
-          //default:
-          //  return;
+          default:
+            return;
         }
-        //stream.attach(newMedia);
-        //remoteMediaArea.appendChild(newMedia);
       };
     };
     //ここまで

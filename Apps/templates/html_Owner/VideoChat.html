@@ -10,34 +10,24 @@
 
         <div id="videoChat">
         <div style="visibility:hidden;">
-         <input id="room-name" value="VideoRoom"/>
-         <span id="my-id"></span><br>
+
         </div>
         <hr size="10">
         <p id="message">参加ボタンを押してください。</p>
         <button id="join" name="join_button" class="btn_06">参加</button><br>
-        <p id="joining">参加中...</p>
-
-        <label class="switch">
-            <input type="checkbox" id="videoToggle">
-            <span class="slider round"></span>
-        </label>
-
-        <p id="status">カメラ OFF</p>
-        <video id="local-video" muted playsinline style="display: none;"></video>
-
-        <div id="remote-media-area"></div>
+        <p id="joining"></p>
 
         <form method="POST">
           {% csrf_token %}
         <button id="close" name="exit_button" class="btn_06">退出</button><br>
         </form>
 
-        <!--<video id="local-video" width="400px" muted playsinline></video>-->
-        <div id="button-area"></div>
-        <!--<div id="remote-media-area"></div>-->
+        <video id="partner_video" width="400px"></video>
+        <audio id="partner_audio"></<audio>
+
         <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-        <script src="{% static 'js/VideoChat.js' %}"></script><br>
+        <script id='kind' title='owner'></script>
+        <script src="{% static 'js/Owner_VideoChat.js' %}"></script><br>
         </div>
 
 

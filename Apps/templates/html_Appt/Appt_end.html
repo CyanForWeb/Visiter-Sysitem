@@ -9,7 +9,6 @@
       <div class="content">
 
       <h2>住民を呼び出しています。少々お待ちください。</h2>
-      <!--<img src="{% static 'video/video.png' %}" alt="待ち時間の動画" width="300" height="200"></img>-->
       <!--待ち時間動画-->
       <div id="video01" poster="" >
         <p>動画が表示されない際のメッセージ.</p>
@@ -32,21 +31,22 @@
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat">
       <div style="visibility:hidden;">
-       <input id="room-name" value="VideoRoom"/>
-       <span id="my-id"></span><br>
+
       </div>
       <hr size="10">
       <p id="message">住人とビデオチャットが繋がっています。参加ボタンを押してください。</p>
       <button id="join" class="btn_06">参加</button><br>
-      <p id="joining">参加中...</p>
+      <p id="joining"></p>
       <div id="close">
       <button class="btn_06" id='endBtn'>退出</button><br>
       </div>
-      <video id="local-video" width="400px" muted playsinline></video>
-      <div id="button-area"></div>
-      <!--<div id="remote-media-area"></div>-->
+      <video id="local-video" width="400px" autoplay muted playsinline></video>
+
+      <video id="partner_video"></video>
+      <audio id="partner_audio"></<audio>
+
       <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-      <script src="{% static 'js/VideoChat.js' %}"></script><br>
+      <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
       </div>
 
 
@@ -94,17 +94,15 @@
         updateVideoStatus();
 
         // 5秒ごとにビデオステータスをチェック
-        setInterval(updateVideoStatus, 8000);
+        setInterval(updateVideoStatus, 5000);
 
         const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
         btn.addEventListener('click', () => {
-          video.style.display = "none";//block=表示
+          video.style.display = "none";//none=非表示
         });
 
-
-
-         // video01の再生が終わった場合
+        // video01の再生が終わった場合
         setTimeout(() =>{
             video01.style.display ="none";
             video02.style.display ="block";
