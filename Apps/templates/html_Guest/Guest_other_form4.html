@@ -26,6 +26,64 @@
       <button name="form4_submit" class="btn_06">送信</button>
       </form>
 
+      <p>Video Status: <span id="video_status">0</span></p>
+
+      <!--ビデオチャットを表示する機能-->
+      <div id="videoChat">
+      <div style="visibility:hidden;">
+
+      </div>
+      <hr size="10">
+      <p id="message">住人とビデオチャットが繋がっています。参加ボタンを押してください。</p>
+      <button id="join" class="btn_06">参加</button><br>
+      <p id="joining"></p>
+      <div id="close">
+      <button class="btn_06" id='endBtn'>退出</button><br>
+      </div>
+      <video id="local-video" width="400px" muted playsinline></video>
+
+      <video id="partner_video"></video>
+      <audio id="partner_audio"></<audio>
+
+      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+      <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        const video = document.getElementById('videoChat');
+        video.style.display = "none";//none=非表示
+
+        function updateVideoStatus() {
+            $.ajax({
+                url: "{% url 'other_check_video_status' %}",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#video_status').text(data.video_status);
+                    if (data.video_status == 1) {
+                        // ビデオステータスが1の場合、メッセージを表示
+                        video.style.display = "block";//表示
+                    }
+                }
+            });
+        }
+
+        // ページ読み込み時に最新のビデオステータスを取得
+        updateVideoStatus();
+
+        // 5秒ごとにビデオステータスをチェック
+        setInterval(updateVideoStatus, 8000);
+
+        const btn = document.getElementById('endBtn');
+        // 終了ボタンがクリックされた時に非表示にする
+        btn.addEventListener('click', () => {
+          video.style.display = "none";//非表示
+        });
+
+      </script>
+
       <br>
       <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
