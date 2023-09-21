@@ -35,3 +35,7 @@ git log
 【PythonAnyWhere】
 cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
 git pull
+
+【ngrok立ち上げ】
+一方のターミナル：python manage.py runserver
+一方のターミナル：ngrok http 8000
