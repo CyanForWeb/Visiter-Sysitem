@@ -12,8 +12,10 @@ class Owner_DB(models.Model):
 
 class Owner_Time_DB(models.Model):
     owner = models.TextField(default="Owner")
-    start_date = models.DateTimeField(blank=True, null=True)
-    finish_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateField(verbose_name="日付", null=True)
+    start_time = models.TimeField(verbose_name="時刻", null=True)
+    finish_date = models.DateField(verbose_name="日付", null=True)
+    finish_time = models.TimeField(verbose_name="時刻", null=True)
     def __str__(self):
         return self.owner+":"+f"{self.start_date.strftime('%Y年%m月%d日%H時%M分%S秒')}"+"~"+f"{self.finish_date.strftime('%Y年%m月%d日%H時%M分%S秒')}"
 

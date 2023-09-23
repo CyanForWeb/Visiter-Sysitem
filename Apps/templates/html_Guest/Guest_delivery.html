@@ -7,14 +7,33 @@
       </div>
 
       <div class="content">
+
       <h2>置き配が可能な方は、玄関前に荷物を置いてください。</h2>
       <br>
+
+      <div id="iru">
       <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">ハンコが必要な方はこちら</a><br>
+      </div>
       <br>
 
+      <div id="inai">
       <p>ハンコが必要な方へ。<br>
         ただいま対応できません。「不在通知」ボタンを押してください。</p>
       <a href="{% url 'Guest_post' %}" class="btn_01">不在通知</a><br>
       </div>
+      </div>
+
+      <script>
+        iru = document.getElementById('iru');
+        iru.style.display = "none";//none=非表示
+        inai = document.getElementById('inai');
+        inai.style.display = "none";//none=非表示
+
+        if({{ time_status }}==0){
+          iru.style.display = "block";
+        }else{
+          inai.style.display = "block";
+        }
+      </script>
 
 {% endblock %}

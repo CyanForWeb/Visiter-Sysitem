@@ -1,0 +1,32 @@
+{% extends './Owner_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="page-header">
+          <h1>住民のWebアプリ</h1>
+      </div>
+
+      <div class="content">
+
+        <p>来客対応不可能時間</p>
+
+          {% for obj in object_list %}
+          <hr size="10">
+          <p></p>
+          <li>
+              開始日時：{{ obj.start_date }}：{{ obj.start_time }}
+              〜 終了日時：{{ obj.finish_date }}：{{ obj.finish_time }}
+            <p></p>
+            <form method="post" action="{% url 'Owner_deleteTime' obj.pk %}">{% csrf_token %}
+              <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+            </form>
+            <p></p>
+          </li>
+          {% endfor %}
+          <hr size="10">
+
+      <br>
+      <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
+      </div>
+
+{% endblock %}

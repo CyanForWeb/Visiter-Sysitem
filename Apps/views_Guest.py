@@ -103,7 +103,13 @@ def other_check_video_status(request):
 
 #-------配達員　の画面で使用する機能たち---------------------------
 def delivery(request):
-    return render(request, 'html_Guest/Guest_delivery.html', )
+    context = {}
+    if request.method == 'GET':
+        time_status = 0
+        if Owner_Time_DB.objects.filter(start_date__lte=datetime.now().date(),finish_date__gte=datetime.now().date()):
+            time_status = 1
+        context = {"time_status":time_status}
+    return render(request, 'html_Guest/Guest_delivery.html', context)
 
 def delivery_camera(request):
     return render(request, 'html_Guest/Guest_delivery_camera.html', )

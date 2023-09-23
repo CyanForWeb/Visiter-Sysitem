@@ -7,10 +7,19 @@
       </div>
 
       <div class="content">
-      <p>対応不可時間の設定を行えます。</p>
-      <a href="{% url 'Owner_setting_end' %}" class="btn_01">登録</a><br>
+      <p>来客対応不可能時間の登録を行えます。
+      <br>現在 対応不可能として登録している時間は <a href="{% url 'Owner_seeSettingTime' %}">こちら</a> です。</p><br>
+      <p>開始日時：</p>
+      <form method="post">
+      {% csrf_token %}
+      {{ set_start.as_p }}
+      <hr><br>
+      <p>終了日時：</p>
+      {{ set_finish.as_p }}
+      <button name="setTime_button" class="btn_06">登録</button>
+      </form>
 
-
+      <br>
       <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
       </div>
 
