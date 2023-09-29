@@ -6,11 +6,12 @@
 
       <h2>①撮影ボタンを押してください</h2>
       <p>投函物の写真を撮り、住人に届けることができます</p>
-      <video id="video" width="640" height="480" autoplay></video>
+      <video id="video" class="camera"  playsinline autoplay></video>
       <button id="captureBtn" class="btn_06">撮影</button><br>
       <h2 id="submitMsg">②送信ボタンを押してください</h2>
       <button id="submitBtn" class="btn_06">送信</button>
-      <canvas id="canvas" width="640" height="480"></canvas>
+      <canvas id="canvas" class="camera" ></canvas>
+
       <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
@@ -19,7 +20,7 @@
         submitBtn.style.display = "none";//none=非表示
         const submitMsg = document.getElementById('submitMsg');
         submitMsg.style.display = "none";//none=非表示
-        const constraints = { video: { width: 640, height: 480 } };
+        const constraints = { video: { width: 640, height: 480, facingMode: { exact: "environment" } } };
 
         // カメラを起動
         async function initCamera() {

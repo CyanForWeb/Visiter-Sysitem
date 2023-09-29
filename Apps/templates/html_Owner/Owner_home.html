@@ -11,7 +11,7 @@
         <hr size="10">
         <p></p>
         <li>
-            {{ obj.date|date:"H:i:s" }}：
+            {{ obj.date|date:"H時i分s秒" }}：
             <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
         </li>
         {% endfor %}
@@ -24,10 +24,10 @@
         list = document.getElementById('list');
 
         if({{ record_status }}==0){
-          message.innerText = "本日の来客者はゼロです"
+          message.innerText = "本日の来客者はゼロです";
           list.style.display = "none";
         }else{
-          message.innerText = "本日の来客者です"
+          message.innerText = "本日の来客者です";
           list.style.display = "block";
         }
       </script>

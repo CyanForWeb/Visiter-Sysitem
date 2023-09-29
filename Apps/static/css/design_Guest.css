@@ -196,3 +196,10 @@ button.btn_06:hover {
   outline: 0;
   border: 2px solid #2196f3;
 }
+
+video.camera {
+  max-width: 100%;/* はみ出ないように */
+}
+canvas.camera {
+  max-width: 100%;/* はみ出ないように */
+}

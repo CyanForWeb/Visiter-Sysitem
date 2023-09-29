@@ -21,9 +21,6 @@ def home(request):
     context = {'object_list':all_data,'record_status':record_status}
     return render(request, 'html_Owner/Owner_home.html', context)
 
-def setting(request):
-    return render(request, 'html_Owner/Owner_setting.html', )
-
 def setting_time(request):
     context = {
                'set_start':Set_start(),
@@ -62,6 +59,8 @@ def deleteTime(request,id):
     return redirect('Owner_seeSettingTime')
 
 def setting_home(request):
+    if "setHome_button" in request.POST:#ボタンが押されたら..
+        return render(request, 'html_Owner/Owner_setting_end.html', )
     return render(request, 'html_Owner/Owner_setting_home.html', )
 
 def setting_end(request):

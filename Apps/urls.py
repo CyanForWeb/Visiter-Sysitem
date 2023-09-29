@@ -5,7 +5,6 @@ urlpatterns = [
 
 #住民のWebアプリに使用するURL
     path('Owner_home', views_Owner.home, name='Owner_home'),#一番最初にアクセスする画面
-    path('Owner_setting', views_Owner.setting, name='Owner_setting'),
     path('Owner_setting_time', views_Owner.setting_time, name='Owner_setting_time'),
     path('Owner_seeSettingTime', views_Owner.seeSettingTime, name='Owner_seeSettingTime'),
     path('Owner_deleteTime/<int:id>', views_Owner.deleteTime, name='Owner_deleteTime'),

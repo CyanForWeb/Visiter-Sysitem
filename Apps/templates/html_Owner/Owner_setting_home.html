@@ -5,8 +5,19 @@
       <div class="content">
       <p>家の位置情報の登録を行います。<br>
       以下のボタンを押してください。</p>
-      <a href="{% url 'Owner_setting_end' %}"  class="btn_01">位置情報を登録</a>
+
+      <form method="post">
+        {% csrf_token %}
+        <button name="setHome_button" class="btn_06">位置情報を登録</button>
+      </form>
 
       </div>
+
+      <script>
+        //setHome_buttonが押されたら、住人の家の位置情報を取得して、
+        //views_Owner.pyにその値を渡して、
+        //views_Owner.pyでmodelsのOwner_DBのlocationに格納する処理を書いて欲しい！
+        //（格納の仕方：Owner_DB.objects.update_or_create(location="位置情報の値" ) ）
+      </script>
 
 {% endblock %}

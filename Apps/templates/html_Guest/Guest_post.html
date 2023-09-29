@@ -9,22 +9,20 @@
 
       <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
       <p>※ 判定が正常に終了すると、郵便受けを利用できるようになります。</p>
-      <video id="video" width="640" height="480" autoplay></video>
-      <button id="captureBtn" class="btn_06">撮影</button><br>
+      <video id="video" class="camera" playsinline autoplay></video>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
-      <canvas id="canvas" width="640" height="480"></canvas>
+      <canvas id="canvas" class="camera"></canvas>
       </div>
 
 
       <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
-        canvas.style.display = "none";
-        const captureBtn = document.getElementById('captureBtn');
-        captureBtn.style.display = "none";//none=非表示
+        canvas.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
-        const constraints = { video: { width: 640, height: 480 } };
+        const constraints = { video: { width: 640, height: 480, facingMode: "user"} };
+        //外カメの場合は、facingMode: { exact: "environment" }
 
         // カメラを起動
         async function initCamera() {

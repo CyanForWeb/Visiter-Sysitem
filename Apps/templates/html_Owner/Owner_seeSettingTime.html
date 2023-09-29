@@ -8,17 +8,19 @@
 
           {% for obj in object_list %}
           <hr size="10">
-          <p></p>
-          <li>
+          <br>
+          <li class="item">
+            <div>
               開始日時：{{ obj.start_date }}：{{ obj.start_time }}
               〜 終了日時：{{ obj.finish_date }}：{{ obj.finish_time }}
-            <p></p>
+            </div>
             <form method="post" action="{% url 'Owner_deleteTime' obj.pk %}">{% csrf_token %}
               <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
             </form>
-            <p></p>
           </li>
+          <p></p>
           {% endfor %}
+
       </div>
 
 {% endblock %}

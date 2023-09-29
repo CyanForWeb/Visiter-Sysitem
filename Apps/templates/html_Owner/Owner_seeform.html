@@ -10,14 +10,17 @@
           <hr size="10">
           <br>
           <li class="item">
+            <div>
               {{ obj.date }}：
               <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
-              <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
-                <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
-              </form>
+            </div>
+            <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
+              <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+            </form>
           </li>
           <p></p>
           {% endfor %}
+          
       </div>
 
 {% endblock %}

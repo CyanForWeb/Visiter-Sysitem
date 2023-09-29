@@ -2,53 +2,48 @@
 {% load static %}
 
 {% block content %}
-<div class="loading">
-  <div class="loading-wrap">
-    <h3>読み取り中...</h3>
-    <div class="loader"></div>
-   <i class="fas fa-spinner fa-3x fa-spin"></i>
-  </div>
-</div>
-
-<script>
-  const loading = document.querySelector('.loading');
-  window.addEventListener('load', () => {
-    setTimeout(function() {
-      loading.classList.add('hide');
-    }, 5000);
-  });
-</script>
-
-      <div class="page-header">
-          <h1>郵便受けのWebアプリ</h1>
+      <div class="loading">
+        <div class="loading-wrap">
+          <h4>読み取り中...</h4>
+          <div class="loader"></div>
+          <i class="fas fa-spinner fa-3x fa-spin"></i>
+        </div>
       </div>
 
-      <div class="content">
-      <h2>郵便受けの鍵がすぐに解除されますので、投函をお願いします。</h2>
-      <p>※ 郵便受けの鍵は、ただいまから60秒で閉じられますので、ご注意ください。</p>
+      <div class="content"><br>
+        <h2 id='message' style='text-align:center'></h2>
+        <br>
+        <h1 id='count' style='text-align:center'></h1>
 
-      <h1 id='count' style='text-align:center'></h1>
-      <h2 id='message' style='text-align:center'>ポストを施錠しました</h2>
+      </div>
+
+      <script>
+        const loading = document.querySelector('.loading');
+        window.addEventListener('load', () => {
+          setTimeout(function() {
+            loading.classList.add('hide');
+          }, 5000);
+        });
+      </script>
+
       <script>
         let count = 10;
-        document.getElementById("message").style.display = "none";//非表示
+        message = document.getElementById("message");
 
         window.onload = function(){
           setTimeout(counter,5000);
         }
-
         function counter(){
           if(count<0){
             document.getElementById("count").style.display = "none";//非表示
-            document.getElementById("message").style.display = "block";//表示
+            message.innerText = "ポストを施錠しました";
+          }else{
+            message.innerText = "ポストを解除しました。60秒以内に投函をお願いします。";
           }
           document.getElementById("count").innerHTML = count;
           count--;
           setTimeout(counter, 1000);
         }
       </script>
-
-      <p>※ 投函が終了しましたら、本画面を閉じてください。</p>
-      </div>
 
 {% endblock %}
