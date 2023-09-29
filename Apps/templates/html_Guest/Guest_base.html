@@ -11,6 +11,10 @@
         <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
     </head>
     <body>
+      <header>
+          <a href="{% url 'Guest_home' %}"><h1 class="head">Guest</h1></a>
+      </header>
+
       {% block content %}
       {% endblock %}
     </body>

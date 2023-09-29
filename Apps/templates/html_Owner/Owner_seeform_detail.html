@@ -2,19 +2,15 @@
 {% load static %}
 
 {% block content %}
-      <div class="page-header">
-          <h1>住民のWebアプリ</h1>
-      </div>
-
       <div class="content">
 
       <h3>{{ mes.message }}（{{ obj.date }}）</h3>
 
       <img src='{{ obj.img.url }}'/>
 
-      <br>
-      <a href="{% url 'Owner_seeform' %}"><p>履歴画面に戻る</p></a>
-      <a href="{% url 'Owner_home' %}"><p>HOME画面に戻る</p></a><br>
+      <br><br>
+      <a href="{% url 'Owner_seeform' %}">戻る</a>
+
       </div>
 
 {% endblock %}

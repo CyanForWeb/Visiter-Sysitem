@@ -2,13 +2,34 @@
 {% load static %}
 
 {% block content %}
-      <div class="page-header">
-          <h1>住民のWebアプリ</h1>
-      </div>
 
       <div class="content">
-      <a href="{% url 'Owner_setting' %}" class="btn_01">オーナー設定</a><br>
-      <a href="{% url 'Owner_seeform' %}" class="btn_01">来客者　履歴閲覧</a><br>
+        <p id="message"></p>
+
+        <div id="list">
+        {% for obj in object_list %}
+        <hr size="10">
+        <p></p>
+        <li>
+            {{ obj.date|date:"H:i:s" }}：
+            <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
+        </li>
+        {% endfor %}
+        </div>
+
       </div>
+
+      <script>
+        message = document.getElementById('message');
+        list = document.getElementById('list');
+
+        if({{ record_status }}==0){
+          message.innerText = "本日の来客者はゼロです"
+          list.style.display = "none";
+        }else{
+          message.innerText = "本日の来客者です"
+          list.style.display = "block";
+        }
+      </script>
 
 {% endblock %}

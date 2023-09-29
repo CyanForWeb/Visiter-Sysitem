@@ -24,6 +24,18 @@
 
     </head>
     <body>
+          <header>
+              <a href="{% url 'Owner_home' %}"><h1 class="head">Owner</h1></a>
+          <nav>
+            <ul class="main-nav">
+              <li class="head"><a href="{% url 'Owner_seeform' %}"><p class="head">来客者の履歴</p></a></li>
+              <li class="head"><a href="{% url 'Owner_setting_time' %}"><p class="head">時間の設定</p></a></li>
+              <li class="head"><a href="{% url 'Owner_setting_home' %}"><p class="head">位置情報設定</p></a></li>
+            </ul>
+          </nav>
+          </header>
+
+
       {% block content %}
       {% endblock %}
     </body>

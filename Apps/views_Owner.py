@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views import generic
-import datetime
+from datetime import datetime, date
 from django.views.generic import ListView
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -10,7 +10,16 @@ from .models import *
 from .forms import Set_start, Set_finish
 
 def home(request):
-    return render(request, 'html_Owner/Owner_home.html', )
+    data = Visitor_DB.objects.filter(date__date = date.today())
+    #db内容を日付順に並べ替える
+    data_sort = data.all().order_by('date','id').reverse()
+    all_data = data_sort
+    #htmlに渡したい値を格納
+    record_status = 0
+    if data.exists():
+        record_status = 1
+    context = {'object_list':all_data,'record_status':record_status}
+    return render(request, 'html_Owner/Owner_home.html', context)
 
 def setting(request):
     return render(request, 'html_Owner/Owner_setting.html', )

@@ -2,10 +2,6 @@
 {% load static %}
 
 {% block content %}
-      <div class="page-header">
-          <h1>郵便受けのWebアプリ</h1>
-      </div>
-
       <div class="content">
       <h2>荷物／不在票の宛名の判定を行います。</h2>
       <p>※ 宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
@@ -17,9 +13,6 @@
       <button id="captureBtn" class="btn_06">撮影</button><br>
       <button id="submitBtn" class="btn_06">読み取り開始</button>
       <canvas id="canvas" width="640" height="480"></canvas>
-      <br>
-      <hr>
-      <a href="{% url 'Guest_home' %}" >来訪目的の選択画面に戻る</a>
       </div>
 
 
