@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
      '.ngrok.io',
      '.ngrok-free.app',
      ]
+CSRF_TRUSTED_ORIGINS =["https://*.ngrok-free.app"]
 
 
 # Application definition
