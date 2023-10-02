@@ -144,3 +144,20 @@ def other_context(request,obj):
 def post_context(obj):
     visit = Post_DB.objects.get(date=obj.date)
     return visit
+
+#位置情報
+import requests
+import json
+from django.http import JsonResponse
+import base64
+from django.core.files.base import ContentFile
+
+def save_geolocation_Owner_setting(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        latitude = data.get('latitude', None)
+        longitude = data.get('longitude', None)
+        payload = json.dumps({"latitude": latitude,"longitude": longitude})
+        Owner_DB.objects.update_or_create(location=payload)
+        return JsonResponse({'redirect': True})
+    return JsonResponse({'message': '位置情報が取得できませんでした。'}, status=400)
