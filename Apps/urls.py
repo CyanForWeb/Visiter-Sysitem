@@ -15,6 +15,7 @@ urlpatterns = [
     #path('Owner_seeform_detail', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     path('<int:id>', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     #path('<int:id>', views_Owner.videochat, name='VideoChat'),
+    path('save_geolocation_Owner_setting/', views_Owner.save_geolocation_Owner_setting, name='save_geolocation_Owner_setting'),
 
 
 #アポ済みのWebアプリに使用するURL
