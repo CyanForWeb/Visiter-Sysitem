@@ -26,6 +26,7 @@ urlpatterns = [
 
 #客人のWebアプリに使用するURL
     path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
+    path('save_geolocations/', views_Guest.save_geolocations, name='save_geolocations'),
     #その他　客人画面
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面
     path('Guest_other_form', views_Guest.other_form, name='Guest_other_form'),
