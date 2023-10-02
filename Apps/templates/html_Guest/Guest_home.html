@@ -10,4 +10,113 @@
       <a href="{% url 'Guest_other' %}" class="btn_01">その他</a><br>
       </div>
 
+      <script>
+             window.onload = startGeolocation();
+           /*
+           位置情報の取得
+
+           @param {String} id
+           @param {String} data
+           @return {void}
+           */
+
+         function setgeolocation(latitude, longitude){
+           console.log("latitude:" + latitude);
+           console.log("longitude:" + longitude);
+
+           fetch('/save_geolocations/', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
+             },
+             body: JSON.stringify({ 'latitude': latitude,'longitude': longitude}),
+           })
+           .then(response => {
+             if (!response.ok) {
+                 throw new Error('サーバーへの送信に失敗しました');
+             }
+             return response.json();
+           })
+           .then(data => {
+             //リダイレクトフラグをチェック OKだったらQRコード読み取り開始
+             if (data.redirect){
+                 alert("位置情報の取得が成功しました");
+
+             }else{
+                 //alert(data.message); // サーバーからの応答をコンソールに表示
+                 document.getElementById("message").innerHTML = data.message;
+                 //document.getElementById("message").style.display = 'none';
+                 document.getElementById("button").style.display = "none";
+
+             }
+           })
+           .catch(error => console.error(error.message));
+         }
+
+         // 位置情報取得処理に渡すオプション
+         var options = {
+           // 高精度な位置情報を取得するか(デフォルトはfalse)
+           enableHightAccuracy: true,
+           // 取得した位置情報をキャッシュする時間(ミリ秒。デフォルトは0)
+           maximumAge: 0,
+           // 何秒でタイムアウトとするか(ミリ秒。タイムアウトするとerrorCallback()がコールされる)
+           timeout: 120000
+         }
+
+         // 位置情報取得処理が成功した時にコールされる関数
+         // 引数として、coords(coordinates。緯度・経度など)とtimestamp(タイムスタンプ)の2つを持ったpositionが渡される
+         function successCallback(position){
+           // メッセージを表示
+           console.log("位置情報取得成功");
+           setgeolocation(position.coords.latitude,position.coords.longitude);
+         }
+
+         // 位置情報取得処理が失敗した時にコールされる関数
+         // 引数として、code(コード)とmessage(メッセージ)の2つを持ったpositionErrorが渡される
+         function errorCallback(positionError){
+
+             // メッセージを表示
+             document.getElementById("result").innerHTML += "位置情報取得失敗<br />";
+             console.log("位置情報取得失敗");
+             // 引数positionErrorの中身2つを取り出す
+             // コード(1～3のいずれかの値)
+             var code = positionError.code;
+             // メッセージ(開発者向けデバッグ用メッセージ)
+             var message = positionError.message;
+
+             // コードに応じたメッセージを表示
+             switch (code) {
+                 case positionError.PERMISSION_DENIED: // codeが1
+                 console.log("GeolocationAPIのアクセス許可がありません");
+                     break;
+                 case positionError.POSITION_UNAVAILABLE: // codeが2
+                 console.log("現在の位置情報を特定できませんでした");
+                     break;
+                 case positionError.TIMEOUT: // codeが3
+                 console.log("指定されたタイムアウト時間内に現在の位置情報を特定できませんでした");
+                     break;
+             }
+             // 開発者向けデバッグ用メッセージを表示
+             console.log(message);
+         }
+
+         // 位置情報取得開始
+         function startGeolocation(){
+
+             // ブラウザがGeolocation APIに対応しているかをチェック
+             if (navigator.geolocation) {
+                 // 対応している → 位置情報取得開始
+                 // 位置情報取得成功時にsuccessCallback()、そして取得失敗時にerrorCallback()がコールされる
+                 // optionsはgetCurrentPosition()に渡す設定値
+                 navigator.geolocation.getCurrentPosition(successCallback, errorCallback , options);
+                 console.log("位置情報取得");
+             } else {
+                 // 対応していない → alertを表示するのみ
+                 alert("Geolocation not supported in this browser");
+             }
+         }
+
+         </script>
+
 {% endblock %}
