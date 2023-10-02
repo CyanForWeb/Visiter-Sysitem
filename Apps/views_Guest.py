@@ -176,3 +176,33 @@ def save_snapshot(request):
                 post_db.img.save(filename, ContentFile(image_data))
             return JsonResponse({'redirect': True})
     return JsonResponse({'message': 'スナップショットの保存に失敗しました。'}, status=400)
+
+
+#---------geolocationの範囲設定---------------
+def save_geolocations(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        latitude = data.get('latitude', None)
+        longitude = data.get('longitude', None)
+
+        if 35.5000000 <= latitude < 36.050000 and 139.000000 <= longitude < 140.000000:
+            #デバックの時に使う
+            #保存する際のファイル名を指定
+            #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
+            #f = open('media/appt/'+filename, "w")
+            #f.write("request.body:")
+            #f.write(json.dumps(data))
+            #f.close()
+
+            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+            return JsonResponse({'redirect': True})
+        else:
+            #デバックの時に使う
+            #保存する際のファイル名を指定
+            #filename = f"NG_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
+            #f = open('media/appt/'+filename, "w")
+            #f.write("request.body:")
+            #f.write(json.dumps(data))
+            #f.close()
+            return JsonResponse({'redirect': False,'message':'QRコードに近づいて再読み込みしてください。'})
+    return JsonResponse({'message': '位置情報が取得できませんでした。'}, status=400)
