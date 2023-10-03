@@ -59,8 +59,6 @@ def deleteTime(request,id):
     return redirect('Owner_seeSettingTime')
 
 def setting_home(request):
-    if "setHome_button" in request.POST:#ボタンが押されたら..
-        return render(request, 'html_Owner/Owner_setting_end.html', )
     return render(request, 'html_Owner/Owner_setting_home.html', )
 
 def setting_end(request):
@@ -158,6 +156,9 @@ def save_geolocation_Owner_setting(request):
         latitude = data.get('latitude', None)
         longitude = data.get('longitude', None)
         payload = json.dumps({"latitude": latitude,"longitude": longitude})
-        Owner_DB.objects.update_or_create(location=payload)
+        if Owner_DB.objects.all().count()==1:
+            Owner_DB.objects.update(location=payload)
+        else:
+            Owner_DB.objects.create(location=payload)
         return JsonResponse({'redirect': True})
     return JsonResponse({'message': '位置情報が取得できませんでした。'}, status=400)

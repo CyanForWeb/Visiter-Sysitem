@@ -3,59 +3,49 @@
 
 {% block content %}
       <div class="content">
-      <p>家の位置情報の登録を行います。<br>
-      以下のボタンを押してください。</p>
-
-      <form method="post">
-        {% csrf_token %}
-        <button onclick="javascript:onbuttonStart()"　name="setHome_button" class="btn_06">位置情報を登録</button>
-      </form>
-
+        <p>家の位置情報の登録を行います。<br>
+          以下のボタンを押してください。</p>
+          <button onclick="onbuttonStart();" class="btn_06">位置情報を登録</button>
+          <!-- 読み取り結果 -->
+          <div id="result" style="justify-content:center; margin:5px;width:300px; height:200px; padding:10px;" >
+            <small style="color:gray; "></small>
+          </div>
       </div>
 
-      <script>
-        //setHome_buttonが押されたら、住人の家の位置情報を取得して、
-        //views_Owner.pyにその値を渡して、
-        //views_Owner.pyでmodelsのOwner_DBのlocationに格納する処理を書いて欲しい！
-        //（格納の仕方：Owner_DB.objects.update_or_create(location="位置情報の値" ) ）
 
+
+      <script>
         //位置情報の取得
-      　　　　function onbuttonStart(){
+        function onbuttonStart(){
           startGeolocation();
         };
 
         function setgeolocation(latitude, longitude){
-           console.log("latitude:" + latitude);
-           console.log("longitude:" + longitude);
+          console.log("latitude:" + latitude);
+          console.log("longitude:" + longitude);
 
-           fetch('/save_geolocation_Owner_setting/', {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-                 'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
-             },
-             body: JSON.stringify({ 'latitude': latitude,'longitude': longitude}),
-           })
-           .then(response => {
-             if (!response.ok) {
-                 throw new Error('サーバーへの送信に失敗しました');
-             }
-             return response.json();
-           })
-           .then(data => {
-             //リダイレクトフラグをチェック OKだったらQRコード読み取り開始
-             if (data.redirect){
-                 alert("位置情報の取得が成功しました");
-
-             }else{
-                 //alert(data.message); // サーバーからの応答をコンソールに表示
-                 document.getElementById("message").innerHTML = data.message;
-                 //document.getElementById("message").style.display = 'none';
-                 document.getElementById("button").style.display = "none";
-
-             }
-           })
-           .catch(error => console.error(error.message));
+          fetch('/save_geolocation_Owner_setting/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}', // DjangoのCSRFトークンを追加
+            },
+            body: JSON.stringify({ 'latitude': latitude,'longitude': longitude}),
+          })
+          .then(response => {
+            if (!response.ok) {
+                throw new Error('サーバーへの送信に失敗しました');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.redirect){
+              window.location.href = 'Owner_setting_end';
+            }else{
+              console.log(data.message);
+            }
+          })
+          .catch(error => console.error(error.message));
          }
 
          // 位置情報取得処理に渡すオプション
@@ -79,7 +69,6 @@
          // 位置情報取得処理が失敗した時にコールされる関数
          // 引数として、code(コード)とmessage(メッセージ)の2つを持ったpositionErrorが渡される
          function errorCallback(positionError){
-
              // メッセージを表示
              document.getElementById("result").innerHTML += "位置情報取得失敗<br />";
              console.log("位置情報取得失敗");
@@ -107,18 +96,17 @@
 
          // 位置情報取得開始
          function startGeolocation(){
-
-             // ブラウザがGeolocation APIに対応しているかをチェック
-             if (navigator.geolocation) {
-                 // 対応している → 位置情報取得開始
-                 // 位置情報取得成功時にsuccessCallback()、そして取得失敗時にerrorCallback()がコールされる
-                 // optionsはgetCurrentPosition()に渡す設定値
-                 navigator.geolocation.getCurrentPosition(successCallback, errorCallback , options);
-                 console.log("位置情報取得");
-             } else {
-                 // 対応していない → alertを表示するのみ
-                 alert("Geolocation not supported in this browser");
-             }
+           // ブラウザがGeolocation APIに対応しているかをチェック
+           if (navigator.geolocation) {
+             // 対応している → 位置情報取得開始
+             // 位置情報取得成功時にsuccessCallback()、そして取得失敗時にerrorCallback()がコールされる
+             // optionsはgetCurrentPosition()に渡す設定値
+             navigator.geolocation.getCurrentPosition(successCallback, errorCallback , options);
+             console.log("位置情報取得");
+           } else {
+             // 対応していない → alertを表示するのみ
+             alert("Geolocation not supported in this browser");
+           }
          }
       </script>
 
