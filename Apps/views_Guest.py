@@ -130,10 +130,13 @@ def post(request):
 
 def post_end1(request):
     #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
+     
+    requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "宛名がある郵便物が投函されました！"})
     #住民のiftttのkeyを入力する↓
+    #requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies)
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end1.html', )
 
