@@ -31,7 +31,7 @@ class Visitor_DB(models.Model):
 
 class Visitor_Message_DB(models.Model):
     visitor = models.TextField(max_length=10)
-    message = models.TextField(max_length=20)
+    message = models.TextField(max_length=50)
     def __str__(self):
         return self.visitor
 
