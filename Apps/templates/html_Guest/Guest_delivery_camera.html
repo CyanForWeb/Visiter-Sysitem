@@ -20,7 +20,7 @@
         canvas.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
-        const constraints = { video: { width: 640, height: 480, facingMode: { exact: "environment" } } };
+        const constraints = { video: { width: 640, height: 480, facingMode: "user"} };
 
         // カメラを起動
         async function initCamera() {

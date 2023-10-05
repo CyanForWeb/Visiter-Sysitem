@@ -13,14 +13,13 @@
       <canvas id="canvas" class="camera" ></canvas>
 
       <script>
+
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
-        const captureBtn = document.getElementById('captureBtn');
+        canvas.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
-        submitBtn.style.display = "none";//none=非表示
         const submitMsg = document.getElementById('submitMsg');
-        submitMsg.style.display = "none";//none=非表示
-        const constraints = { video: { width: 640, height: 480, facingMode: { exact: "environment" } } };
+        const constraints = { video: { width: 640, height: 480, facingMode: "user"} };
 
         // カメラを起動
         async function initCamera() {
