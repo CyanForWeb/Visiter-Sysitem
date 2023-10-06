@@ -25,9 +25,13 @@ def home(request,number):
 
 #-------その他　客人の画面で使用する機能たち---------------------------
 def other(request):
-    return render(request, 'html_Guest/Guest_other.html', )
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/Guest_other.html', context)
 
 def other_form(request): #質問フォーム1~3に移る際に使用
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     if request.method == 'POST':
         #form1内容をdbに保存して、for2に遷移
         if "form1_submit" in request.POST: #ボタンが押されたら...
@@ -42,7 +46,7 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             data = json.dumps({"value1": "質問フォームが開始され、用件が入力されました！"})
             #住民のiftttのkeyを入力する↓
             requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-            return render(request, 'html_Guest/Guest_other_form2.html')
+            return render(request, 'html_Guest/Guest_other_form2.html',context)
         #form2内容をdbに保存して、for3に遷移
         if "form2_submit" in request.POST: #ボタンが押されたら...
             form2_name = request.POST.get('form2_name')
@@ -55,10 +59,12 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             data = json.dumps({"value1": "名前、住所、連絡先が入力されました！"})
             #住民のiftttのkeyを入力する↓
             requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-            return render(request, 'html_Guest/Guest_other_form3.html')
-    return render(request, 'html_Guest/Guest_other_form1.html')
+            return render(request, 'html_Guest/Guest_other_form3.html',context)
+    return render(request, 'html_Guest/Guest_other_form1.html',context)
 
 def other_form4(request): #質問フォーム3→4に移る時に使う
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     if request.method == 'GET':
         #form4に遷移したらform3のdbにmessage格納
         Other_DB.objects.update(form3 = "謎の動画閲覧終了")
@@ -90,8 +96,8 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
             data = json.dumps({"value1": "お客さんは全ての質問の回答を終えました！"})
             #住民のiftttのkeyを入力する↓
             requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-            return render(request, 'html_Guest/Guest_other_end.html')
-    return render(request, 'html_Guest/Guest_other_form4.html')
+            return render(request, 'html_Guest/Guest_other_end.html',context)
+    return render(request, 'html_Guest/Guest_other_form4.html',context)
 
 def other_check_video_status(request):
     if request.is_ajax():
@@ -105,34 +111,42 @@ def other_check_video_status(request):
 
 #-------配達員　の画面で使用する機能たち---------------------------
 def delivery(request):
-    context = {}
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     if request.method == 'GET':
         time_status = 0
         if Owner_Time_DB.objects.filter(start_date__lte=datetime.now().date(),finish_date__gte=datetime.now().date()):
             time_status = 1
-        context = {"time_status":time_status}
+        context["time_status"]=time_status
     return render(request, 'html_Guest/Guest_delivery.html', context)
 
 def delivery_camera(request):
-    return render(request, 'html_Guest/Guest_delivery_camera.html', )
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/Guest_delivery_camera.html', context)
 
 def delivery_end1(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     #POSTリクエストを送信　ハンコが必要な荷物がきたら：住民に通知
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "ハンコが必要な荷物です！今すぐ玄関へ！"})
     #住民のiftttのkeyを入力する↓
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-    return render(request, 'html_Guest/Guest_delivery_end1.html', )
+    return render(request, 'html_Guest/Guest_delivery_end1.html', context)
 
 
 #-------ポスト投函　の画面で使用する機能たち---------------------------
 def post(request):
-    return render(request, 'html_Guest/Guest_post.html', )
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/Guest_post.html', context)
 
 def post_end1(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
-
     requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
@@ -140,19 +154,23 @@ def post_end1(request):
     #住民のiftttのkeyを入力する↓
     #requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies)
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-    return render(request, 'html_Guest/Guest_post_end1.html', )
+    return render(request, 'html_Guest/Guest_post_end1.html', context)
 
 def post_pic(request):
-    return render(request, 'html_Guest/Guest_post_pic.html')
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/Guest_post_pic.html',context)
 
 def post_end2(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
     #POSTリクエストを送信　郵便物が撮影されたら：住民に通知
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "チラシが撮影されました！"})
     #住民のiftttのkeyを入力する↓
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
-    return render(request, 'html_Guest/Guest_post_end2.html', )
+    return render(request, 'html_Guest/Guest_post_end2.html', context)
 
 
 #---------カメラ撮影した画像をdbに保存する機能---------------

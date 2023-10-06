@@ -1,23 +1,32 @@
-{% extends './Guest_base.html' %}
 {% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>Visiter System</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+    </head>
+    <body>
+        <div class="loading">
+          <div class="loading-wrap">
+            <h3>読み取り中...</h3>
+            <div class="loader"></div>
+           <i class="fas fa-spinner fa-3x fa-spin"></i>
+          </div>
+        </div>
 
-{% block content %}
-<div class="loading">
-  <div class="loading-wrap">
-    <h3>読み取り中...</h3>
-    <div class="loader"></div>
-   <i class="fas fa-spinner fa-3x fa-spin"></i>
-  </div>
-</div>
-
-<script>
-  const loading = document.querySelector('.loading');
-  window.addEventListener('load', () => {
-    setTimeout(function() {
-      loading.classList.add('hide');
-    }, 5000);
-  });
-</script>
+      <script>
+        const loading = document.querySelector('.loading');
+        window.addEventListener('load', () => {
+          setTimeout(function() {
+            loading.classList.add('hide');
+          }, 5000);
+        });
+      </script>
 
       <div class="content">
         <h2>住人を呼び出しています。少々お待ちください。</h2>
@@ -81,4 +90,6 @@
           },154000)
       </script>
 
-{% endblock %}
+
+    </body>
+</html>

@@ -1,11 +1,22 @@
-{% extends './Guest_base.html' %}
 {% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>Visiter System</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+    </head>
+    <body>
 
-{% block content %}
       <div class="content">
       <h2>THANK YOU!!</h2>
       <p>送信ありがとうございます。住民に送信完了です
       <br>本ページを閉じて、操作を終了してください</p>
       </div>
 
-{% endblock %}
+    </body>
+</html>

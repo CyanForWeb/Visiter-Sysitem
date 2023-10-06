@@ -1,14 +1,24 @@
-{% extends './Guest_base.html' %}
 {% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>Visiter System</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+    </head>
+    <body>
 
-{% block content %}
       <div class="content">
       <h2>THANK　YOU！！</h2>
       <p>住民に通知しました。</p><br>
       <p>本ページを閉じて操作を終了してください。</p>
       </div>
 
-      <p>Video Status: <span id="video_status">0</span></p>
+      <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat">
@@ -43,7 +53,7 @@
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
-                    $('#video_status').text(data.video_status);
+                    //$('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
                         // ビデオステータスが1の場合、メッセージを表示
                         video.style.display = "block";//表示
@@ -66,4 +76,6 @@
 
       </script>
 
-{% endblock %}
+
+      </body>
+  </html>

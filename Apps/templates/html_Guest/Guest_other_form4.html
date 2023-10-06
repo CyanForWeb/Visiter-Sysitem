@@ -22,7 +22,7 @@
       <button name="form4_submit" class="btn_06">送信</button>
       </form>
 
-      <p>Video Status: <span id="video_status">0</span></p>
+      <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat">
@@ -57,7 +57,7 @@
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
-                    $('#video_status').text(data.video_status);
+                    //$('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
                         // ビデオステータスが1の場合、メッセージを表示
                         video.style.display = "block";//表示
