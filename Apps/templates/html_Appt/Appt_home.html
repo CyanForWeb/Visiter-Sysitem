@@ -156,7 +156,8 @@
         .then(data => {
           //リダイレクトフラグをチェック
           if (data.redirect){
-            window.location.href = 'Appt_end';
+            //window.location.href = 'Appt_end';
+            window.location.href = "{% url 'Appt_end' %}";
           }else{
             $(id).style.display = 'inline';
             $(id).innerHTML = data.message;

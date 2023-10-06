@@ -22,8 +22,6 @@
         <p>動画が表示されない際のメッセージ.</p>
       </div>
 
-      <p>Video Status: <span id="video_status">0</span></p>
-
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat">
       <div style="visibility:hidden;">
@@ -69,7 +67,6 @@
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
-                    $('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
                       // ビデオステータスが1の場合表示
                       video.style.display = "block";//表示

@@ -8,8 +8,8 @@
         <p>セキュリティ保護のため、客人が使用するアプリのURLを定期的に変更しましょう。</p>
         <form method="post">
             {% csrf_token %}
-            <p>※任意の11文字以内の数字を記入してください。</p>
-            <input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11文字以内)" required></input>
+            <p>※任意の11桁以内の数字を記入してください。</p>
+            <input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11桁以内)" required></input>
             <input  name="butoon" type="submit" value="URL更新" onclick="buttonClick()"></input>
         </form>
       </div>
