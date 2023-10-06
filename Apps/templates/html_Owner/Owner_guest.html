@@ -1,0 +1,42 @@
+{% extends './Owner_base.html' %}
+{% load static %}
+
+{% block content %}
+
+      <div class="content">
+        <br>
+        <h1>【 アポ済の客人 】</h1>
+        <p>下記URLを来客予定の方に事前にお渡しください。</p>
+        <p>→　<a id='appt_display'></a></p>
+
+        <br><hr><br>
+        <h1>【 その他の客人 】</h1>
+        <p>下記QRコードボタンで生成したQRコードを家先に設置してください。</p>
+        <form method="post">
+            {% csrf_token %}
+            <p>→　<a id='guest_display'></a></p>
+            <input  id='url' name='url' type='hidden'>
+            <img src="data:image/png;base64,{{ qr }}" alt onerror="this.onerror = null; this.src='';" width="30%"/><br>
+            <input type="submit" value="QRコード"><br>
+        </form>
+      </div>
+
+      <script>
+        window.onload = function(){
+          var protocol = location.protocol;
+          var host = location.host;
+          var appt = protocol+'//'+host+'/Appt_home/'+{{ newText.update_url_text }};
+          var guest = protocol+'//'+host+'/Guest_home/'+{{ newText.update_url_text }};
+          document.getElementById('appt_display').innerHTML = appt;
+          document.getElementById('guest_display').innerHTML = guest;
+          document.getElementById('appt_display').href = appt;
+          document.getElementById('guest_display').href = guest;
+
+          var element = document.getElementById('url');
+          element.value = guest;
+          console.log('これです'+element.value);
+        }
+
+      </script>
+
+{% endblock %}

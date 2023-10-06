@@ -5,11 +5,17 @@ from datetime import datetime, date
 from django.views.generic import ListView
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
+from PIL import Image
+import qrcode
+import base64
+from io import BytesIO
 
 from .models import *
 from .forms import Set_start, Set_finish
 
 def home(request):
+    if Owner_DB.objects.all().count()==0:
+        Owner_DB.objects.create()
     data = Visitor_DB.objects.filter(date__date = date.today())
     #db内容を日付順に並べ替える
     data_sort = data.all().order_by('date','id').reverse()
@@ -41,7 +47,7 @@ def setting_time(request):
                                      start_time=start_time,
                                      finish_date=finish_date,
                                      finish_time=finish_time)
-        return render(request, 'html_Owner/Owner_setting_end.html',)
+        return redirect('Owner_home')
     return render(request, 'html_Owner/Owner_setting_time.html', context)
 
 def seeSettingTime(request):
@@ -63,6 +69,26 @@ def setting_home(request):
 
 def setting_end(request):
     return render(request, 'html_Owner/Owner_setting_end.html', )
+
+def guest(request):
+    context = {}
+    newText = Owner_DB.objects.get(owner='Owner')
+    context['newText'] = newText
+    if request.method == 'POST':
+        url = request.POST['url']
+        img = qrcode.make(url)
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        qr = base64.b64encode(buffer.getvalue()).decode().replace("'", "")
+        context['qr'] = qr
+    return render(request, 'html_Owner/Owner_guest.html', context)
+
+def guest_security(request):
+    if request.method == 'POST':
+        newText = request.POST['update_url']
+        Owner_DB.objects.update(update_url_text=newText)
+        return redirect('Owner_home')
+    return render(request, 'html_Owner/Owner_guest_security.html')
 
 def seeform(request):
     #db内容を日付順に並べ替える
@@ -156,9 +182,6 @@ def save_geolocation_Owner_setting(request):
         latitude = data.get('latitude', None)
         longitude = data.get('longitude', None)
         payload = json.dumps({"latitude": latitude,"longitude": longitude})
-        if Owner_DB.objects.all().count()==1:
-            Owner_DB.objects.update(location=payload)
-        else:
-            Owner_DB.objects.create(location=payload)
+        Owner_DB.objects.update(location=payload)
         return JsonResponse({'redirect': True})
     return JsonResponse({'message': '位置情報が取得できませんでした。'}, status=400)

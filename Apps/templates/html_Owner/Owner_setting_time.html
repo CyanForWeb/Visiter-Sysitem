@@ -13,8 +13,14 @@
       <hr><br>
       <p>終了日時：</p>
       {{ set_finish.as_p }}
-      <button name="setTime_button" class="btn_06">登録</button>
+      <button name="setTime_button" class="btn_06" onclick="buttonClick()">登録</button>
       </form>
       </div>
+
+      <script>
+        function buttonClick(){
+          alert('登録が完了しました。');
+        }
+      </script>
 
 {% endblock %}

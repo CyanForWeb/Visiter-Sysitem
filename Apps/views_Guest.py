@@ -17,8 +17,10 @@ import json
 from django.core.files.base import ContentFile
 
 
-def home(request):
-    return render(request, 'html_Guest/Guest_home.html', )
+def home(request,number):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':number, 'true_number':true_number}
+    return render(request, 'html_Guest/Guest_home.html', context)
 
 
 #-------その他　客人の画面で使用する機能たち---------------------------
@@ -130,7 +132,7 @@ def post(request):
 
 def post_end1(request):
     #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
-     
+
     requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}

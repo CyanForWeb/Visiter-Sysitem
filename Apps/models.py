@@ -6,7 +6,8 @@ from datetime import datetime
 #住人　Webアプリに使用するもの
 class Owner_DB(models.Model):
     owner = models.TextField(default="Owner")
-    location = models.TextField()
+    location = models.TextField(null=True)
+    update_url_text = models.IntegerField(default='11')
     def __str__(self):
         return self.owner
 

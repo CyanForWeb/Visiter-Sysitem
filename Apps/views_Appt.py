@@ -16,8 +16,10 @@ import base64
 import json
 from django.core.files.base import ContentFile
 
-def home(request):
-    return render(request, 'html_Appt/Appt_home.html', )
+def home(request,number):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':number,'true_number':true_number}
+    return render(request, 'html_Appt/Appt_home.html', context)
 
 def end(request):
     day_time = datetime.now() #今の日付時間を設定
