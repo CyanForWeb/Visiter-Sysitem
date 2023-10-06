@@ -16,17 +16,19 @@ urlpatterns = [
     path('<int:id>', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     #path('<int:id>', views_Owner.videochat, name='VideoChat'),
     path('save_geolocation_Owner_setting/', views_Owner.save_geolocation_Owner_setting, name='save_geolocation_Owner_setting'),
+    path('Owner_guest', views_Owner.guest, name='Owner_guest'),
+    path('Owner_guest_security', views_Owner.guest_security, name='Owner_guest_security'),
 
 
 #アポ済みのWebアプリに使用するURL
-    path('Appt_home', views_Appt.home, name='Appt_home'),#一番最初にアクセスする画面
+    path('Appt_home/<int:number>', views_Appt.home, name='Appt_home'),#一番最初にアクセスする画面
     path('Appt_end', views_Appt.end, name='Appt_end'),#最後の画面
     path('save_qrcode/', views_Appt.save_qrcode, name='save_qrcode'),
     path('save_geolocation/', views_Appt.save_geolocation, name='save_geolocation'),
     path('check_video_status', views_Appt.check_video_status, name='check_video_status'),#ビデオステータスの確認
 
 #客人のWebアプリに使用するURL
-    path('Guest_home', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
+    path('Guest_home/<int:number>', views_Guest.home, name='Guest_home'),#一番最初にアクセスする画面
     path('save_geolocations/', views_Guest.save_geolocations, name='save_geolocations'),
     #その他　客人画面
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面

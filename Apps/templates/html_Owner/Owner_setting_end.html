@@ -7,4 +7,10 @@
       <p>登録が完了しました。</p>
       </div>
 
+      <script type="text/javascript">
+        setTimeout(() => {
+          window.location.href = "{% url 'Owner_home' %}";
+        },3000);
+      </script>
+
 {% endblock %}

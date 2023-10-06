@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-      <div id="button" class="content">
+      <div id="content" class="content" style="display:none;">
       <h3>貴方の来訪目的を下記ボタンから選択してください</h3>
       <br>
       <a href="{% url 'Guest_delivery' %}" class="btn_01">配達員</a><br>
@@ -13,7 +13,15 @@
       </div>
 
       <script>
-             window.onload = startGeolocation();
+        window.onload = function(){
+          if({{ true_number.update_url_text }}!={{ number }}){
+            window.alert('URLが違います。\n正しいURLでアクセスし直してください。');
+          }else{
+            var element = document.getElementById('content')
+            element.style.display = 'block';
+            startGeolocation();
+          }
+        }
            /*
            位置情報の取得
 
@@ -49,7 +57,7 @@
                  //alert(data.message); // サーバーからの応答をコンソールに表示
                  document.getElementById("message").innerHTML = data.message;
                  //document.getElementById("message").style.display = 'none';
-                 document.getElementById("button").style.display = "none";
+                 document.getElementById("content").style.display = "none";
 
              }
            })
