@@ -41,7 +41,7 @@ def save_qrcode(request):
         headers = {"Content-Type": "application/json"}
         cookies = {"test_cookie": "qrcode"}
         payload = json.dumps({"value1": qrData})
-        if ".org" in qrData:
+        if "https://0cab-133-99-163-253.ngrok-free.app/Guest_home/" in qrData:
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
