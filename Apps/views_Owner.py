@@ -9,6 +9,8 @@ from PIL import Image
 import qrcode
 import base64
 from io import BytesIO
+import random
+from random import randrange
 
 from .models import *
 from .forms import Set_start, Set_finish
@@ -85,7 +87,7 @@ def guest(request):
 
 def guest_security(request):
     if request.method == 'POST':
-        newText = request.POST['update_url']
+        newText = randrange(100000)
         Owner_DB.objects.update(update_url_text=newText)
         return redirect('Owner_home')
     return render(request, 'html_Owner/Owner_guest_security.html')

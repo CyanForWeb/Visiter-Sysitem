@@ -5,12 +5,11 @@
 
       <div class="content">
         <h1>セキュリティ設定</h1>
-        <p>セキュリティ保護のため、客人が使用するアプリのURLを定期的に変更しましょう。</p>
+        <p>セキュリティ保護のため、来客者用アプリのURLを定期的に変更しましょう。</p>
         <form method="post">
             {% csrf_token %}
-            <p>※任意の11桁以内の数字を記入してください。</p>
-            <input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11桁以内)" required></input>
-            <input  name="butoon" type="submit" value="URL更新" onclick="buttonClick()"></input>
+            <!--<input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11桁以内)" required></input>-->
+            <input  name="butoon" type="submit" value="URLを更新する" onclick="buttonClick()"></input>
         </form>
       </div>
 
