@@ -20,13 +20,18 @@ def home(request):
         Owner_DB.objects.create()
     data = Visitor_DB.objects.filter(date__date = date.today())
     #db内容を日付順に並べ替える
-    data_sort = data.all().order_by('date','id').reverse()
-    all_data = data_sort
+    today_data_sort = data.all().order_by('date','id').reverse()
+    today_data = today_data_sort
     #htmlに渡したい値を格納
     record_status = 0
-    if data.exists():
+    if data.exists(): #今日の来客者がいるか確認
         record_status = 1
-    context = {'object_list':all_data,'record_status':record_status}
+    #全ての来客者履歴
+    #db内容を日付順に並べ替える
+    all_data_sort = Visitor_DB.objects.all().order_by('date','id').reverse()
+    all_data = all_data_sort
+    #htmlに渡したい値を格納
+    context = {'today_list':today_data,'record_status':record_status, 'all_list':all_data}
     return render(request, 'html_Owner/Owner_home.html', context)
 
 def setting_time(request):
@@ -91,14 +96,6 @@ def guest_security(request):
         Owner_DB.objects.update(update_url_text=newText)
         return redirect('Owner_home')
     return render(request, 'html_Owner/Owner_guest_security.html')
-
-def seeform(request):
-    #db内容を日付順に並べ替える
-    data_sort = Visitor_DB.objects.all().order_by('date','id').reverse()
-    all_data = data_sort
-    #htmlに渡したい値を格納
-    context = {'object_list':all_data,}
-    return render(request, 'html_Owner/Owner_seeform.html', context)
 
 @require_POST
 def deleteForm(request,id):

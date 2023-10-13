@@ -1,4 +1,20 @@
+@charset "UTF-8";
+
+
+/*タブメニュー*/
+.tab li{
+  list-style: none;!important;
+  text-decoration: none;!important;
+}
+a.tab{
+  text-decoration: none;
+}
+a.tab:hover {
+  text-decoration: none;
+}
+
 header{
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -36,6 +52,7 @@ p.head:hover {
 }
 
 .content {
+  z-index: 1;
   font-size: 13pt;
   margin: 20px;
 }
@@ -123,4 +140,101 @@ button.btn_06:hover {
 .textbox:focus {
   outline: 0;
   border: 2px solid #2196f3;
+}
+
+
+/* ハンバーガーメニューのボタン */
+/* ハンバーガーボタンを押してチェックがONの時だけ
+   スマホ用メニューを画面左端に移動する */
+.sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+}
+/* 真ん中の線 */
+#sp-menu__check:checked ~ .sp-menu__content {
+  left: 0;
+}
+.sp-menu__content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  /* 普段は画面外にするために左端を画面右端の位置にする */
+  left: 100%;
+  z-index: 90;
+  background-color: #3584bb;
+  /* 右端からゆっくり移動するように表示 */
+  transition: all 0.5s;
+}
+/* スマホ用メニュー */
+.sp-menu__box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 70px;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.fa-stack{
+  z-index: 101;
+  top: 0;
+  right: 0;
+}
+
+/*
+.sp-menu__box span,
+.sp-menu__box span:before,
+.sp-menu__box span:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #ffffff;
+  position: absolute;
+}
+.sp-menu__box span:before {
+  bottom: 8px;
+}
+.sp-menu__box span:after {
+  top: 8px;
+}
+*/
+/*チェックボタン*/
+#sp-menu__check {
+  display: none;
+}
+/*　バツボタン
+#sp-menu__check:checked ~ .sp-menu__box span {
+  background: rgba(255, 255, 255, 0);
+}
+#sp-menu__check:checked ~ .sp-menu__box span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+#sp-menu__check:checked ~ .sp-menu__box span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+*/
+.sp-menu__list {
+  padding: 70px 10px 0;
+}
+.sp-menu__item {
+  border-bottom: solid 1px #ffffff;
+  list-style: none;
+}
+.sp-menu__link {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
 }

@@ -21,22 +21,43 @@
         <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
         <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/DateTimeShortcuts.js' %}"></script>
-
+        <!--fontawesomeの機能を利用するために使用-->
+        <script src="https://kit.fontawesome.com/e050036233.js" crossorigin="anonymous"></script>
+        <!--タブメニュー機能に使用-->
+        <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+        <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/css/5-4-1.css">
     </head>
     <body>
           <header>
               <a href="{% url 'Owner_home' %}"><h1 class="head">Owner</h1></a>
           <nav>
-            <ul class="main-nav">
-              <li class="head"><a href="{% url 'Owner_seeform' %}"><p class="head">来客履歴</p></a></li>
-              <li class="head"><a href="{% url 'Owner_setting_time' %}"><p class="head">時間設定</p></a></li>
-              <li class="head"><a href="{% url 'Owner_setting_home' %}"><p class="head">住人設定</p></a></li>
-              <li class="head"><a href="{% url 'Owner_guest' %}"><p class="head">客人設定</p></a></li>
-              <li class="head"><a href="{% url 'Owner_guest_security' %}"><p class="head">セキュリティ</p></a></li>
+              <div class="sp-menu">
+                <input type="checkbox" id="sp-menu__check">
+                  <label for="sp-menu__check" class="sp-menu__box">
+                    <div class="fa-stack fa-2x">
+                      <i class="fa-solid fa-circle fa-stack-2x" style="color: rgb(230,230,230);"></i>
+                      <i class="fa-solid fa-user fa-stack-1x" style="color: #a1a1a1;"></i>
+                    </div>
+                  </label>
+                <div class="sp-menu__content">
+                  <ul class="sp-menu__list">
+                    <li class="sp-menu__item">
+                      <a class="sp-menu__link" href="{% url 'Owner_setting_time' %}"><p class="head">　<i class="fa-regular fa-calendar-days" style="color: #ffffff;"></i>　対応不可時間の設定</p></a>
+                    </li>
+                    <li class="sp-menu__item">
+                      <a class="sp-menu__link" href="{% url 'Owner_setting_home' %}"><p class="head">　<i class="fa-solid fa-house" style="color: #ffffff;"></i>　ユーザー位置情報設定</p></a>
+                    </li>
+                    <li class="sp-menu__item">
+                      <a class="sp-menu__link" href="{% url 'Owner_guest' %}"><p class="head">　<i class="fa-solid fa-users" style="color: #ffffff;"></i>　来客者用アプリ設定</p></a>
+                    </li>
+                    <li class="sp-menu__item">
+                      <a class="sp-menu__link" href="{% url 'Owner_guest_security' %}"><p class="head">　<i class="fa-solid fa-lock" style="color: #ffffff;"></i>　来客者用アプリのセキュリティ更新</p></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </ul>
-          </nav>
           </header>
-
 
       {% block content %}
       {% endblock %}

@@ -4,18 +4,44 @@
 {% block content %}
 
       <div class="content">
-        <p id="message"></p>
 
-        <div id="list">
-        {% for obj in object_list %}
-        <hr size="10">
-        <p></p>
-        <li>
-            {{ obj.date|date:"H時i分s秒" }}：
-            <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
-        </li>
-        {% endfor %}
-        </div>
+        <div class="wrapper">
+          <ul class="tab">
+            <li><a href="#today" style="color: #333333;" class="tab"><b>本日の来客者</b></a></li>
+            <li><a href="#all" style="color: #333333;" class="tab"><b>全ての来客者</b></a></li>
+          </ul>
+
+          <div id="today" class="area">
+            <p id="message" style="text-align: center;"></p>
+            <div id="list" style="text-align: center;">
+            {% for obj in today_list %}
+            <hr size="10">
+            <p></p>
+            <li>
+                {{ obj.date|date:"H時i分s秒" }}：
+                <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
+            </li>
+            {% endfor %}
+            </div>
+          <!--/area--></div>
+          <div id="all" class="area">
+            {% for obj in all_list %}
+            <li class="item">
+              <div>
+                {{ obj.date }}：
+                <a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a>
+              </div>
+              <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
+                <button type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+              </form>
+            </li>
+            <p></p>
+            {% endfor %}
+          <!--/area--></div>
+        <!--wrapper--></div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/js/5-4-1.js"></script>
 
       </div>
 
@@ -24,7 +50,7 @@
         list = document.getElementById('list');
 
         if({{ record_status }}==0){
-          message.innerText = "本日の来客者はゼロです";
+          message.innerText = "本日の来客者情報はありません";
           list.style.display = "none";
         }else{
           message.innerText = "本日の来客者です";

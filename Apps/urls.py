@@ -10,7 +10,6 @@ urlpatterns = [
     path('Owner_deleteTime/<int:id>', views_Owner.deleteTime, name='Owner_deleteTime'),
     path('Owner_setting_home', views_Owner.setting_home, name='Owner_setting_home'),
     path('Owner_setting_end', views_Owner.setting_end, name='Owner_setting_end'),
-    path('Owner_seeform', views_Owner.seeform, name='Owner_seeform'),
     path('Owner_deleteForm/<int:id>', views_Owner.deleteForm, name='Owner_deleteForm'),
     #path('Owner_seeform_detail', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     path('<int:id>', views_Owner.seeform_detail, name='Owner_seeform_detail'),
