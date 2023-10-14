@@ -3,24 +3,27 @@
 
 {% block content %}
       <div class="content">
-      <form method="POST">
-      {% csrf_token %}
-      <p>今日の日付を記入してください：<br>
-      <input name="form4_date" type="text" size="20" required style="width:100%; height:50px;"></p>
-      <p>今日の曜日を記入してください：<br>
-      <input name="form4_day" type="text" size="20" required style="width:100%; height:50px;"></p>
-      <p>今日の天気を記入してください：<br>
-      <input name="form4_weather" type="text" size="20" required style="width:100%; height:50px;"></p>
-      <p>今日の交通手段を記入してください：<br>
-      <input name="form4_transportation" type="text" size="50" required style="width:100%; height:50px;"></p>
-      <p>貴方が知っている雑学/豆知識を記入してください：<br>
-      <input name="form4_trivia" type="text" size="300" required style="width:100%; height:50px;"></p>
-      <p>最後に一言を記入してください：<br>
-      <input name="form4_message" type="text" size="300" required style="width:100%; height:50px;"></p>
-      <br>
-      <p>以上で質問は終了です。「送信」ボタンを押してください。</p>
-      <button name="form4_submit" class="btn_06">送信</button>
-      </form>
+        <form method="POST">
+        {% csrf_token %}
+        <p>今日の日付を記入してください
+        <input name="form4_date" type="text" size="20" required style="width:100%; height:40px;"></p>
+        <p>今日の曜日を記入してください
+        <input name="form4_day" type="text" size="20" required style="width:100%; height:40px;"></p>
+        <p>今日の天気を記入してください
+        <input name="form4_weather" type="text" size="20" required style="width:100%; height:40px;"></p>
+        <p>今日の交通手段を記入してください
+        <input name="form4_transportation" type="text" size="50" required style="width:100%; height:40px;"></p>
+        <p>貴方が知っている雑学/豆知識を記入してください
+        <input name="form4_trivia" type="text" size="300" required style="width:100%; height:40px;"></p>
+        <p>最後に一言を記入してください
+        <input name="form4_message" type="text" size="300" required style="width:100%; height:40px;"></p>
+        <br>
+        <p style="text-align: center;">以上で質問は終了です<br><b>送信ボタン</b>を押してください</p>
+        <br>
+        <button name="form4_submit" class="btn_06">
+          <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
+        </button>
+        </form>
 
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 

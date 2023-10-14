@@ -4,7 +4,7 @@
 {% block content %}
       <div class="content">
 
-        <p>来客対応不可能時間</p>
+        <p id="message" style="text-align: center;"></p>
 
           {% for obj in object_list %}
           <hr size="10">
@@ -15,12 +15,24 @@
               〜 終了日時：{{ obj.finish_date }}：{{ obj.finish_time }}
             </div>
             <form method="post" action="{% url 'Owner_deleteTime' obj.pk %}">{% csrf_token %}
-              <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+              <button type="submit" onclick='return confirm("本当に削除しますか？");'>
+                <i class="fa-regular fa-trash-can" style="color: #6998b5;"></i>
+              </button>
             </form>
           </li>
           <p></p>
           {% endfor %}
 
       </div>
+
+      <script>
+        message = document.getElementById('message');
+
+        if({{ record_status }}==0){
+          message.innerText = "' 来客対応不可 'として登録している時間はありません";
+        }else{
+          message.innerText = "来客対応不可に登録している時間";
+        }
+      </script>
 
 {% endblock %}

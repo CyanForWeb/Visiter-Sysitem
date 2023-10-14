@@ -2,12 +2,16 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
+      <div class="content" style="text-align: center;">
 
-      <h2>撮影ボタンを押してください</h2>
-      <p>投函物の写真を撮り、住人に届けることができます</p>
+        <h3>投函物の写真撮影＋送信</h3>
+        <br>
+        <h4>投函物を画角に入れ、<b>送信ボタン</b>を押してください</h4>
+        <p style="font-size:small;">※ 投函物の写真を住人に送信することができます</p>
       <video id="video" class="camera"  playsinline autoplay></video>
-      <button id="submitBtn" class="btn_06">送信</button>
+      <button id="submitBtn" class="btn_06">
+        <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
+      </button>
       <canvas id="canvas" class="camera" ></canvas>
 
       <script>

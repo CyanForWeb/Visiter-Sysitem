@@ -3,7 +3,8 @@ header{
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  background-color: #66CDAA;
+  /*background-color: #66CDAA;*/
+  background-color: #339966;
   padding-top: 5px;
   box-sizing: border-box;
   position: sticky;
@@ -65,30 +66,31 @@ a.btn_01 {
 	margin: auto;
 	padding: 1rem 4rem;
 	font-weight: bold;
-	border: 2px solid #66CDAA;
-	color: #66CDAA;
+	border: 2px solid #009966;
+  /*color: #66CDAA;*/
+  color: #009966;
 	transition: 0.5s;
 }
 a.btn_01:hover {
 	color: #fff;
-	background: #66CDAA;
+	background: #339966;
 }
 
 button.btn_06 {
-	display: block;
+  display: block;
 	text-decoration: none;
 	margin: auto;
-	padding: 1rem 4rem;
+	padding: 0.8rem 17rem;
 	font-weight: bold;
 	border-radius: 100vh;
-	border-bottom: 7px solid #0686b2;
-	background: #27acd9;
+  /*background: #27acd9;*/
+  background: #009966;
 	color: #fff;
 }
 button.btn_06:hover {
-	margin-top: 6px;
-	border-bottom: 1px solid #0686b2;
+	/*margin-top: 6px;*/
 	color: #fff;
+  background: #339966;
 }
 
 .textbox {

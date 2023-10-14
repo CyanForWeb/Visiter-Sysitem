@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
-      <h2>貴方の来訪目的に関する質問にお答えください。</h2>
-      <p>「質問回答START」ボタンから幾つかの質問に答えることで、貴方のご用件を住民に通知することができます。</p>
+      <div class="content" style="text-align: center;">
+      <h3>来訪目的に関する質問にお答えください</h3>
       <br>
-      <a href="{% url 'Guest_other_form' %}" class="btn_01">質問回答START</a><br>
+      <p style="font-size:small;">※ 幾つかの質問に答えることで、来訪用件を住民に通知することができます</p>
+      <br>
+      <a href="{% url 'Guest_other_form' %}" class="btn_01">
+        <i class="fa-solid fa-circle-play"></i> 　回答 Start</a><br>
       </div>
 
 {% endblock %}

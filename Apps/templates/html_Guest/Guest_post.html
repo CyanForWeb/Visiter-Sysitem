@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
-      <h2>荷物／不在票の宛名の判定を行います。</h2>
-      <p>※ 宛名の無い投函物の場合は<a href="{% url 'Guest_post_pic' %}">こちら</a></p>
-      <br>
+      <div class="content" style="text-align: center;">
+        <h3>投函物／不在票の宛名 読み取り</h3>
+        <br>
+        <a href="{% url 'Guest_post_pic' %}" class="btn_01">宛名の無い投函物の場合はこちら</a>
+        <br>
 
-      <h3>宛名を画角に入れて読み取り開始ボタンを押してください</h3>
-      <p>※ 判定が正常に終了すると、郵便受けを利用できるようになります。</p>
-      <video id="video" class="camera" playsinline autoplay></video>
-      <button id="submitBtn" class="btn_06">読み取り開始</button>
-      <canvas id="canvas" class="camera"></canvas>
+        <h4>宛名を画角に入れ、<b>読み取りボタン</b>を押してください</h4>
+        <p style="font-size:small;">※ 読み取りが正常に終了した場合のみ、郵便受けを利用できます</p>
+        <video id="video" class="camera" playsinline autoplay></video>
+        <button id="submitBtn" class="btn_06">
+          <i class="fa-solid fa-hourglass" style="color: #ffffff;"></i>　読み取り
+        </button>
+        <canvas id="canvas" class="camera"></canvas>
       </div>
 
 

@@ -9,7 +9,9 @@
         <form method="post">
             {% csrf_token %}
             <!--<input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11桁以内)" required></input>-->
-            <input  name="butoon" type="submit" value="URLを更新する" onclick="buttonClick()"></input>
+            <button onclick="buttonClick()" class="btn_06">
+              <i class="fa-solid fa-wrench" style="color: #ffffff;"></i> URLを更新する
+            </button>
         </form>
       </div>
 

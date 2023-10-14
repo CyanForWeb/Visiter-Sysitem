@@ -8,12 +8,14 @@
       <br>現在 対応不可能として登録している時間は <a href="{% url 'Owner_seeSettingTime' %}">こちら</a> です。</p><br>
       <p>開始日時：</p>
       <form method="post">
-      {% csrf_token %}
-      {{ set_start.as_p }}
-      <hr><br>
-      <p>終了日時：</p>
-      {{ set_finish.as_p }}
-      <button name="setTime_button" class="btn_06" onclick="buttonClick()">登録</button>
+        {% csrf_token %}
+        {{ set_start.as_p }}
+        <hr><br>
+        <p>終了日時：</p>
+        {{ set_finish.as_p }}
+        <button name="setTime_button" class="btn_06" onclick="buttonClick()">
+          <i class="fa-solid fa-file-pen" style="color: #ffffff;"></i>  登録
+        </button>
       </form>
       </div>
 

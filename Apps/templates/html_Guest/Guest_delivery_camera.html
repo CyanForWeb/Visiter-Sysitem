@@ -2,16 +2,17 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
-        <h2 >荷物の宛名の判定を行います。</h2>
-      <br>
+      <div class="content" style="text-align: center;">
+        <h3>荷物の宛名 読み取り</h3>
+        <br>
+        <h4>宛名を画角に入れ、<b>読み取りボタン</b>を押してください</h4>
+        <p style="font-size:small;">※ 読み取りが正常に終了した後、住人に通知します</p>
 
-      <h3>宛名を画角に入れて読み取り開始ボタンを押してください。</h3>
-      <p>※ 判定が正常に終了すると、住人に通知が行きます。</p>
-
-      <video id="video" class="camera" playsinline autoplay></video>
-      <button id="submitBtn" class="btn_06">読み取り開始</button>
-      <canvas id="canvas" class="camera" ></canvas>
+        <video id="video" class="camera" playsinline autoplay></video>
+        <button id="submitBtn" class="btn_06">
+          <i class="fa-solid fa-hourglass" style="color: #ffffff;"></i>　読み取り
+        </button>
+        <canvas id="canvas" class="camera" ></canvas>
       </div>
 
       <script>

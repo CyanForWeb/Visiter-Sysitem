@@ -2,13 +2,20 @@
 {% load static %}
 
 {% block content %}
+
+  <h3 style="text-align: center;">来訪目的を選択してください</h3><br>
       <div id="content" class="content" style="display:none;">
-      <h3>貴方の来訪目的を下記ボタンから選択してください</h3>
-      <br>
-      <a href="{% url 'Guest_delivery' %}" class="btn_01">配達員</a><br>
-      <a href="{% url 'Guest_post' %}" class="btn_01">郵便受けの利用</a><br>
-      <a href="{% url 'Guest_other' %}" class="btn_01">その他</a><br>
+      <a href="{% url 'Guest_delivery' %}" class="btn_01">
+        <p></p><i class="fa-solid fa-people-carry-box fa-2xl"></i><p></p>
+        荷物の受け渡し</a><br>
+      <a href="{% url 'Guest_post' %}" class="btn_01">
+        <p></p><i class="fa-solid fa-envelope-open-text fa-2xl"></i><p></p>
+        郵便受けの利用</a><br>
+      <a href="{% url 'Guest_other' %}" class="btn_01">
+        <p></p><i class="fa-solid fa-users fa-2xl"></i><p></p>
+        その他</a>
       </div>
+
       <div id="message" style="justify-content:center; margin:5px;width:300px; height:200px; padding:10px;" >
       </div>
 

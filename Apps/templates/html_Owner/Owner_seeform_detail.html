@@ -4,12 +4,15 @@
 {% block content %}
       <div class="content">
 
-      <h3>{{ mes.message }}（{{ obj.date }}）</h3>
+      <h2 style="text-align: center;">{{ mes.message }}（ {{ obj.date }} ）</h2>
 
-      <img src='{{ obj.img.url }}'/>
+      <br>
+      <div style="text-align: center;">
+        <img src='{{ obj.img.url }}'/>
+      </div>
 
       <br><br>
-      <a href="{% url 'Owner_seeform' %}">戻る</a>
+      <a href="{% url 'Owner_home' %}"><i class="fa-solid fa-circle-arrow-left"></i>　戻る</a>
 
       </div>
 

@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
+      <div class="content" style="text-align: center;">
 
-      <h2>置き配が可能な方は、玄関前に荷物を置いてください</h2>
+      <br>
+      <h2>置き配をお願いします</h2>
       <br>
 
       <div id="iru">
@@ -13,8 +14,8 @@
       <br>
 
       <div id="inai">
-      <p>ハンコが必要な方へ<br>
-        ただいま対応できません。「不在通知」ボタンを押してください</p>
+      <p><i class="fa-solid fa-circle-exclamation" style="color: #4b4c4e;"></i>ただいま対応できません。<br><br>
+        ハンコが必要な方は「不在通知」ボタンを押してください</p>
       <a href="{% url 'Guest_post' %}" class="btn_01">不在通知</a><br>
       </div>
       </div>

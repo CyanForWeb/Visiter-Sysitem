@@ -6,9 +6,10 @@
 
       <form method="post">
       {% csrf_token %}
-      <p>来訪されたご用件を記入してください：</p><br>
-      <input type="text" required="required" name="form1" style="width:100%; height:50px;"></input><br>
-      <br><button name="form1_submit" class="btn_06">次の質問に答える</button>
+      <p>来訪されたご用件を記入してください</p>
+      <input type="text" required="required" name="form1" style="width:100%; height:40px;"></input><br>
+      <br><button name="form1_submit" class="btn_06">
+        <i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
       </form>
 
       </div>

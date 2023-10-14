@@ -67,7 +67,7 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
     context = {'number':true_number.update_url_text}
     if request.method == 'GET':
         #form4に遷移したらform3のdbにmessage格納
-        Other_DB.objects.update(form3 = "謎の動画閲覧終了")
+        Other_DB.objects.update(form3 = "動画閲覧終了")
 
         #POSTリクエストを送信　謎の動画の視聴が終わったら：住民に通知　ここの位置を確認する
         headers = {"Content-Type": "application/json"}

@@ -61,8 +61,11 @@ def seeSettingTime(request):
     #db内容を日付順に並べ替える
     data_sort = Owner_Time_DB.objects.all().order_by('start_date')
     all_data = data_sort
+    record_status = 0
+    if all_data.exists():
+        record_status = 1
     #htmlに渡したい値を格納
-    context = {'object_list':all_data,}
+    context = {'object_list':all_data, 'record_status':record_status}
     return render(request, 'html_Owner/Owner_seeSettingTime.html', context)
 
 @require_POST
@@ -111,7 +114,7 @@ def deleteForm(request,id):
     else:
         data_2 = Post_DB.objects.get(date=date)
     data_2.delete()
-    return redirect('Owner_seeform')
+    return redirect('Owner_home')
 
 def seeform_detail(request, id):
     obj = Visitor_DB.objects.get(pk=id)
