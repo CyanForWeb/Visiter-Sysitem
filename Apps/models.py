@@ -60,17 +60,17 @@ class Post_DB(models.Model):
 
 class Other_DB(models.Model):
     visitor = models.TextField(default="Other")
-    date = models.DateTimeField(null=True)
+    date = models.DateTimeField(default="未回答")
     video_status = models.IntegerField(default=0)
-    form1 = models.TextField(max_length=500)
-    form2_name = models.TextField(max_length=50)
-    form2_address = models.TextField(max_length=50)
-    form3 = models.TextField(max_length=10)
-    form4_date = models.TextField(max_length=20)
-    form4_day = models.TextField(max_length=20)
-    form4_weather = models.TextField(max_length=20)
-    form4_transportation = models.TextField(max_length=50)
-    form4_trivia = models.TextField(max_length=300)
-    form4_message = models.TextField(max_length=300)
+    form1 = models.TextField(max_length=500, default="未回答")
+    form2_name = models.TextField(max_length=50, default="未回答")
+    form2_address = models.TextField(max_length=50, default="未回答")
+    form3 = models.TextField(max_length=10, default="未回答")
+    form4_date = models.TextField(max_length=20, default="未回答")
+    form4_day = models.TextField(max_length=20, default="未回答")
+    form4_weather = models.TextField(max_length=20, default="未回答")
+    form4_transportation = models.TextField(max_length=50, default="未回答")
+    form4_trivia = models.TextField(max_length=300, default="未回答")
+    form4_message = models.TextField(max_length=300, default="未回答")
     def __str__(self):
         return self.visitor+":"+f"{self.date.strftime('%Y年%m月%d日%H時%M分%S秒')}"

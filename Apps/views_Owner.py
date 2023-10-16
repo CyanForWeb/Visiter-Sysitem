@@ -130,7 +130,7 @@ def seeform_detail(request, id):
         if "exit_button" in request.POST:#ボタンが押されたら...
             visit.video_status = 0
             visit.save()
-            return render(request, 'html_Owner/Owner_home.html', )
+            return redirect('Owner_home')
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
     elif obj.visitor=='Delivery':
         visit = delivery_context(obj)
@@ -146,7 +146,7 @@ def seeform_detail(request, id):
         if "exit_button" in request.POST:#ボタンが押されたら...
             visit.video_status = 0
             visit.save()
-            return render(request, 'html_Owner/Owner_home.html', )
+            return redirect('Owner_home')
         return render(request, 'html_Owner/Owner_seeform_detail_Other.html', context)
     else:
         visit = post_context(obj)

@@ -9,20 +9,26 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+        <!--fontawesomeの機能を利用するために使用-->
+        <script src="https://kit.fontawesome.com/e050036233.js" crossorigin="anonymous"></script>
+        <!--タブメニュー機能に使用-->
+        <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/css/5-4-1.css">
     </head>
     <body>
 
       <div class="loading">
         <div class="loading-wrap">
-          <div class="loader"></div>
-          <i class="fas fa-spinner fa-3x fa-spin"></i>
+         <i class="fas fa-spinner fa-5x fa-spin"style="color: #fff;"></i>
         </div>
       </div>
 
-      <div class="content"><br>
-        <h2 id='message' style='text-align:center'></h2>
+      <div class="content" style='text-align:center;vertical-align: middle;'><br>
         <br>
-        <h1 id='count' style='text-align:center'></h1>
+        <i id='open' class="fa-solid fa-unlock-keyhole fa-3x" style="color: #FFD700;"></i>
+        <i id='lock' class="fa-solid fa-lock fa-3x" style="color: #FFD700;"></i>
+        <h2 id='message'></h2>
+        <br>
+        <h1 id='count'></h1>
 
       </div>
 
@@ -38,6 +44,8 @@
       <script>
         let count = 10;
         message = document.getElementById("message");
+        open = document.getElementById("open");
+        lock = document.getElementById("lock");
 
         window.onload = function(){
           setTimeout(counter,5000);
@@ -45,9 +53,12 @@
         function counter(){
           if(count<0){
             document.getElementById("count").style.display = "none";//非表示
+            document.getElementById("open").style.display = "none";//非表示
+            document.getElementById("lock").style.display = "block";//非表示
             message.innerText = "ポストを施錠しました";
           }else{
-            message.innerText = "ポストを解除しました。60秒以内に投函をお願いします。";
+            document.getElementById("lock").style.display = "none";//非表示
+            message.innerText = "ポストを解除しました\n60秒以内に投函をお願いします";
           }
           document.getElementById("count").innerHTML = count;
           count--;

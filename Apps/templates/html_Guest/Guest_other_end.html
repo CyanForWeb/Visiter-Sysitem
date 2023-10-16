@@ -13,33 +13,36 @@
     <body>
 
       <div class="content">
-      <h2>THANK　YOU！！</h2>
-      <p>住民に通知しました。</p><br>
-      <p>本ページを閉じて操作を終了してください。</p>
+          <h2>THANK　YOU！！</h2>
+          <p>住民に通知しました。</p><br>
+          <p>本ページを閉じて操作を終了してください。</p>
       </div>
 
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
-      <div id="videoChat">
-      <div style="visibility:hidden;">
+      <hr>
+      <div id="videoChat" style="text-align:center">
+        <div style="visibility:hidden;">
 
-      </div>
-      <hr size="10">
-      <p id="message">住人とビデオチャットが繋がっています。参加ボタンを押してください。</p>
-      <button id="join" class="btn_06">参加</button><br>
-      <p id="joining"></p>
-      <div id="close">
-      <button class="btn_06" id='endBtn'>退出</button><br>
-      </div>
-      <video id="local-video" width="400px" muted playsinline></video>
+        </div>
+        <hr size="10">
+        <p id="message">住人とビデオチャットが繋がっています<br>参加ボタンを押してください</p>
+        <button id="join" class="btn_06">参加　
+        <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
+        <p id="joining"></p>
+        <div id="close">
+        <button class="btn_06" id='endBtn'>退出　
+        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
+        </div>
+        <video id="local-video" width="400px" muted playsinline  style="text-align:center"></video>
 
-      <video id="partner_video"></video>
-      <audio id="partner_audio"></<audio>
-
-      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-      <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
+        <video id="partner_video"></video>
+        <audio id="partner_audio"></<audio>
       </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+        <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
 
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

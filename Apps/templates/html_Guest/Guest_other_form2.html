@@ -18,18 +18,21 @@
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
-      <div id="videoChat">
+      <hr>
+      <div id="videoChat" style="text-align:center;">
       <div style="visibility:hidden;">
 
       </div>
       <hr size="10">
-      <p id="message">住人とビデオチャットが繋がっています。参加ボタンを押してください。</p>
-      <button id="join" class="btn_06">参加</button><br>
+      <p id="message">住人とビデオチャットが繋がっています<br>参加ボタンを押してください</p>
+      <button id="join" class="btn_06">参加　
+      <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
       <p id="joining"></p>
       <div id="close">
-      <button class="btn_06" id='endBtn'>退出</button><br>
+      <button class="btn_06" id='endBtn'>退出　
+      <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
       </div>
-      <video id="local-video" width="400px" muted playsinline></video>
+      <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
 
       <video id="partner_video"></video>
       <audio id="partner_audio"></<audio>

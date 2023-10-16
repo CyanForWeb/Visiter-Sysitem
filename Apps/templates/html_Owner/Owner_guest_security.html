@@ -3,9 +3,9 @@
 
 {% block content %}
 
-      <div class="content">
+      <div class="content" style="text-align: center;">
         <h1>セキュリティ設定</h1>
-        <p>セキュリティ保護のため、来客者用アプリのURLを定期的に変更しましょう。</p>
+        <p style="font-size:small;">セキュリティ保護のため、来客者用アプリのURLを定期的に変更しましょう</p><br>
         <form method="post">
             {% csrf_token %}
             <!--<input name="update_url" type="number" id='number' maxlength="8" size="45" placeholder="※数字(11桁以内)" required></input>-->

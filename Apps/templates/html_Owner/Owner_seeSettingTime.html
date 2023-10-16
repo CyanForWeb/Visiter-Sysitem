@@ -5,23 +5,32 @@
       <div class="content">
 
         <p id="message" style="text-align: center;"></p>
+        <br>
 
+        <div class="form">
           {% for obj in object_list %}
-          <hr size="10">
           <br>
           <li class="item">
-            <div>
-              開始日時：{{ obj.start_date }}：{{ obj.start_time }}
-              〜 終了日時：{{ obj.finish_date }}：{{ obj.finish_time }}
+            <div class="start">
+              <p style="color:gray; font-size:x-small;">開始日時</p>
+              <p>{{ obj.start_date }}：{{ obj.start_time }}　　〜</p>
             </div>
+            <div>　　　</div>
+            <div class="finish">
+              <p style="color:gray; font-size:x-small;">終了日時</p>
+              <p>{{ obj.finish_date }}：{{ obj.finish_time }}</p>
+            </div>
+            <div>
             <form method="post" action="{% url 'Owner_deleteTime' obj.pk %}">{% csrf_token %}
               <button type="submit" onclick='return confirm("本当に削除しますか？");'>
-                <i class="fa-regular fa-trash-can" style="color: #6998b5;"></i>
+                <i class="fa-regular fa-trash-can fa-xl" style="color: #6998b5;"></i>
               </button>
             </form>
+            </div>
           </li>
-          <p></p>
+          <hr>
           {% endfor %}
+        </div>
 
       </div>
 
