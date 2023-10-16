@@ -5,6 +5,8 @@
       <div class="content">
 
         <p id="message" style="text-align: center;"></p>
+        <a class="sp-menu__link" href="{% url 'Owner_setting_time' %}" style="text-align: center;">
+          <i class="fa-solid fa-pen"></i>　登録する</a>
         <br>
 
         <div class="form">
@@ -13,9 +15,8 @@
           <li class="item">
             <div class="start">
               <p style="color:gray; font-size:x-small;">開始日時</p>
-              <p>{{ obj.start_date }}：{{ obj.start_time }}　　〜</p>
+              <p>{{ obj.start_date }}：{{ obj.start_time }}　〜　</p>
             </div>
-            <div>　　　</div>
             <div class="finish">
               <p style="color:gray; font-size:x-small;">終了日時</p>
               <p>{{ obj.finish_date }}：{{ obj.finish_time }}</p>
@@ -40,7 +41,7 @@
         if({{ record_status }}==0){
           message.innerText = "' 来客対応不可 'として登録している時間はありません";
         }else{
-          message.innerText = "来客対応不可に登録している時間";
+          message.innerText = "登録されている来客対応 不可時間";
         }
       </script>
 

@@ -54,10 +54,13 @@ def setting_time(request):
                                      start_time=start_time,
                                      finish_date=finish_date,
                                      finish_time=finish_time)
-        return redirect('Owner_home')
+        return redirect('Owner_seeSettingTime')
     return render(request, 'html_Owner/Owner_setting_time.html', context)
 
 def seeSettingTime(request):
+    #古い履歴を消す
+    old_data = Owner_Time_DB.objects.filter(finish_date__lte=datetime.now().date())
+    old_data.delete()
     #db内容を日付順に並べ替える
     data_sort = Owner_Time_DB.objects.all().order_by('start_date')
     all_data = data_sort
