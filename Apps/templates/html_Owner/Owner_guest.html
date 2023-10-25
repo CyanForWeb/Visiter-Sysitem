@@ -4,22 +4,21 @@
 {% block content %}
 
       <div class="content">
-        <br>
-        <h2>【 アポ済の客人 】</h2>
-        <p>下記URLを来客予定の方に事前にお渡しください</p>
+        <h2>アポ済の客人用</h2>
+        <p style="font-size:small;">下記URLを来客予定の方に事前にお渡しください</p>
         <p>→　<a id='appt_display'></a></p>
 
         <br><hr><br>
-        <h2>【 その他の客人 】</h2>
-        <p>下記<b>QRコードボタン</b>で生成したQRコードを家先に設置してください</p>
+        <h2>その他の客人用</h2>
+        <p style="font-size:small;">下記<b>QRコード生成</b>ボタンで生成したQRコードを<br>家先に設置してください</p>
         <form method="post">
             {% csrf_token %}
             <p>→　<a id='guest_display'></a></p>
             <input  id='url' name='url' type='hidden'>
-            <img src="data:image/png;base64,{{ qr }}" alt onerror="this.onerror = null; this.src='';" width="30%"/><br>
             <button class="btn_06">
               <i class="fa-solid fa-qrcode" style="color: #ffffff;"></i> QRコード生成
-            </button>
+            </button><br>
+            <img src="data:image/png;base64,{{ qr }}" alt onerror="this.onerror = null; this.src='';" width="30%" border="0"/><br>
         </form>
       </div>
 
@@ -27,8 +26,8 @@
         window.onload = function(){
           var protocol = location.protocol;
           var host = location.host;
-          var appt = protocol+'//'+host+'/Appt_home/'+{{ newText.update_url_text }};
-          var guest = protocol+'//'+host+'/Guest_home/'+{{ newText.update_url_text }};
+          var appt = protocol+'//'+host+'/Appt_home/'+ {{newText.update_url_text}} ;
+          var guest = protocol+'//'+host+'/Guest_home/'+ {{newText.update_url_text}};
           document.getElementById('appt_display').innerHTML = appt;
           document.getElementById('guest_display').innerHTML = guest;
           document.getElementById('appt_display').href = appt;
@@ -38,7 +37,6 @@
           element.value = guest;
           console.log('これです'+element.value);
         }
-
       </script>
 
 {% endblock %}

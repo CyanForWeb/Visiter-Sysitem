@@ -9,19 +9,20 @@
           <i class="fa-solid fa-pen"></i>　登録する</a>
         <br>
 
-        <div class="form">
+        <div class="form" id="form">
           {% for obj in object_list %}
           <br>
           <li class="item">
             <div class="start">
               <p style="color:gray; font-size:x-small;">開始日時</p>
-              <p>{{ obj.start_date }}：{{ obj.start_time }}　〜　</p>
+              <p style="color:gray;">{{ obj.start_date }}：{{ obj.start_time }}から</p>
             </div>
             <div class="finish">
               <p style="color:gray; font-size:x-small;">終了日時</p>
-              <p>{{ obj.finish_date }}：{{ obj.finish_time }}</p>
+              <p style="color:gray;">{{ obj.finish_date }}：{{ obj.finish_time }}まで</p>
             </div>
             <div>
+            <p></p><br>
             <form method="post" action="{% url 'Owner_deleteTime' obj.pk %}">{% csrf_token %}
               <button type="submit" onclick='return confirm("本当に削除しますか？");'>
                 <i class="fa-regular fa-trash-can fa-xl" style="color: #6998b5;"></i>
@@ -29,7 +30,7 @@
             </form>
             </div>
           </li>
-          <hr>
+          <hr style="color:gray;">
           {% endfor %}
         </div>
 
@@ -37,11 +38,14 @@
 
       <script>
         message = document.getElementById('message');
+        form = document.getElementById('form');
+        form.style.display = "none";
 
         if({{ record_status }}==0){
-          message.innerText = "' 来客対応不可 'として登録している時間はありません";
+          message.innerText = "来客対応 不可時間は未登録です";
         }else{
           message.innerText = "登録されている来客対応 不可時間";
+          form.style.display = "block";
         }
       </script>
 

@@ -2,19 +2,23 @@
 {% load static %}
 
 {% block content %}
-      <div class="content" style="text-align: center;">
-        <h3>投函物／不在票の宛名 読み取り</h3>
+      <div class="content">
         <br>
-        <a href="{% url 'Guest_post_pic' %}" class="btn_01">宛名の無い投函物の場合はこちら</a>
+        <h3 style="text-align: center;"><b>投函物 / 不在票の宛名 読み取り</b></h3>
+        <p style="font-size:small;text-align: center;">※ 読み取りが正常に終了した場合のみ、郵便受けの利用可能</p>
+
         <br>
 
-        <h4>宛名を画角に入れ、<b>読み取りボタン</b>を押してください</h4>
-        <p style="font-size:small;">※ 読み取りが正常に終了した場合のみ、郵便受けを利用できます</p>
+        <p>手順</p>
+        <p>① 宛名を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
+        <p>※ 宛名の無い投函物の場合は <a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">こちら</a></p>
+        <div style="text-align: center;">
         <video id="video" class="camera" playsinline autoplay></video>
         <button id="submitBtn" class="btn_06">
           <i class="fa-solid fa-hourglass" style="color: #ffffff;"></i>　読み取り
         </button>
         <canvas id="canvas" class="camera"></canvas>
+        </div>
       </div>
 
 
