@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
+    <br>
+    <a href="{% url 'Owner_home' %}" style="margin: 20px;"><i class="fa-solid fa-circle-arrow-left"></i>　戻る</a>
 
+    <div class="content">
       <h2  style="text-align: center;">{{ mes.message }}（ {{ obj.date }} ）</h2><br>
-
       <ul class="form">
         <li class="other"><p><b>来訪用件</b><br>　{{ obj.form1 }}</p></li>
         <li class="other"><p><b>名前</b><br>　{{ obj.form2_name }}</p></li>
@@ -18,20 +19,15 @@
         <li class="other"><p><b>雑学/豆知識</b><br>　{{ obj.form4_trivia }}</p></li>
         <li class="other"><p><b>最後に一言</b><br>　{{ obj.form4_message }}</p></li>
       </ul>
-
       <form method="POST">
-      {% csrf_token %}
-      <button name="video_button" class="btn_06">
-        <i class="fa-solid fa-user" style="color: #ffffff;"></i>
-        <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
-        <br>Start VideoChat!
-      </button>
+        {% csrf_token %}
+        <button name="video_button" class="btn_06">
+          <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+          <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
+          <br>Start VideoChat!
+        </button>
       </form>
-
-      <br>
-      <a href="{% url 'Owner_home' %}"><i class="fa-solid fa-circle-arrow-left"></i>　戻る</a>
-
-
-      </div>
+    </div>
+    <br>
 
 {% endblock %}

@@ -1,28 +1,12 @@
 @charset "UTF-8";
 
-/*タブメニュー*/
-.tab li{
-  list-style: none;
-  text-decoration: none;
-}
-
-.other {
-  list-style: none;
-}
-.form{
-  background-color: #fff;
-  padding: 1rem 4rem;
-  border-radius: 10px;
-}
-
-
+/*------ヘッダー要素------*/
 header{
   z-index: 2;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  /*background-color: #33CCCC;#4682B4*/
   background-color: #4682B4;
   padding-top: 5px;
   box-sizing: border-box;
@@ -37,122 +21,7 @@ h1.head{
   color: #ffffff;
   font-family: 'Lobster', cursive;
 }
-
-ul.main-nav {
-  display: flex;
-}
-li.head {
-  list-style: none;
-  display: block;
-  text-decoration: none;
-  margin-right: 36px;
-  color: #ffffff;
-}
-p.head{
-  color: #ffffff;
-}
-p.head:hover {
-  color: #FFCC33;
-}
-
-.content {
-  z-index: 1;
-  font-size: 13pt;
-  margin: 20px;
-}
-
-.content h1, h2, h3, h4 {
-  font-family: 'Lobster', cursive;
-  color: #333333;
-}
-.content p{
-  color: #333333;
-}
-
-.item {
-  display: flex;
-  justify-content:  flex-start;
-}
-.item>div:last-of-type{
-    margin-left: auto;
-}
-
-.date {
-    color: #828282;
-}
-
-.save {
-    float: right;
-}
-
-.post-form textarea, .post-form input {
-    width: 100%;
-}
-
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-}
-
-.post {
-    margin-bottom: 70px;
-}
-
-.post h2 a, .post h2 a:visited {
-    color: #000000;
-}
-
-a.btn_01 {
-	display: block;
-	text-align: center;
-	vertical-align: middle;
-	text-decoration: none;
-	margin: auto;
-	padding: 1rem 4rem;
-	font-weight: bold;
-	border: 2px solid #4682B4;
-	/*color: #27acd9;*/
-  color: #336699;
-	transition: 0.5s;
-}
-a.btn_01:hover {
-	color: #fff;
-	background: #336699;
-}
-
-button.btn_06 {
-	display: block;
-	text-decoration: none;
-	margin: auto;
-	padding: 1rem 5rem;
-	font-weight: bold;
-	border-radius: 100vh;
-	/*border-bottom: 7px solid #0686b2;*/
-	/*background: #27acd9;*/
-  background: #4682B4;
-	color: #fff;
-}
-button.btn_06:hover {
-	/*border-bottom: 1px solid #0686b2;*/
-	color: #fff;
-  background: #4682B4; opacity:0.7;
-}
-
-.textbox {
-  width: 200px;
-  padding: 3px 7px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-}
-.textbox:focus {
-  outline: 0;
-  border: 2px solid #2196f3;
-}
-
-
-/* ハンバーガーメニュー*/
+/*ハンバーガーメニューのスタイル*/
 .sp-menu {
   position: fixed;
   top: 0;
@@ -167,12 +36,10 @@ button.btn_06:hover {
   height: 100%;
   position: fixed;
   top: 0;
-  /* 普段は画面外にするために左端を画面右端の位置にする */
-  left: 100%;
+  left: 100%;/*普段は画面外にするために左端を画面右端の位置にする*/
   z-index: 90;
   background-color: #696969; opacity:0.95;
-  /* 右端からゆっくり移動するように表示 */
-  transition: all 0.5s;
+  transition: all 0.5s;/*右端からゆっくり移動するように表示*/
 }
 .sp-menu__box {
   position: fixed;
@@ -190,7 +57,7 @@ button.btn_06:hover {
   top: 0;
   right: 0;
 }
-/*チェックボタン*/
+/*ハンバーガーメニューのチェックボタン*/
 #sp-menu__check {
   display: none;
 }
@@ -210,3 +77,115 @@ button.btn_06:hover {
   text-decoration: none;
   padding: 9px 15px 10px 0;
 }
+/*li.head {
+  list-style: none;
+  display: block;
+  text-decoration: none;
+  margin-right: 36px;
+  color: #ffffff;
+}*/
+p.head{
+  color: #ffffff;
+}
+p.head:hover {
+  color: #FFCC33;
+}
+
+
+/*------ボディ要素------*/
+/*共通のスタイル*/
+.content {
+  z-index: 1;
+  font-size: 13pt;
+  margin: 20px;
+  font-family: sans-serif;
+  color: #333333;
+}
+/*home画面のタブメニュー要素*/
+.tab li{
+  list-style: none;
+  text-decoration: none;
+}
+/*要素を横一列に整列するスタイル*/
+.item {
+  display: flex;
+  justify-content:  flex-start;
+}
+.item>div:last-of-type{
+    margin-left: auto;
+}
+/*aタグのボタンスタイル*/
+a.btn_01 {
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	margin: auto;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border: 2px solid #4682B4;
+  color: #336699;
+	transition: 0.5s;
+}
+a.btn_01:hover {
+	color: #fff;
+	background: #336699;
+}
+/*buttonタグのボタンスタイル*/
+button.btn_06 {
+	display: block;
+	text-decoration: none;
+	margin: auto;
+	padding: 1rem 5rem;
+	font-weight: bold;
+	border-radius: 100vh;
+  background: #4682B4;
+	color: #fff;
+}
+button.btn_06:hover {
+	color: #fff;
+  background: #4682B4; opacity:0.7;
+}
+/*Owner_seeform_detail_Other.htmlで回答フォームを表示する際のスタイル */
+.form{
+  background-color: #fff;
+  padding: 1rem 4rem;
+  border-radius: 10px;
+}
+.other {
+  list-style: none;
+}
+
+/*使ってない？
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+.date {
+    color: #828282;
+}
+.save {
+    float: right;
+}
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+.post {
+    margin-bottom: 70px;
+}
+.post h2 a, .post h2 a:visited {
+    color: #000000;
+}
+.textbox {
+  width: 200px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+}
+.textbox:focus {
+  outline: 0;
+  border: 2px solid #2196f3;
+}
+*/

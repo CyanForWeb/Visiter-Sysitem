@@ -1,9 +1,12 @@
+@charset "UTF-8";
+
+/*------ヘッダー要素------*/
 header{
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  /*background-color: #66CDAA;*/
   background-color: #339966;
   padding-top: 5px;
   box-sizing: border-box;
@@ -11,53 +14,24 @@ header{
   top: 0;
   left: 0;
   margin-top: 0;
-  padding: 0px 20px 20px 40px;
-}
-h1.head{
+  padding: 20px 20px 20px 40px;
+  }
+  h1.head{
   font-size: 24pt;
   color: #ffffff;
-}
+  font-family: 'Lobster', cursive;
+  }
 
+/*------ボディ要素------*/
+/*共通のスタイル*/
 .content {
+  z-index: 1;
   font-size: 13pt;
   margin: 20px;
+  font-family: sans-serif;
+  color: #333333;
 }
-
-h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
-}
-
-p.memo {
- color: Red;
-}
-
-.date {
-    color: #828282;
-}
-
-.save {
-    float: right;
-}
-
-.post-form textarea, .post-form input {
-    width: 100%;
-}
-
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-}
-
-.post {
-    margin-bottom: 70px;
-}
-
-.post h2 a, .post h2 a:visited {
-    color: #000000;
-}
-
+/*aタグボタンのスタイル*/
 a.btn_01 {
 	display: block;
 	text-align: center;
@@ -67,7 +41,6 @@ a.btn_01 {
 	padding: 1rem 4rem;
 	font-weight: bold;
 	border: 2px solid #009966;
-  /*color: #66CDAA;*/
   color: #009966;
 	transition: 0.5s;
 }
@@ -75,7 +48,7 @@ a.btn_01:hover {
 	color: #fff;
 	background: #339966;
 }
-
+/* buttonタグのスタイル*/
 button.btn_06 {
   display: block;
 	text-decoration: none;
@@ -83,16 +56,37 @@ button.btn_06 {
 	padding: 0.8rem 17rem;
 	font-weight: bold;
 	border-radius: 100vh;
-  /*background: #27acd9;*/
   background: #009966;
 	color: #fff;
 }
 button.btn_06:hover {
-	/*margin-top: 6px;*/
 	color: #fff;
   background: #339966;
 }
 
+
+/* 使ってない？
+.date {
+    color: #828282;
+}
+.save {
+    float: right;
+}
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+.post {
+    margin-bottom: 70px;
+}
+.post h2 a, .post h2 a:visited {
+    color: #000000;
+}
 .textbox {
   width: 200px;
   padding: 3px 7px;
@@ -103,3 +97,4 @@ button.btn_06:hover {
   outline: 0;
   border: 2px solid #2196f3;
 }
+*/

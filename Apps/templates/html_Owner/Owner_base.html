@@ -30,7 +30,6 @@
     <body>
           <header>
               <a href="{% url 'Owner_home' %}"><h1 class="head">Owner</h1></a>
-          <nav>
               <div class="sp-menu">
                 <input type="checkbox" id="sp-menu__check">
                   <label for="sp-menu__check" class="sp-menu__box">
@@ -60,10 +59,10 @@
                   </ul>
                 </div>
               </div>
-            </ul>
           </header>
 
-      {% block content %}
-      {% endblock %}
+          {% block content %}
+          {% endblock %}
+          
     </body>
 </html>

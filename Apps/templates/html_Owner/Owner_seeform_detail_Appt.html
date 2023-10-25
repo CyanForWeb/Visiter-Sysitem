@@ -2,25 +2,20 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
+    <br>
+    <a href="{% url 'Owner_home' %}" style="margin: 20px;"><i class="fa-solid fa-circle-arrow-left"></i>　戻る</a>
 
+    <div class="content">
       <h2 style="text-align: center;">{{ mes.message }}（ {{ obj.date }} ）</h2>
-
-
       <form method="POST">
-      {% csrf_token %}
-      <br>
-      <button name="video_button" class="btn_06">
-        <i class="fa-solid fa-user" style="color: #ffffff;"></i>
-        <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
-        <br>Start VideoChat!
-      </button>
+        {% csrf_token %}
+        <br>
+        <button name="video_button" class="btn_06">
+          <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+          <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
+          <br>Start VideoChat!
+        </button>
       </form>
-
-      <br><br>
-      <a href="{% url 'Owner_home' %}"><i class="fa-solid fa-circle-arrow-left"></i>　戻る</a>
-
-      </div>
-
+    </div>
 
 {% endblock %}
