@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block content %}
-      <div class="content">
-
-      <h2>住民を呼び出しています。少々お待ちください。</h2>
+      <div class="content" style="text-align:center;">
+        <br>
+      <h3><b>住民を呼び出しています<br>少々お待ちください</b></h3>
+      <br>
       <!--待ち時間動画-->
       <div id="video01" poster="" >
         <p>動画が表示されない際のメッセージ.</p>
       </div>
-      <div id="video02" poster="" muted playsinline controls metadata style="display: none;">
+      <div id="video02" poster="" muted playsinline controls metadata width='100%' style="display: none;">
         <p>動画が表示されない際のメッセージ.</p>
       </div>
-      <div id="video03" poster="" muted playsinline controls metadata style="display: none;">
+      <div id="video03" poster="" muted playsinline controls metadata width='100%' style="display: none;">
         <p>動画が表示されない際のメッセージ.</p>
       </div>
-      <div id="video04" poster="" muted playsinline controls metadata style="display: none;">
+      <div id="video04" poster="" muted playsinline controls metadata width='100%' style="display: none;">
         <p>動画が表示されない際のメッセージ.</p>
       </div>
-      <div id="video05" poster="" muted playsinline controls metadata style="display: none;">
+      <div id="video05" poster="" muted playsinline controls metadata width='100%' style="display: none;">
         <p>動画が表示されない際のメッセージ.</p>
       </div>
 
@@ -34,7 +35,7 @@
       <div id="close">
       <button class="btn_06" id='endBtn'>退出</button><br>
       </div>
-      <video id="local-video" width="400px" autoplay muted playsinline></video>
+      <video id="local-video" width='100%' autoplay muted playsinline></video>
 
       <video id="partner_video"></video>
       <audio id="partner_audio"></<audio>
@@ -51,15 +52,15 @@
         video.style.display = "none";//none=非表示
         //待ち時間動画
         var video01 = document.getElementById("video01");//17秒
-        video01.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%'autoplay muted></video>";
+        video01.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         var video02 = document.getElementById("video02");//19秒
-        video02.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted></video>";
+        video02.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         var video03 = document.getElementById("video03");//16秒
-        video03.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted></video>";
+        video03.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         var video04 = document.getElementById("video04");//61秒
-        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%'autoplay muted></video>";
+        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         var video05 = document.getElementById("video05");//41秒
-        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted></video>";
+        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
 
         function updateVideoStatus() {
             $.ajax({

@@ -13,7 +13,7 @@
 
           <div id="today" class="area">
             <p id="message" style="text-align: center;"></p>
-            <div id="list">
+            <div id="list_today">
             {% for obj in today_list %}
             <li class="item">
               <div class="fa-stack fa-2x">
@@ -33,7 +33,7 @@
                 <i class="fa-solid fa-square fa-stack-2x" style="color: #669966;"></i>
                 <i class="fa-solid fa-users fa-stack-1x" style="color: #ffffff;"></i>
                 {% elif obj.visitor == 'Appt' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #DAA520;"</i>
+                <i class="fa-solid fa-square fa-stack-2x" style="color: #DAA520;"></i>
                 <i class="fa-solid fa-user-check fa-stack-1x" style="color: #ffffff;"></i>
                 {% endif %}
               </div>
@@ -56,7 +56,7 @@
           </div>
 
           <div id="all" class="area">
-            <div id="list">
+            <div id="list_all">
             {% for obj in all_list %}
             <li class="item">
               <div class="fa-stack fa-2x">
@@ -76,7 +76,7 @@
                 <i class="fa-solid fa-square fa-stack-2x" style="color: #669966;"></i>
                 <i class="fa-solid fa-users fa-stack-1x" style="color: #ffffff;"></i>
                 {% elif obj.visitor == 'Appt' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #DAA520;"</i>
+                <i class="fa-solid fa-square fa-stack-2x" style="color: #DAA520;"></i>
                 <i class="fa-solid fa-user-check fa-stack-1x" style="color: #ffffff;"></i>
                 {% endif %}
               </div>
@@ -105,7 +105,7 @@
 
       <script>
         message = document.getElementById('message');
-        list = document.getElementById('list');
+        list_today = document.getElementById('list_today');
 
         if({{ record_status }}==0){
           message.innerText = "本日の来客者情報はありません";

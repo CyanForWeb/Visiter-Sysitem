@@ -2,25 +2,26 @@
 {% load static %}
 
 {% block content %}
-    <div class="content" id="content" style="display:none;">
-        <h2>来訪ありがとうございます!</h2>
-        <p>家先のQRコードを読み込んでください。</p>
+    <div class="content" id="content" style="display:none;text-align:center;">
+      <br>
+        <h3><b>来訪ありがとうございます!</b></h3>
+        <p>家先のQRコードを読み込んでください</p>
     <br>
-    <h1>QRCode Reader</h1>
-    <section id="contents" style="display:flex; width:650px">
+    <h3>QRCode Reader</h3>
+    <section id="contents" style="text-align:center;">
       <!-- カメラ映像 -->
-      <video id="camera" style="justify-content:center; margin:5px;" width="300" height="200" muted></video>
+      <video id="camera" style="justify-content: center;" height="300px" playsinline></video>
       <!-- 処理用 -->
-      <canvas id="picture" style="justify-content:center; margin:5px; display:none;" width="300" height="200"></canvas>
+      <canvas id="picture" height="300px" style="justify-content: center;display:none;" ></canvas>
       <!-- 読み取り結果 -->
-      <div id="result" style="justify-content:center; margin:5px;width:300px; height:200px; padding:10px;" >
+      <div id="result"  style="justify-content: center;" height="300px" playsinline>
         <small style="color:gray; "></small>
       </div>
     </section>
-    <div id="scan">
+    <!--<div id="scan">
       <a href="javascript:onbuttonStart()" class="btn_01">
         読み取り開始</a><br>
-    </div>
+    </div>-->
     </div>
 
 
@@ -35,33 +36,33 @@
           startGeolocation();
         }
       }
-    </script>
-    <script>
+
       const video  = $("#camera");
       const canvas = $("#picture");
       const ctx = canvas.getContext("2d");
       const result = $("#result");
-      function onbuttonStart(){
-        startGeolocation();
-      };
+      //function onbuttonStart(){
+      //  startGeolocation();
+      //};
       function initCamera(){
         // カメラ設定
         const constraints = {
           audio: false,
           video: {
-            width: 300,
-            height: 200,
-            facingMode: "user"   // フロントカメラを利用する
+            width: canvas.width,
+            height: canvas.height,
+            //facingMode: "user"   // フロントカメラを利用する
+            facingMode: "environment"   // フロントカメラを利用する
           }
         };
         /**
          * カメラを<video>と同期
          */
-        navigator.mediaDevices.getUserMedia(constraints)
-        .then( (stream) => {
-          video.srcObject = stream;
-          video.onloadedmetadata = (e) => {
-            video.play();
+         navigator.mediaDevices.getUserMedia(constraints)
+         .then( (stream) => {
+           video.srcObject = stream;
+           video.onloadedmetadata = (e) => {
+             video.play();
 
             // QRコードのチェック開始
             checkPicture();
@@ -250,17 +251,19 @@
       // 引数として、coords(coordinates。緯度・経度など)とtimestamp(タイムスタンプ)の2つを持ったpositionが渡される
       function successCallback(position){
         // メッセージを表示
-        document.getElementById("result").innerHTML += "位置情報取得成功<br />";
-        document.getElementById("scan").style.display ="none";
+        //document.getElementById("result").innerHTML += "位置情報取得成功<br />";
+        //document.getElementById("scan").style.display ="none";
         setgeolocation("#result", position.coords.latitude,position.coords.longitude);
       }
 
       // 位置情報取得処理が失敗した時にコールされる関数
       // 引数として、code(コード)とmessage(メッセージ)の2つを持ったpositionErrorが渡される
       function errorCallback(positionError){
-
+        var element = document.getElementById('content')
+        element.style.display = 'none';
           // メッセージを表示
-          document.getElementById("result").innerHTML += "位置情報の取得に失敗しました<br />";
+          //document.getElementById("result").innerHTML += "位置情報の取得に失敗しました<br />";
+          var error_message = "位置情報の取得に失敗しました\n\n";
 
           // 引数positionErrorの中身2つを取り出す
           // コード(1～3のいずれかの値)
@@ -271,21 +274,30 @@
           // コードに応じたメッセージを表示
           switch (code) {
               case positionError.PERMISSION_DENIED: // codeが1
-                  document.getElementById("result").innerHTML += "GeolocationAPIのアクセス許可がありません<br />";
-                  document.getElementById("result").innerHTML += "スマートフォンの設定から位置情報が許可になっているか確認してください<br />";
+                  //document.getElementById("result").innerHTML += "GeolocationAPIのアクセス許可がありません<br />";
+                  //document.getElementById("result").innerHTML += "スマートフォンの設定から位置情報が許可になっているか確認してください<br />";
+                  //error_message += "GeolocationAPIのアクセス許可がありません\n";
+                  error_message += "スマートフォンの設定から位置情報が許可になっているか確認してください\n";
                   break;
               case positionError.POSITION_UNAVAILABLE: // codeが2
-                  document.getElementById("result").innerHTML += "現在の位置情報を特定できませんでした<br />";
-                  document.getElementById("result").innerHTML += "再読み込みしてください<br />";
+                  //document.getElementById("result").innerHTML += "現在の位置情報を特定できませんでした<br />";
+                  //document.getElementById("result").innerHTML += "再読み込みしてください<br />";
+                  error_message += "現在の位置情報を特定できませんでした\n";
+                  error_message += "再読み込みしてください\n";
                   break;
               case positionError.TIMEOUT: // codeが3
-                  document.getElementById("result").innerHTML += "指定されたタイムアウト時間内に現在の位置情報を特定できませんでした<br />";
-                  document.getElementById("result").innerHTML += "再読み込みしてください<br />";
+                  //document.getElementById("result").innerHTML += "指定されたタイムアウト時間内に現在の位置情報を特定できませんでした<br />";
+                  //document.getElementById("result").innerHTML += "再読み込みしてください<br />";
+                  error_message += "指定されたタイムアウト時間内に現在の位置情報を特定できませんでした\n";
+                  error_message += "再読み込みしてください\n";
                   break;
           }
 
+          //エラーメッセージ表示アラーム
+          alert(error_message);
+
           // 開発者向けデバッグ用メッセージを表示
-          document.getElementById("result").innerHTML += message + "<br /><br />";
+          //document.getElementById("result").innerHTML += message + "<br /><br />";
       }
 
       // 位置情報取得開始
@@ -310,4 +322,3 @@
       }
     </script>
 {% endblock %}
-

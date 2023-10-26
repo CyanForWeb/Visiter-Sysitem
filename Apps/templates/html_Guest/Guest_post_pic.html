@@ -22,7 +22,8 @@
         canvas.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
-        const constraints = { video: { width: 640, height: 480, facingMode: "user"} };
+        //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
+        const constraints = { video: { width: 640, height: 480, facingMode: "environment"} };
 
         // カメラを起動
         async function initCamera() {

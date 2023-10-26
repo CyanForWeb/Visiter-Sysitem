@@ -14,19 +14,19 @@
         var minute = now.getMinutes();
         if((minute%5) == 0){
           var m = document.getElementById("movie1");
-          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted></video>";
+          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         }else if((minute%5)==1){
           var m = document.getElementById("movie1");
-          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted></video>";
+          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         }else if((minute%5)==2){
           var m = document.getElementById("movie1");
-          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%' autoplay muted></video>";
+          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         }else if((minute%5)==3){
           var m = document.getElementById("movie1");
-          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%' autoplay muted></video>";
+          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%' autoplay muted playsinline></video>";
         }else if((minute%5)==4){
           var m = document.getElementById("movie1");
-          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%' autoplay muted></video>";
+          m.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%' autoplay muted playsinline></video>";
         }
         setTimeout(() => {
           window.location.href = "{% url 'Guest_other_form4' %}";

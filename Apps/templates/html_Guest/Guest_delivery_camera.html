@@ -2,11 +2,14 @@
 {% load static %}
 
 {% block content %}
-      <div class="content" style="text-align: center;">
-        <h3>荷物の宛名 読み取り</h3>
+      <div class="content">
         <br>
-        <h4>宛名を画角に入れ、<b>読み取りボタン</b>を押してください</h4>
-        <p style="font-size:small;">※ 読み取りが正常に終了した後、住人に通知します</p>
+        <h2 style="text-align: center;"><b>荷物の宛名 読み取り</b></h2>
+        <p style="font-size:small;text-align: center;">※ 読み取りが正常に終了した後、住人に通知します</p>
+
+        <br>
+        <p>手順</p>
+        <p>① 宛名を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
 
         <video id="video" class="camera" playsinline autoplay></video>
         <button id="submitBtn" class="btn_06">
@@ -21,7 +24,8 @@
         canvas.style.display = "none";//none=非表示
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
-        const constraints = { video: { width: 640, height: 480, facingMode: "user"} };
+        //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
+        const constraints = { video: { width: 640, height: 480, facingMode: "environment"} };
 
         // カメラを起動
         async function initCamera() {
