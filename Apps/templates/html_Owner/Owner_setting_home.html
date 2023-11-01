@@ -6,7 +6,8 @@
         <p>家の位置情報の登録を行います</p><br>
           <button onclick="onbuttonStart();" class="btn_06">
             <i class="fa-solid fa-location-dot" style="color: #ffffff;"></i> 位置情報を登録
-          </button>
+          </button><br />
+          <div id=message></div>
           <!-- 読み取り結果 -->
           <!--<div id="result" style="justify-content:center; margin:5px;width:300px; height:200px; padding:10px;" >
             <small style="color:gray; "></small>
@@ -40,7 +41,8 @@
           .then(data => {
             if (data.redirect){
               alert('登録が完了しました。');
-              window.location.href = 'Owner_home';
+
+              //window.location.href = 'Owner_home';
             }else{
               console.log(data.message);
             }
@@ -64,6 +66,10 @@
            // メッセージを表示
            console.log("位置情報取得成功");
            setgeolocation(position.coords.latitude,position.coords.longitude);
+           document.getElementById("message").innerHTML += "緯度：" + position.coords.latitude + "<br />";
+           document.getElementById("message").innerHTML += "経度：" + position.coords.longitude + "<br />";
+           document.getElementById("message").innerHTML += "<a target='_blank' href='https://maps.google.co.jp/maps?q="
+               + position.coords.latitude + "," + position.coords.longitude + "+%28%E7%8F%BE%E5%9C%A8%E4%BD%8D%E7%BD%AE%29&iwloc=A'>位置情報をGoogleMapで確認</a><br /><br />";
          }
 
          // 位置情報取得処理が失敗した時にコールされる関数
