@@ -50,9 +50,9 @@ def other_form(request): #質問フォーム1~3に移る際に使用
         #form2内容をdbに保存して、for3に遷移
         if "form2_submit" in request.POST: #ボタンが押されたら...
             form2_name = request.POST.get('form2_name')
-            form2_address = request.POST.get('form2_address')
+            form2_contact = request.POST.get('form2_contact')
             Other_DB.objects.update(form2_name=form2_name,
-                                    form2_address=form2_address) #Other_DBに値を保存
+                                    form2_contact=form2_contact) #Other_DBに値を保存
             #POSTリクエストを送信　質問フォーム2が送信されたら：住民に通知
             headers = {"Content-Type": "application/json"}
             cookies = {"test_cookie": "aaa"}
@@ -120,9 +120,19 @@ def delivery(request):
         context["time_status"]=time_status
     return render(request, 'html_Guest/Guest_delivery.html', context)
 
+def delivery_drop(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/Guest_delivery_drop.html', context)
+
 def delivery_camera(request):
     true_number = Owner_DB.objects.get(owner='Owner')
     context = {'number':true_number.update_url_text}
+    if request.method == 'GET':
+        time_status = 0
+        if Owner_Time_DB.objects.filter(start_date__lte=datetime.now().date(),finish_date__gte=datetime.now().date()):
+            time_status = 1
+        context["time_status"]=time_status
     return render(request, 'html_Guest/Guest_delivery_camera.html', context)
 
 def delivery_end1(request):
@@ -191,6 +201,12 @@ def save_snapshot(request):
             if visitor_data == 'Delivery': #客人がdeliveryだったら
                 delivery_db = Delivery_DB()
                 delivery_db.date = day_time
+                delivery_db.visitor = "Delivery"
+                delivery_db.img.save(filename, ContentFile(image_data))
+            elif visitor_data == 'Drop': #客人がDropだったら
+                delivery_db = Delivery_DB()
+                delivery_db.date = day_time
+                delivery_db.visitor = "Drop"
                 delivery_db.img.save(filename, ContentFile(image_data))
             else : #客人がpostだったら
                 post_db = Post_DB()

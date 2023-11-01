@@ -9,32 +9,36 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+        <!--fontawesomeの機能を利用するために使用-->
+        <script src="https://kit.fontawesome.com/e050036233.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
 
       <div class="content" style="text-align: center;">
-          <h2><b>THANK YOU！！</b></h2><br>
-          <p>住民に通知しました</p>
-          <p>本ページを閉じて終了してください</p>
+        <br><i class="fa-solid fa-circle-check fa-3x" style="color: #50b970;"></i>
+        <h1>THANK YOU!!</h1>
+        <p>住民に通知しました
+        <br>本ページを閉じて、操作を終了してください</p>
       </div>
 
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
-      <hr>
       <div id="videoChat" style="text-align:center">
+        <hr>
         <div style="visibility:hidden;">
 
         </div>
         <hr size="10">
-        <p id="message">住人とビデオチャットが繋がっています<br>参加ボタンを押してください</p>
-        <button id="join" class="btn_06">参加　
+        <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
+        <button id="join" class="btn_06">応答　
         <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
         <p id="joining"></p>
-        <div id="close">
+        <!--<div id="close">
         <button class="btn_06" id='endBtn'>退出　
         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-        </div>
+      </div>-->
         <video id="local-video" width="400px" muted playsinline  style="text-align:center"></video>
 
         <video id="partner_video"></video>
@@ -71,11 +75,11 @@
         // 5秒ごとにビデオステータスをチェック
         setInterval(updateVideoStatus, 8000);
 
-        const btn = document.getElementById('endBtn');
+        //const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
-        btn.addEventListener('click', () => {
-          video.style.display = "none";//非表示
-        });
+        //btn.addEventListener('click', () => {
+        //  video.style.display = "none";//非表示
+        //});
 
       </script>
 

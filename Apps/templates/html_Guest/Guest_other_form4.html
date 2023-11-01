@@ -34,14 +34,14 @@
 
       </div>
       <hr size="10">
-      <p id="message">住人とビデオチャットが繋がっています<br>参加ボタンを押してください</p>
-      <button id="join" class="btn_06">参加　
+      <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
+      <button id="join" class="btn_06">応答　　
       <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
       <p id="joining"></p>
-      <div id="close">
+      <!--<div id="close">
       <button class="btn_06" id='endBtn'>退出　
       <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-      </div>
+      </div>-->
       <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
 
       <video id="partner_video"></video>
@@ -78,11 +78,11 @@
         // 5秒ごとにビデオステータスをチェック
         setInterval(updateVideoStatus, 8000);
 
-        const btn = document.getElementById('endBtn');
+        //const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
-        btn.addEventListener('click', () => {
-          video.style.display = "none";//非表示
-        });
+        //btn.addEventListener('click', () => {
+        //  video.style.display = "none";//非表示
+        //});
 
       </script>
 

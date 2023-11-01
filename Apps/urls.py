@@ -36,6 +36,7 @@ urlpatterns = [
     path('other_check_video_status', views_Guest.other_check_video_status, name='other_check_video_status'),#ビデオステータスの確認
     #配達員　画面
     path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面
+    path('Guest_delivery_drop', views_Guest.delivery_drop, name='Guest_delivery_drop'),#ハンコ有無の確認画面
     path('Guest_delivery_camera', views_Guest.delivery_camera, name='Guest_delivery_camera'),#宛名カメラ判定画面
     path('Guest_delivery_end1', views_Guest.delivery_end1, name='Guest_delivery_end1'),#最後の画面
     #ポスト投函　画面

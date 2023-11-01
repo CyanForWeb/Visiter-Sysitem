@@ -5,32 +5,13 @@
       <div class="content" style="text-align: center;">
 
       <br>
-      <h2><b>置き配をお願いします</b></h2>
+      <h2><b>置き配できますか？</b></h2>
       <br>
 
-      <div id="iru">
-      <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">置き配 不可の方はこちら</a><br>
-      </div>
-      <br>
+      <a href="{% url 'Guest_delivery_drop' %}" class="btn_01">できる方</a><br>
 
-      <div id="inai">
-      <p style="color:#FF3333;"><i class="fa-solid fa-circle-exclamation" style="color: #FF3333;"></i>　ただいま対応できません</p>
-      <p>置き配 不可の方は<b>不在通知</b>ボタンから<br>不在票の投函をお願いします</p><br>
-      <a href="{% url 'Guest_post' %}" class="btn_01">不在通知</a><br>
-      </div>
-      </div>
+      <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">できない方</a><br>
 
-      <script>
-        iru = document.getElementById('iru');
-        iru.style.display = "none";//none=非表示
-        inai = document.getElementById('inai');
-        inai.style.display = "none";//none=非表示
-
-        if({{ time_status }}==0){
-          iru.style.display = "block";
-        }else{
-          inai.style.display = "block";
-        }
-      </script>
+      </div>
 
 {% endblock %}

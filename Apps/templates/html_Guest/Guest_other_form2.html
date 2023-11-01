@@ -6,12 +6,13 @@
 
       <form method="POST">
       {% csrf_token %}
-      <p>貴方の名前を記入してください
+      <p>貴方の名前／団体名を記入してください
       <input name="form2_name" type="text" required style="width:100%; height:40px;"></p>
-      <p>貴方/会社の住所を記入してください
-      <input name="form2_address" type="text" required style="width:100%; height:40px;"></p>
-      <p>貴方の連絡先を記入してください
-      <input name="form2_contact" type="text" required style="width:100%; height:40px;"></p><br>
+      <!--<p>貴方/会社の住所を記入してください
+      <input name="form2_address" type="text" required style="width:100%; height:40px;"></p>-->
+      <p>貴方の連絡先を記入してください<br>（※こちらは任意回答です。）
+      <input name="form2_contact" type="text" style="width:100%; height:40px;"></p>
+      <br>
       <button name="form2_submit"  class="btn_06"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
       </form>
 
@@ -24,14 +25,14 @@
 
       </div>
       <hr size="10">
-      <p id="message">住人とビデオチャットが繋がっています<br>参加ボタンを押してください</p>
-      <button id="join" class="btn_06">参加　
+      <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
+      <button id="join" class="btn_06">応答　
       <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
       <p id="joining"></p>
-      <div id="close">
+      <!--<div id="close">
       <button class="btn_06" id='endBtn'>退出　
       <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-      </div>
+      </div>-->
       <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
 
       <video id="partner_video"></video>
@@ -68,11 +69,11 @@
         // 5秒ごとにビデオステータスをチェック
         setInterval(updateVideoStatus, 8000);
 
-        const btn = document.getElementById('endBtn');
+        //const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
-        btn.addEventListener('click', () => {
-          video.style.display = "none";//非表示
-        });
+        //btn.addEventListener('click', () => {
+        //  video.style.display = "none";//非表示
+        //});
 
       </script>
 

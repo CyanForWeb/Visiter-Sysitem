@@ -110,7 +110,7 @@ def deleteForm(request,id):
     data_1.delete()
     if data_1.visitor=='Appt':
         data_2 = Appt_DB.objects.get(date=date)
-    elif data_1.visitor=='Delivery':
+    elif data_1.visitor=='Delivery' or data_1.visitor=='Drop':
         data_2 = Delivery_DB.objects.get(date=date)
     elif data_1.visitor=='Other':
         data_2 = Other_DB.objects.get(date=date)
@@ -135,7 +135,7 @@ def seeform_detail(request, id):
             visit.save()
             return redirect('Owner_home')
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
-    elif obj.visitor=='Delivery':
+    elif obj.visitor=='Delivery' or obj.visitor=='Drop':
         visit = delivery_context(obj)
         context = {'obj':visit,'mes':obj,}
         return render(request, 'html_Owner/Owner_seeform_detail.html', context)

@@ -3,17 +3,19 @@
 
 {% block content %}
       <div class="content">
+        <h3 style="text-align: center;"><b>写真撮影・送信が可能です</b></h3>
+        <p style="font-size:small;text-align: center;color:#e15053;">※ 郵便受けの利用はできません。ご了承ください。</p>
         <br>
-        <h3 style="text-align: center;"><b>投函物の写真撮影＋送信</b></h3>
-        <p style="font-size:small;text-align: center;">※ 投函物の写真を住人に送信することができます</p>
-        <br>
-        <p>手順</P>
-        <p>① 投函物を画角に入れる<br>② <b>送信</b>ボタンを押す</p>
-      <video id="video" class="camera"  playsinline autoplay></video>
-      <button id="submitBtn" class="btn_06" style="text-align: center;">
-        <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
-      </button>
-      <canvas id="canvas" class="camera" ></canvas>
+
+        <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
+          <p>手順</P>
+          <p>① 投函物を画角に入れる<br>② 画面下部の<b>送信</b>ボタンを押す</p>
+          <video id="video" class="camera"  playsinline autoplay></video>
+          <button id="submitBtn" class="btn_06" style="text-align: center;">
+          <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
+          </button>
+          <canvas id="canvas" class="camera" ></canvas>
+        </div>
 
       <script>
 
@@ -23,7 +25,7 @@
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
         //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
-        const constraints = { video: { width: 640, height: 480, facingMode: "environment"} };
+        const constraints = { video: { width: 450, height: 480, facingMode: "environment"} };
 
         // カメラを起動
         async function initCamera() {

@@ -21,11 +21,13 @@
       </ul>
       <form method="POST">
         {% csrf_token %}
-        <button name="video_button" class="btn_06">
-          <i class="fa-solid fa-user" style="color: #ffffff;"></i>
-          <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
-          <br>Start VideoChat!
-        </button>
+        <div class="right">
+          <button name="video_button" class="btn btn--circle">
+            <b>通話</b><br>
+            <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+            <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
+          </button>
+        </div>
       </form>
     </div>
     <br>

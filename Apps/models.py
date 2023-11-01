@@ -45,7 +45,7 @@ class Appt_DB(models.Model):
         return self.visitor
 
 class Delivery_DB(models.Model):
-    visitor = models.TextField(default="Delivery")
+    visitor = models.TextField(max_length=10)
     date = models.DateTimeField(null=True)
     img = models.ImageField(upload_to="delivery", blank=True, null=True)
     def __str__(self):
@@ -60,11 +60,11 @@ class Post_DB(models.Model):
 
 class Other_DB(models.Model):
     visitor = models.TextField(default="Other")
-    date = models.DateTimeField(default="未回答")
+    date = models.DateTimeField(null=True)
     video_status = models.IntegerField(default=0)
     form1 = models.TextField(max_length=500, default="未回答")
     form2_name = models.TextField(max_length=50, default="未回答")
-    form2_address = models.TextField(max_length=50, default="未回答")
+    form2_contact = models.TextField(max_length=50, default="未回答")
     form3 = models.TextField(max_length=10, default="未回答")
     form4_date = models.TextField(max_length=20, default="未回答")
     form4_day = models.TextField(max_length=20, default="未回答")

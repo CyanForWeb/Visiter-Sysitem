@@ -48,8 +48,8 @@ const token = new SkyWayAuthToken({
 
   const message = document.getElementById('message');
   const joiningMsg = document.getElementById('joining');
-  const closeButton = document.getElementById('close');
-  closeButton.style.display = "none";//none=非表示
+  //const closeButton = document.getElementById('close');
+  //closeButton.style.display = "none";//none=非表示
   const videoChat = document.getElementById('videoChat');
   videoChat.style.display = "block";//block=表示する
 
@@ -63,7 +63,7 @@ const token = new SkyWayAuthToken({
   joinButton.onclick = async () => {
     joinButton.style.display = "none";//参加ボタンを非表示にする
     joiningMsg.innerText = "参加中...";//参加中...というメッセージを表示する
-    closeButton.style.display = "block";//退出ボタンを表示する
+    //closeButton.style.display = "block";//退出ボタンを表示する
     message.style.display = "none";//参加しましょうor参加ボタンを押してくださいメッセージを非表示にする
 
     const context = await SkyWayContext.Create(token);
@@ -109,8 +109,8 @@ const token = new SkyWayAuthToken({
     room.onStreamPublished.add((e) => subscribeAndAttach(e.publication));
   };
 
-  closeButton.onclick = async () => {
-    videoChat.style.display = "none";//チャットエリアを非表示にする
-  };
+  //closeButton.onclick = async () => {
+  //  videoChat.style.display = "none";//チャットエリアを非表示にする
+  //};
 
 })();
