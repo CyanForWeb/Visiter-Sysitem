@@ -67,13 +67,26 @@ def save_geolocation(request):
         latitude = data.get('latitude', None)
         longitude = data.get('longitude', None)
 
-        if 35.5000000 <= latitude < 36.050000 and 139.000000 <= longitude < 140.000000:
+#        data_1 = Owner_DB.objects.get(location=payload)
+#        Owner_data = json.loads(data_1)
+#        Owner_latitude = Owner_data.get('latitude', None)
+#        Owner_longitude = Owner_data.get('longitude', None)
+#        data_1 = request.body
+        true_number = Owner_DB.objects.get(owner='Owner')
+        data_1 = true_number.location
+        Owner_data = json.loads(data_1)
+        Owner_latitude = Owner_data.get('latitude', None)
+        Owner_longitude = Owner_data.get('longitude', None)
+
+        if latitude - 0.0005 <= Owner_latitude < latitude + 0.0005 and longitude - 0.00005 <= Owner_longitude < longitude + 0.00005:
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
-            #f = open('media/appt/'+filename, "w")
+            #f = open('media/post/'+filename, "w")
             #f.write("request.body:")
             #f.write(json.dumps(data))
+            #f.write("Owner_data:")
+            #f.write(json.dumps(Owner_data))
             #f.close()
 
             #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
@@ -82,11 +95,13 @@ def save_geolocation(request):
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"NG_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
-            #f = open('media/appt/'+filename, "w")
+            #f = open('media/post/'+filename, "w")
             #f.write("request.body:")
             #f.write(json.dumps(data))
+            #f.write("Owner_data:")
+            #f.write(json.dumps(Owner_data))
             #f.close()
-            return JsonResponse({'redirect': False,'message':'位置情報が正しくありません。'})
+            return JsonResponse({'redirect': False,'message':'<br>位置情報が正しくありません。<br>QRコードに近づいて再度読み込んでください。'})
     return JsonResponse({'message': '位置情報が取得できませんでした。'}, status=400)
 
 
