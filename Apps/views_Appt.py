@@ -31,6 +31,7 @@ def end(request):
     cookies = {"test_cookie": "qrcode"}
     payload = json.dumps({"value1": "アポ済みのお客さんが到着しました！今すぐ玄関へ！"})
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=payload)
     return render(request, 'html_Appt/Appt_end.html',)
 
 def save_qrcode(request):
@@ -50,6 +51,7 @@ def save_qrcode(request):
             #f.write(qrData)
             #f.close()
             requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=payload)
             return JsonResponse({'redirect': True})
         else:
             #デバックの時に使う

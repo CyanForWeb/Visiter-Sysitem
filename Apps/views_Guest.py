@@ -123,6 +123,11 @@ def delivery(request):
 def delivery_drop(request):
     true_number = Owner_DB.objects.get(owner='Owner')
     context = {'number':true_number.update_url_text}
+    headers = {"Content-Type": "application/json"}
+    cookies = {"test_cookie": "aaa"}
+    data = json.dumps({"value1": "置き配されました！"})
+    #住民のiftttのkeyを入力する↓
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_delivery_drop.html', context)
 
 def delivery_camera(request):
