@@ -235,7 +235,7 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
-        if latitude - 0.0005 <= Owner_latitude < latitude + 0.0005 and longitude - 0.00005 <= Owner_longitude < longitude + 0.00005:
+        if latitude - 0.0009 <= Owner_latitude < latitude + 0.0009 and longitude - 0.001 <= Owner_longitude < longitude + 0.001:
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
