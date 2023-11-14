@@ -223,6 +223,8 @@ def save_snapshot(request):
 
 
 #---------geolocationの範囲設定---------------
+import matplotlib.pyplot as plt
+import numpy as np
 def save_geolocations(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -235,7 +237,14 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
+<<<<<<< HEAD
         if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
+=======
+        num = 0.0005**2 + 0.00045**2
+        r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
+        if r <= num:
+        #if latitude - 0.0005 <= Owner_latitude < latitude + 0.0005 and longitude - 0.00005 <= Owner_longitude < longitude + 0.00005:
+>>>>>>> 18cec0c (Risa 11/15#)
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"

@@ -34,6 +34,7 @@ def home(request):
     context = {'today_list':today_data,'record_status':record_status, 'all_list':all_data}
     return render(request, 'html_Owner/Owner_home.html', context)
 
+import time
 def setting_time(request):
     context = {
                'set_start':Set_start(),
@@ -54,6 +55,7 @@ def setting_time(request):
                                      start_time=start_time,
                                      finish_date=finish_date,
                                      finish_time=finish_time)
+        time.sleep(3)
         return redirect('Owner_seeSettingTime')
     return render(request, 'html_Owner/Owner_setting_time.html', context)
 

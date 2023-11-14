@@ -8,15 +8,15 @@
         <div style="visibility:hidden;">
 
         </div>
-        <p id="message"><b>通話開始</b>ボタンを押してください</p><br>
+        <!--<p id="message" style="font-size:small;">本当に通話を開始しますか？</p>-->
+        <p id="joining" style="font-size:small;"></p>
         <button id="join" name="join_button" class="btn_06">通話開始　
           <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
-        <p id="joining"></p>
 
         <form method="POST">
           {% csrf_token %}
-        <button id="close" name="exit_button" class="btn_06">退出　
-        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
+          <button id="close" name="exit_button" class="btn_06">通話終了　
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
         </form>
 
         <video id="partner_video" width="350px"></video>

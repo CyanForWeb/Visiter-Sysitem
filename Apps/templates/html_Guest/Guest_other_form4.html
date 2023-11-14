@@ -2,60 +2,71 @@
 {% load static %}
 
 {% block content %}
+<br>
+
+<div id="parent">
       <div class="content">
-        <form method="POST">
-        {% csrf_token %}
-        <p>今日の日付を記入してください
-        <input name="form4_date" type="text" size="20" required style="width:100%; height:40px;"></p>
-        <p>今日の曜日を記入してください
-        <input name="form4_day" type="text" size="20" required style="width:100%; height:40px;"></p>
-        <p>今日の天気を記入してください
-        <input name="form4_weather" type="text" size="20" required style="width:100%; height:40px;"></p>
-        <p>今日の交通手段を記入してください
-        <input name="form4_transportation" type="text" size="50" required style="width:100%; height:40px;"></p>
-        <p>知っている雑学/豆知識を記入してください
-        <input name="form4_trivia" type="text" size="300" required style="width:100%; height:40px;"></p>
-        <p>最後に一言を記入してください
-        <input name="form4_message" type="text" size="300" required style="width:100%; height:40px;"></p>
-        <br>
-        <p style="text-align: center;">以上で質問は終了です<br><b>送信ボタン</b>を押してください</p>
-        <br>
-        <button name="form4_submit" class="btn_06">
-          <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
-        </button>
-        </form>
+          <form method="POST">
+            {% csrf_token %}
+            <p>今日の日付を記入してください
+            <input name="form4_date" type="text" size="20" required style="width:100%; height:40px;"></p>
+            <p>今日の曜日を記入してください
+            <input name="form4_day" type="text" size="20" required style="width:100%; height:40px;"></p>
+            <p>今日の天気を記入してください
+            <input name="form4_weather" type="text" size="20" required style="width:100%; height:40px;"></p>
+            <p>今日の交通手段を記入してください
+            <input name="form4_transportation" type="text" size="50" required style="width:100%; height:40px;"></p>
+            <p>知っている雑学/豆知識を記入してください
+            <input name="form4_trivia" type="text" size="300" required style="width:100%; height:40px;"></p>
+            <p>最後に一言を記入してください
+            <input name="form4_message" type="text" size="300" required style="width:100%; height:40px;"></p>
+            <br>
+            <p style="text-align: center;">以上で質問は終了です<br><b>送信ボタン</b>を押してください</p>
+            <br>
+            <button name="form4_submit" class="btn_06">
+              <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>　送信
+            </button>
+          </form>
+      </div>
 
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
-      <hr>
       <div id="videoChat" style="text-align:center;">
-      <div style="visibility:hidden;">
+          <div style="visibility:hidden;">
+          </div>
+          <p id="joining"></p>
+          <!--<p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>-->
+          <button id="join" class="btn_06">応答　　
+          <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
+          <!--<div id="close">
+          <button class="btn_06" id='endBtn'>退出　
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
+          </div>-->
+          <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
 
+          <video id="partner_video"></video>
+          <audio id="partner_audio"></<audio>
+
+          <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+          <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
       </div>
-      <hr size="10">
-      <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
-      <button id="join" class="btn_06">応答　　
-      <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
-      <p id="joining"></p>
-      <!--<div id="close">
-      <button class="btn_06" id='endBtn'>退出　
-      <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-      </div>-->
-      <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
-
-      <video id="partner_video"></video>
-      <audio id="partner_audio"></<audio>
-
-      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-      <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
-      </div>
+</div>
 
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
+        const parent = document.getElementById("parent");
+        const sort = parent.getElementsByTagName('div')[1];
+        const firstChild = parent.firstChild;
+
+        const content = document.getElementById("content");
         const video = document.getElementById('videoChat');
         video.style.display = "none";//none=非表示
+
+
+        // ページ読み込み時に最新のビデオステータスを取得
+        updateVideoStatus();
 
         function updateVideoStatus() {
             $.ajax({
@@ -65,18 +76,18 @@
                 success: function(data) {
                     //$('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
-                        // ビデオステータスが1の場合、メッセージを表示
-                        video.style.display = "block";//表示
+                      parent.insertBefore(sort, firstChild);
+                      // ビデオステータスが1の場合、メッセージを表示
+                      video.style.display = "block";//表示
+                    }else{
+                      video.style.display = "none";
                     }
                 }
             });
         }
 
-        // ページ読み込み時に最新のビデオステータスを取得
-        updateVideoStatus();
-
         // 5秒ごとにビデオステータスをチェック
-        setInterval(updateVideoStatus, 8000);
+        setInterval(updateVideoStatus, 5000);
 
         //const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
@@ -86,6 +97,5 @@
 
       </script>
 
-      </div>
 
 {% endblock %}

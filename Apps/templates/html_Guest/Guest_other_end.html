@@ -14,7 +14,9 @@
 
     </head>
     <body>
+      <br>
 
+<div id="parent">
       <div class="content" style="text-align: center;">
         <br><i class="fa-solid fa-circle-check fa-3x" style="color: #50b970;"></i>
         <h1>THANK YOU!!</h1>
@@ -26,15 +28,12 @@
 
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat" style="text-align:center">
-        <hr>
         <div style="visibility:hidden;">
-
         </div>
-        <hr size="10">
-        <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
+        <p id="joining"></p>
+        <!--<p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>-->
         <button id="join" class="btn_06">応答　
         <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
-        <p id="joining"></p>
         <!--<div id="close">
         <button class="btn_06" id='endBtn'>退出　
         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
@@ -44,42 +43,52 @@
         <video id="partner_video"></video>
         <audio id="partner_audio"></<audio>
       </div>
+</div>
 
-        <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-        <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
+      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+      <script src="{% static 'js/Guest_VideoChat.js' %}"></script>
 
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
-        const video = document.getElementById('videoChat');
-        video.style.display = "none";//none=非表示
+      const parent = document.getElementById("parent");
+      const sort = parent.getElementsByTagName('div')[1];
+      const firstChild = parent.firstChild;
 
-        function updateVideoStatus() {
-            $.ajax({
-                url: "{% url 'other_check_video_status' %}",
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    //$('#video_status').text(data.video_status);
-                    if (data.video_status == 1) {
-                        // ビデオステータスが1の場合、メッセージを表示
-                        video.style.display = "block";//表示
-                    }
-                }
-            });
-        }
+      const content = document.getElementById("content");
+      const video = document.getElementById('videoChat');
+      video.style.display = "none";//none=非表示
 
-        // ページ読み込み時に最新のビデオステータスを取得
-        updateVideoStatus();
 
-        // 5秒ごとにビデオステータスをチェック
-        setInterval(updateVideoStatus, 8000);
+      // ページ読み込み時に最新のビデオステータスを取得
+      updateVideoStatus();
 
-        //const btn = document.getElementById('endBtn');
-        // 終了ボタンがクリックされた時に非表示にする
-        //btn.addEventListener('click', () => {
-        //  video.style.display = "none";//非表示
-        //});
+      function updateVideoStatus() {
+          $.ajax({
+              url: "{% url 'other_check_video_status' %}",
+              type: "GET",
+              dataType: "json",
+              success: function(data) {
+                  //$('#video_status').text(data.video_status);
+                  if (data.video_status == 1) {
+                    parent.insertBefore(sort, firstChild);
+                    // ビデオステータスが1の場合、メッセージを表示
+                    video.style.display = "block";//表示
+                  }else{
+                    video.style.display = "none";
+                  }
+              }
+          });
+      }
+
+      // 5秒ごとにビデオステータスをチェック
+      setInterval(updateVideoStatus, 5000);
+
+      //const btn = document.getElementById('endBtn');
+      // 終了ボタンがクリックされた時に非表示にする
+      //btn.addEventListener('click', () => {
+      //  video.style.display = "none";//非表示
+      //});
 
       </script>
 

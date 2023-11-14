@@ -2,49 +2,52 @@
 {% load static %}
 
 {% block content %}
+<br>
+
+<div id="parent">
       <div class="content">
-
-      <form method="POST">
-      {% csrf_token %}
-      <p>貴方の名前／団体名を記入してください
-      <input name="form2_name" type="text" required style="width:100%; height:40px;"></p>
-      <!--<p>貴方/会社の住所を記入してください
-      <input name="form2_address" type="text" required style="width:100%; height:40px;"></p>-->
-      <p>貴方の連絡先を記入してください<br>（※こちらは任意回答です。）
-      <input name="form2_contact" type="text" style="width:100%; height:40px;"></p>
-      <br>
-      <button name="form2_submit"  class="btn_06"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
-      </form>
-
+          <form method="POST">
+          {% csrf_token %}
+          <p>貴方の名前／団体名を記入してください
+          <input name="form2_name" type="text" required style="width:100%; height:40px;"></p>
+          <p>貴方の連絡先を記入してください<br>（※こちらは任意回答です。）
+          <input name="form2_contact" type="text" style="width:100%; height:40px;"></p>
+          <br>
+          <button name="form2_submit"  class="btn_06"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
+          </form>
+      </div>
       <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
       <!--ビデオチャットを表示する機能-->
-      <hr>
       <div id="videoChat" style="text-align:center;">
-      <div style="visibility:hidden;">
+          <div style="visibility:hidden;">
+          </div>
+          <p id="joining"></p>
+          <!--<p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>-->
+          <button id="join" class="btn_06">応答　
+          <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
+          <!--<div id="close">
+          <button class="btn_06" id='endBtn'>退出　
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
+          </div>-->
+          <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
 
+          <video id="partner_video"></video>
+          <audio id="partner_audio"></<audio>
+
+          <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+          <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
       </div>
-      <hr size="10">
-      <p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>
-      <button id="join" class="btn_06">応答　
-      <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
-      <p id="joining"></p>
-      <!--<div id="close">
-      <button class="btn_06" id='endBtn'>退出　
-      <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-      </div>-->
-      <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
-
-      <video id="partner_video"></video>
-      <audio id="partner_audio"></<audio>
-
-      <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-      <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
-      </div>
+</div>
 
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
+        const parent = document.getElementById("parent");
+        const sort = parent.getElementsByTagName('div')[1];
+        const firstChild = parent.firstChild;
+
+        const content = document.getElementById("content");
         const video = document.getElementById('videoChat');
         video.style.display = "none";//none=非表示
 
@@ -56,8 +59,12 @@
                 success: function(data) {
                     //$('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
-                        // ビデオステータスが1の場合、メッセージを表示
-                        video.style.display = "block";//表示
+                      parent.insertBefore(sort, firstChild);
+                      // ビデオステータスが1の場合、メッセージを表示
+                      video.style.display = "block";//表示
+                    }else{
+                      // ビデオステータスが1の場合、メッセージを表示
+                      video.style.display = "none";
                     }
                 }
             });
@@ -67,7 +74,7 @@
         updateVideoStatus();
 
         // 5秒ごとにビデオステータスをチェック
-        setInterval(updateVideoStatus, 8000);
+        setInterval(updateVideoStatus, 5000);
 
         //const btn = document.getElementById('endBtn');
         // 終了ボタンがクリックされた時に非表示にする
@@ -77,6 +84,5 @@
 
       </script>
 
-      </div>
 
 {% endblock %}
