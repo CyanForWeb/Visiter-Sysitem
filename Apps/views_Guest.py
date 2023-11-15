@@ -157,7 +157,7 @@ def delivery_end1(request):
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "ハンコが必要な荷物です！今すぐ玄関へ！"})
     #住民のiftttのkeyを入力する↓
-    #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_delivery_end1.html', context)
 
