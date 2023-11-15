@@ -16,6 +16,10 @@ import base64
 import json
 from django.core.files.base import ContentFile
 
+#位置情報円
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def home(request,number):
     true_number = Owner_DB.objects.get(owner='Owner')
@@ -45,7 +49,8 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             cookies = {"test_cookie": "aaa"}
             data = json.dumps({"value1": "質問フォームが開始され、用件が入力されました！"})
             #住民のiftttのkeyを入力する↓
-            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_form2.html',context)
         #form2内容をdbに保存して、for3に遷移
         if "form2_submit" in request.POST: #ボタンが押されたら...
@@ -58,7 +63,8 @@ def other_form(request): #質問フォーム1~3に移る際に使用
             cookies = {"test_cookie": "aaa"}
             data = json.dumps({"value1": "名前、住所、連絡先が入力されました！"})
             #住民のiftttのkeyを入力する↓
-            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_form3.html',context)
     return render(request, 'html_Guest/Guest_other_form1.html',context)
 
@@ -74,7 +80,8 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
         cookies = {"test_cookie": "aaa"}
         data = json.dumps({"value1": "謎の動画の視聴も終わりました！"})
         #住民のiftttのkeyを入力する↓
-        requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+        #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+        requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     if request.method == 'POST':
         #form4の内容をdbに保存して、endに遷移
         if "form4_submit" in request.POST: #ボタンが押されたら...
@@ -95,7 +102,8 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
             cookies = {"test_cookie": "aaa"}
             data = json.dumps({"value1": "お客さんは全ての質問の回答を終えました！"})
             #住民のiftttのkeyを入力する↓
-            requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+            requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
             return render(request, 'html_Guest/Guest_other_end.html',context)
     return render(request, 'html_Guest/Guest_other_form4.html',context)
 
@@ -127,7 +135,8 @@ def delivery_drop(request):
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "置き配されました！"})
     #住民のiftttのkeyを入力する↓
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_delivery_drop.html', context)
 
 def delivery_camera(request):
@@ -148,7 +157,8 @@ def delivery_end1(request):
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "ハンコが必要な荷物です！今すぐ玄関へ！"})
     #住民のiftttのkeyを入力する↓
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_delivery_end1.html', context)
 
 
@@ -162,13 +172,15 @@ def post_end1(request):
     true_number = Owner_DB.objects.get(owner='Owner')
     context = {'number':true_number.update_url_text}
     #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
-    requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
+    #requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
+    requests.post("https://maker.ifttt.com/trigger/post/with/key/dPMcKW7OLMVpEKmN9HwjxZ")
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "宛名がある郵便物が投函されました！"})
     #住民のiftttのkeyを入力する↓
     #requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies)
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end1.html', context)
 
 def post_pic(request):
@@ -184,7 +196,8 @@ def post_end2(request):
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "チラシが撮影されました！"})
     #住民のiftttのkeyを入力する↓
-    requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    #requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
+    requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=data)
     return render(request, 'html_Guest/Guest_post_end2.html', context)
 
 
@@ -223,8 +236,6 @@ def save_snapshot(request):
 
 
 #---------geolocationの範囲設定---------------
-import matplotlib.pyplot as plt
-import numpy as np
 def save_geolocations(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -237,26 +248,13 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
-        if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
-        
-        #num = 0.0005**2 + 0.00045**2
-        #r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
-        #if r <= num:
-        #if latitude - 0.0005 <= Owner_latitude < latitude + 0.0005 and longitude - 0.00005 <= Owner_longitude < longitude + 0.00005:
-
-            #デバックの時に使う
-            #保存する際のファイル名を指定
-            #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
-            #f = open('media/post/'+filename, "w")
-            #f.write("request.body:")
-            #f.write(json.dumps(data))
-            #f.write("Owner_data:")
-            #f.write(json.dumps(Owner_data))
-            #f.close()
-
-            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+        #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:        #console.log("a")
+        num = 0.0005**2 + 0.00045**2
+        r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
+        if r <= num:
             return JsonResponse({'redirect': True})
         else:
+
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"NG_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
