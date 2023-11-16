@@ -146,6 +146,22 @@ button.btn_06:hover {
 	color: #fff;
   background: #4682B4; opacity:0.7;
 }
+/*buttonタグのボタンスタイル*/
+button.btn_03 {
+	display: block;
+	text-decoration: none;
+	margin: auto;
+	padding: 1rem 1rem;
+	font-weight: bold;
+	border-radius: 50vh;
+  background: #fff;
+	color: #4682B4;
+  border: 1px solid #4682B4;
+}
+button.btn_03:hover {
+	color: #ffffff;
+  background: #4682B4; opacity:0.7;
+}
 /*Owner_seeform_detail_Other.htmlで回答フォームを表示する際のスタイル */
 .form{
   background-color: #fff;

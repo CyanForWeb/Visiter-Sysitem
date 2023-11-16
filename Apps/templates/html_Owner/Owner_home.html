@@ -14,7 +14,19 @@
           <div id="today" class="area">
             <p id="message" style="text-align: center;"></p>
             <div id="list_today">
+              <p style="font-size:80%;">絞り込み検索ができます</p>
+                  <div class="item">
+                      <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">　全て　</button>
+                      <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
+                      <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">　配達員　</button>
+                      <button class="btn_03" id="drop" style="font-size:40%;" onClick="filterItems('Drop');">　置き配　</button>
+                      <button class="btn_03" id="post1" style="font-size:40%;" onClick="filterItems('Post_1');">ポスト投函</button>
+                      <button class="btn_03" id="post2" style="font-size:40%;" onClick="filterItems('Post_2');">チラシ受信</button>
+                      <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
+                  </div>
+                  <br><br>
             {% for obj in today_list %}
+            <div class="filter" data-type="{{obj}}">
             <li class="item">
               <div class="fa-stack fa-2x">
                 {% if obj.visitor == 'Post_1' %}
@@ -51,13 +63,26 @@
               </div>
             </li>
             <p></p>
+            </div>
             {% endfor %}
             </div>
           </div>
 
           <div id="all" class="area">
             <div id="list_all">
+              <p style="font-size:80%;">絞り込み検索ができます</p>
+                  <div class="item">
+                      <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">　全て　</button>
+                      <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
+                      <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">　配達員　</button>
+                      <button class="btn_03" id="drop" style="font-size:40%;" onClick="filterItems('Drop');">　置き配　</button>
+                      <button class="btn_03" id="post1" style="font-size:40%;" onClick="filterItems('Post_1');">ポスト投函</button>
+                      <button class="btn_03" id="post2" style="font-size:40%;" onClick="filterItems('Post_2');">チラシ受信</button>
+                      <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
+                  </div>
+                  <br><br>
             {% for obj in all_list %}
+            <div class="filter" data-type="{{obj}}">
             <li class="item">
               <div class="fa-stack fa-2x">
                 {% if obj.visitor == 'Post_1' %}
@@ -93,6 +118,7 @@
                 </form>
               </div>
             </li>
+            </div>
             {% endfor %}
           </div>
         </div>
@@ -102,14 +128,26 @@
 
       </div>
 
-
+      <script>
+        function filterItems(type){
+          var items = document.querySelectorAll('.filter');
+          items.forEach(function(item){
+            var itemType = item.getAttribute('data-type');
+            if(type === 'all' || type === itemType){
+              item.style.display = 'block';
+            }else{
+              item.style.display = 'none';
+            }
+          });
+        }
+      </script>
       <script>
         message = document.getElementById('message');
         list_today = document.getElementById('list_today');
 
         if({{ record_status }}==0){
           message.innerText = "本日の来客者情報はありません";
-          list.style.display = "none";
+          list_today.style.display = "none";
         }else{
           var today = new Date();
           var year = today.getFullYear();

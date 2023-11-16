@@ -248,10 +248,31 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
+<<<<<<< Updated upstream
         #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:        #console.log("a")
         num = 0.0005**2 + 0.00045**2
         r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
         if r <= num:
+=======
+
+        if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
+
+        #num = 0.0005**2 + 0.00045**2
+        #r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
+        #if r <= num:
+        #if latitude - 0.0005 <= Owner_latitude < latitude + 0.0005 and longitude - 0.00005 <= Owner_longitude < longitude + 0.00005:
+            #デバックの時に使う
+            #保存する際のファイル名を指定
+            #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
+            #f = open('media/post/'+filename, "w")
+            #f.write("request.body:")
+            #f.write(json.dumps(data))
+            #f.write("Owner_data:")
+            #f.write(json.dumps(Owner_data))
+            #f.close()
+
+            #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+>>>>>>> Stashed changes
             return JsonResponse({'redirect': True})
         else:
 
