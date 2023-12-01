@@ -248,15 +248,11 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
-//ここから
-=======＞①　（②とどっちが正しい？？！）
+
         #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:        #console.log("a")
         num = 0.0005**2 + 0.00045**2
         r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
         if r <= num:
-
-=======＞②　（①とどっちが正しい？？！）
-        if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
 
         #num = 0.0005**2 + 0.00045**2
         #r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
@@ -275,7 +271,7 @@ def save_geolocations(request):
             #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
 
             return JsonResponse({'redirect': True})
-//ここまで
+
         else:
 
             #デバックの時に使う
