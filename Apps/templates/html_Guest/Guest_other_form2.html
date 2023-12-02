@@ -16,30 +16,14 @@
           <button name="form2_submit"  class="btn_06"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
           </form>
       </div>
-      <!--<p>Video Status: <span id="video_status">0</span></p>-->
 
-      <!--ビデオチャットを表示する機能-->
+      <!--ビデオチャットする機能-->
       <div id="videoChat" style="text-align:center;">
-          <div style="visibility:hidden;">
-          </div>
-          <p id="joining"></p>
-          <!--<p id="message">住人が"通話"を希望しています<br>応答ボタンを押してください</p>-->
-          <button id="join" class="btn_06">応答　
-          <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
-          <!--<div id="close">
-          <button class="btn_06" id='endBtn'>退出　
-          <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
-          </div>-->
-          <video id="local-video" width="400px" muted playsinline style="text-align:center"></video>
-
-          <video id="partner_video"></video>
-          <audio id="partner_audio"></<audio>
-
-          <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
-          <script src="{% static 'js/Guest_VideoChat.js' %}"></script><br>
+        <p id="message"></p>
+        <button class="btn_06" onclick="location.href='{% url 'Guest_video' %}'">応答　
+        <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
       </div>
 </div>
-
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
@@ -47,40 +31,29 @@
         const sort = parent.getElementsByTagName('div')[1];
         const firstChild = parent.firstChild;
 
-        const content = document.getElementById("content");
         const video = document.getElementById('videoChat');
         video.style.display = "none";//none=非表示
 
+        // 5秒ごとにビデオステータスをチェック
+        setInterval(updateVideoStatus, 1000);
         function updateVideoStatus() {
             $.ajax({
                 url: "{% url 'other_check_video_status' %}",
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
-                    //$('#video_status').text(data.video_status);
                     if (data.video_status == 1) {
+                      parent.getElementsByTagName('div')[0].style.display = "none";
                       parent.insertBefore(sort, firstChild);
-                      // ビデオステータスが1の場合、メッセージを表示
                       video.style.display = "block";//表示
+                      document.getElementById('message').innerText = "住人が 通話 を希望しています\n応答ボタンを押してください";
                     }else{
-                      // ビデオステータスが1の場合、メッセージを表示
-                      video.style.display = "none";
+                      parent.getElementsByTagName('div')[1].style.display = "block";
+                      video.style.display = "none";//none=非表示
                     }
                 }
             });
         }
-
-        // ページ読み込み時に最新のビデオステータスを取得
-        updateVideoStatus();
-
-        // 5秒ごとにビデオステータスをチェック
-        setInterval(updateVideoStatus, 5000);
-
-        //const btn = document.getElementById('endBtn');
-        // 終了ボタンがクリックされた時に非表示にする
-        //btn.addEventListener('click', () => {
-        //  video.style.display = "none";//非表示
-        //});
 
       </script>
 

@@ -13,7 +13,7 @@ urlpatterns = [
     path('Owner_deleteForm/<int:id>', views_Owner.deleteForm, name='Owner_deleteForm'),
     #path('Owner_seeform_detail', views_Owner.seeform_detail, name='Owner_seeform_detail'),
     path('<int:id>', views_Owner.seeform_detail, name='Owner_seeform_detail'),
-    #path('<int:id>', views_Owner.videochat, name='VideoChat'),
+    path('<int:id>', views_Owner.video, name='video'),
     path('save_geolocation_Owner_setting/', views_Owner.save_geolocation_Owner_setting, name='save_geolocation_Owner_setting'),
     path('Owner_guest', views_Owner.guest, name='Owner_guest'),
     path('Owner_guest_security', views_Owner.guest_security, name='Owner_guest_security'),
@@ -22,6 +22,7 @@ urlpatterns = [
 #アポ済みのWebアプリに使用するURL
     path('Appt_home/<int:number>', views_Appt.home, name='Appt_home'),#一番最初にアクセスする画面
     path('Appt_end', views_Appt.end, name='Appt_end'),#最後の画面
+    path('Appt_video', views_Appt.video, name='Appt_video'),#最後の画面
     path('save_qrcode/', views_Appt.save_qrcode, name='save_qrcode'),
     path('save_geolocation/', views_Appt.save_geolocation, name='save_geolocation'),
     path('check_video_status', views_Appt.check_video_status, name='check_video_status'),#ビデオステータスの確認
@@ -33,6 +34,7 @@ urlpatterns = [
     path('Guest_other', views_Guest.other, name='Guest_other'),#質問フォーム開始画面
     path('Guest_other_form', views_Guest.other_form, name='Guest_other_form'),
     path('Guest_other_form4', views_Guest.other_form4, name='Guest_other_form4'),
+    path('Guest_video', views_Guest.video, name='Guest_video'),
     path('other_check_video_status', views_Guest.other_check_video_status, name='other_check_video_status'),#ビデオステータスの確認
     #配達員　画面
     path('Guest_delivery', views_Guest.delivery, name='Guest_delivery'),#ハンコ有無の確認画面

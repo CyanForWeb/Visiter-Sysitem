@@ -7,6 +7,18 @@
 
     <div class="content">
       <h2  style="text-align: center;">{{ mes.message }}<br>（ {{ obj.date }} ）</h2>
+      <p style="text-align: center;font-size:80%;">対応が必要だと感じた際は、通話ボタンから通話を開始することができます。</p>
+      <form method="POST">
+        {% csrf_token %}
+        <div  style="text-align: center;">
+          <button name="video_button" class="btn btn--circle">
+            <b>通話</b><br>
+            <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+            <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
+          </button>
+        </div>
+        <br>
+      </form>
       <ul class="form">
         <li class="other"><p><b>来訪用件</b><br>　{{ obj.form1 }}</p></li>
         <li class="other"><p><b>名前/団体名</b><br>　{{ obj.form2_name }}</p></li>
@@ -19,16 +31,6 @@
         <li class="other"><p><b>知っている雑学/豆知識</b><br>　{{ obj.form4_trivia }}</p></li>
         <li class="other"><p><b>最後に一言</b><br>　{{ obj.form4_message }}</p></li>
       </ul>
-      <form method="POST">
-        {% csrf_token %}
-        <div class="right">
-          <button name="video_button" class="btn btn--circle">
-            <b>通話</b><br>
-            <i class="fa-solid fa-user" style="color: #ffffff;"></i>
-            <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </form>
     </div>
     <br>
 

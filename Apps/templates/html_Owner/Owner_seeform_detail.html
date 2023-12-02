@@ -7,10 +7,17 @@
 
   <div class="content">
     <h2 style="text-align: center;">{{ mes.message }}<br>（ {{ obj.date }} ）</h2>
+    <div id="message" style="text-align: center;font-size:80%;"></div>
     <br>
     <div style="text-align: center;">
       <img src='{{ obj.img.url }}' width="350" height="350"/>
     </div>
   </div>
 
+<script>
+  message = document.getElementById('message');
+  if ( "{{ mes.visitor }}" == "Delivery" ){
+    message.innerText = "玄関に向かってください。";
+  }
+</script>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends './Appt_base.html' %}
+{% load static %}
+
+{% block content %}
+
+      <!--ビデオチャットを表示する機能-->
+      <div id="videoChat" style="text-align:center;">
+        <!--<div style="visibility:hidden;">
+        </div>-->
+        <br>
+        <p id="joining"></p>
+
+        <video id="local-video" width="300px" muted playsinline  style="text-align:center"></video>
+
+        <video id="partner_video"></video>
+        <audio id="partner_audio"></<audio>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+    <script src="{% static 'js/Guest_VideoChat.js' %}"></script>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        function updateVideoStatus() {
+            $.ajax({
+                url: "{% url 'check_video_status' %}",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    //$('#video_status').text(data.video_status);
+                    if (data.video_status == 0) {
+                      history.back(-1);
+                    }
+                }
+            });
+        }
+
+        // 5秒ごとにビデオステータスをチェック
+        setInterval(updateVideoStatus, 3000);
+
+      </script>
+
+
+{% endblock %}

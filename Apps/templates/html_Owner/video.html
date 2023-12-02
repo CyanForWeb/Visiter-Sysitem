@@ -1,0 +1,28 @@
+{% extends './Owner_base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="content" style="text-align:center">
+
+        <div id="videoChat">
+            <!--<p id="message" style="font-size:small;">本当に通話を開始しますか？</p>-->
+            <p id="joining" style="font-size:small;"></p>
+            <!--<button id="join" name="join_button" class="btn_06">通話開始　
+              <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>-->
+
+            <form method="POST">
+              {% csrf_token %}
+              <button name="exit_button" class="btn_06">通話終了　
+              <i class="fa-solid fa-arrow-right-from-bracket" style="color: #fff;"></i></button><br>
+            </form>
+
+            <video id="partner_video" width="350px"></video>
+            <audio id="partner_audio"></<audio>
+
+            <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+            <script id='kind' title='owner'></script>
+            <script src="{% static 'js/Owner_VideoChat.js' %}"></script><br>
+        </div>
+      </div>
+
+{% endblock %}

@@ -42,7 +42,7 @@
       </script>
 
       <script>
-        let count = 60;
+        let count = 30;
         message = document.getElementById("message");
         open = document.getElementById("open");
         lock = document.getElementById("lock");
@@ -58,7 +58,7 @@
             message.innerText = "ポストを施錠しました";
           }else{
             document.getElementById("lock").style.display = "none";//非表示
-            message.innerText = "ポストを解除しました\n60秒以内に投函をお願いします";
+            message.innerText = "ポストを解除しました\n30秒以内に投函をお願いします";
           }
           document.getElementById("count").innerHTML = count;
           count--;

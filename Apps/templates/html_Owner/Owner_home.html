@@ -8,23 +8,23 @@
         <div class="wrapper">
           <ul class="tab">
             <li><a href="#today" style="color: #333333;" class="tab"><b>本日の来客者</b></a></li>
-            <li><a href="#all" style="color: #333333;" class="tab"><b>全ての来客者</b></a></li>
+            <li><a href="#all_list" style="color: #333333;" class="tab"><b>全ての履歴</b></a></li>
           </ul>
 
           <div id="today" class="area">
             <p id="message" style="text-align: center;"></p>
             <div id="list_today">
-              <p style="font-size:80%;">絞り込み検索ができます</p>
+              <br>
+              <p style="font-size:70%;">絞り込み検索ができます</p>
                   <div class="item">
-                      <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">　全て　</button>
+                      <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">全て</button>
                       <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
-                      <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">　配達員　</button>
-                      <button class="btn_03" id="drop" style="font-size:40%;" onClick="filterItems('Drop');">　置き配　</button>
+                      <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
+                      <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">配達員</button>
                       <button class="btn_03" id="post1" style="font-size:40%;" onClick="filterItems('Post_1');">ポスト投函</button>
                       <button class="btn_03" id="post2" style="font-size:40%;" onClick="filterItems('Post_2');">チラシ受信</button>
-                      <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
                   </div>
-                  <br><br>
+                  <p>　</p>
             {% for obj in today_list %}
             <div class="filter" data-type="{{obj}}">
             <li class="item">
@@ -68,65 +68,65 @@
             </div>
           </div>
 
-          <div id="all" class="area">
-            <div id="list_all">
-              <p style="font-size:80%;">絞り込み検索ができます</p>
-                  <div class="item">
-                      <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">　全て　</button>
-                      <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
-                      <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">　配達員　</button>
-                      <button class="btn_03" id="drop" style="font-size:40%;" onClick="filterItems('Drop');">　置き配　</button>
-                      <button class="btn_03" id="post1" style="font-size:40%;" onClick="filterItems('Post_1');">ポスト投函</button>
-                      <button class="btn_03" id="post2" style="font-size:40%;" onClick="filterItems('Post_2');">チラシ受信</button>
-                      <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
+          <div id="all_list" class="area">
+                <div id="list_all">
+                  <p style="font-size:70%;">絞り込み検索ができます</p>
+                      <div class="item">
+                          <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">全て</button>
+                          <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
+                          <button class="btn_03" id="other" style="font-size:40%;" onClick="filterItems('Other');">アポなし</button>
+                          <button class="btn_03" id="deli" style="font-size:40%;" onClick="filterItems('Delivery');">配達員</button>
+                          <button class="btn_03" id="post1" style="font-size:40%;" onClick="filterItems('Post_1');">ポスト投函</button>
+                          <button class="btn_03" id="post2" style="font-size:40%;" onClick="filterItems('Post_2');">チラシ受信</button>
+                      </div>
+                      <p>　</p>
+                {% for obj in all_list %}
+                <div class="filter" data-type="{{obj}}">
+                <li class="item">
+                  <div class="fa-stack fa-2x">
+                    {% if obj.visitor == 'Post_1' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #CC3333;"></i>
+                    <i class="fa-solid fa-envelope-open-text fa-stack-1x" style="color: #ffffff;"></i>
+                    {% elif obj.visitor == 'Post_2' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #FF6633;"></i>
+                    <i class="fa-solid fa-envelopes-bulk fa-stack-1x" style="color: #ffffff;"></i>
+                    {% elif obj.visitor == 'Delivery' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #00BFFF;"></i>
+                    <i class="fa-solid fa-people-carry-box fa-stack-1x" style="color: #ffffff;"></i>
+                    {% elif obj.visitor == 'Drop' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #6699CC;"></i>
+                    <i class="fa-solid fa-box fa-stack-1x" style="color: #ffffff;"></i>
+                    {% elif obj.visitor == 'Other' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #669966;"></i>
+                    <i class="fa-solid fa-users fa-stack-1x" style="color: #ffffff;"></i>
+                    {% elif obj.visitor == 'Appt' %}
+                    <i class="fa-solid fa-square fa-stack-2x" style="color: #66CC66;"></i>
+                    <i class="fa-solid fa-user-check fa-stack-1x" style="color: #ffffff;"></i>
+                    {% endif %}
                   </div>
-                  <br><br>
-            {% for obj in all_list %}
-            <div class="filter" data-type="{{obj}}">
-            <li class="item">
-              <div class="fa-stack fa-2x">
-                {% if obj.visitor == 'Post_1' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #CC3333;"></i>
-                <i class="fa-solid fa-envelope-open-text fa-stack-1x" style="color: #ffffff;"></i>
-                {% elif obj.visitor == 'Post_2' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #FF6633;"></i>
-                <i class="fa-solid fa-envelopes-bulk fa-stack-1x" style="color: #ffffff;"></i>
-                {% elif obj.visitor == 'Delivery' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #00BFFF;"></i>
-                <i class="fa-solid fa-people-carry-box fa-stack-1x" style="color: #ffffff;"></i>
-                {% elif obj.visitor == 'Drop' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #6699CC;"></i>
-                <i class="fa-solid fa-box fa-stack-1x" style="color: #ffffff;"></i>
-                {% elif obj.visitor == 'Other' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #669966;"></i>
-                <i class="fa-solid fa-users fa-stack-1x" style="color: #ffffff;"></i>
-                {% elif obj.visitor == 'Appt' %}
-                <i class="fa-solid fa-square fa-stack-2x" style="color: #66CC66;"></i>
-                <i class="fa-solid fa-user-check fa-stack-1x" style="color: #ffffff;"></i>
-                {% endif %}
+                  <div>　</div>
+                  <div>
+                    <p style="font-weight:bold;"><a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a></p>
+                    <p style="color:gray; font-size:x-small;">{{ obj.date|date:"H時i分s秒" }}</p>
+                  </div>
+                  <div>
+                    <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
+                      <button type="submit" onclick='return confirm("本当に削除しますか？");'>
+                        <i class="fa-regular fa-trash-can fa-xl" style="color: #6998b5;"></i>
+                      </button>
+                    </form>
+                  </div>
+                </li>
+                <p></p>
+                </div>
+                {% endfor %}
+                </div>
               </div>
-              <div>　</div>
-              <div>
-                <p style="font-weight:bold;"><a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a></p>
-                <p style="color:gray; font-size:x-small;">{{ obj.date }}</p>
-              </div>
-              <div>
-                <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
-                  <button type="submit" onclick='return confirm("本当に削除しますか？");'>
-                    <i class="fa-regular fa-trash-can fa-xl" style="color: #6998b5;"></i>
-                  </button>
-                </form>
-              </div>
-            </li>
-            </div>
-            {% endfor %}
-          </div>
         </div>
+      </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/js/5-4-1.js"></script>
-
-      </div>
 
       <script>
         function filterItems(type){
@@ -156,7 +156,8 @@
           var dayOfWeek = today.getDay() ;
           var dayOfWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][dayOfWeek] ;	// 曜日(日本語表記)
           message.innerText = year + '年' + month + '月' + day + '日' + ' (' + dayOfWeekStr +')';
-          list.style.display = "block";
+          list_today.style.display = "block";
+          console.log("{{all_list}}");
         }
       </script>
 

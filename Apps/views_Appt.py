@@ -34,6 +34,11 @@ def end(request):
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=payload)
     return render(request, 'html_Appt/Appt_end.html',)
 
+def video(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Appt/video.html',context)
+
 def save_qrcode(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -83,7 +88,7 @@ def save_geolocation(request):
         #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
         num = 0.0005**2 + 0.00045**2
         r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
-        if r <= num:   
+        if r <= num:
             #デバックの時に使う
             #保存する際のファイル名を指定
             #filename = f"OK_GEO_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"

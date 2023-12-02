@@ -107,6 +107,11 @@ def other_form4(request): #質問フォーム3→4に移る時に使う
             return render(request, 'html_Guest/Guest_other_end.html',context)
     return render(request, 'html_Guest/Guest_other_form4.html',context)
 
+def video(request):
+    true_number = Owner_DB.objects.get(owner='Owner')
+    context = {'number':true_number.update_url_text}
+    return render(request, 'html_Guest/video.html',context)
+
 def other_check_video_status(request):
     if request.is_ajax():
         # レコードの最新のvideo_statusを取得
@@ -248,11 +253,19 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7c4e0 (Risa 12/2)
         #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:        #console.log("a")
         num = 0.0005**2 + 0.00045**2
         r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
         if r <= num:
+<<<<<<< HEAD
+=======
+
+        #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
+>>>>>>> 7c7c4e0 (Risa 12/2)
 
         #num = 0.0005**2 + 0.00045**2
         #r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
@@ -269,7 +282,10 @@ def save_geolocations(request):
             #f.close()
 
             #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7c4e0 (Risa 12/2)
             return JsonResponse({'redirect': True})
 
         else:

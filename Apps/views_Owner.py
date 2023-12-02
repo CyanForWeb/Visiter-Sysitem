@@ -121,6 +121,10 @@ def deleteForm(request,id):
     data_2.delete()
     return redirect('Owner_home')
 
+def video(request, id):
+    obj = Visitor_DB.objects.get(pk=id)
+    return render(request, 'html_Owner/video.html')
+
 def seeform_detail(request, id):
     obj = Visitor_DB.objects.get(pk=id)
     context = {}
@@ -129,13 +133,13 @@ def seeform_detail(request, id):
         visit = appt_context(request,obj)
         context = {'obj':visit,'mes':obj,}
         if "video_button" in request.POST:#ボタンが押されたら...
-            visit.video_status = 1
-            visit.save()
-            return render(request, 'html_Owner/VideoChat.html',)
+           visit.video_status = 1
+           visit.save()
+           return render(request, 'html_Owner/video.html',)
         if "exit_button" in request.POST:#ボタンが押されたら...
-            visit.video_status = 0
-            visit.save()
-            return redirect('Owner_home')
+           visit.video_status = 0
+           visit.save()
+           #driver.back()
         return render(request, 'html_Owner/Owner_seeform_detail_Appt.html', context)
     elif obj.visitor=='Delivery' or obj.visitor=='Drop':
         visit = delivery_context(obj)
@@ -147,11 +151,11 @@ def seeform_detail(request, id):
         if "video_button" in request.POST:#ボタンが押されたら...
             visit.video_status = 1
             visit.save()
-            return render(request, 'html_Owner/VideoChat.html',)
+            return render(request, 'html_Owner/video.html',)
         if "exit_button" in request.POST:#ボタンが押されたら...
-            visit.video_status = 0
-            visit.save()
-            return redirect('Owner_home')
+           visit.video_status = 0
+           visit.save()
+           #driver.back()
         return render(request, 'html_Owner/Owner_seeform_detail_Other.html', context)
     else:
         visit = post_context(obj)

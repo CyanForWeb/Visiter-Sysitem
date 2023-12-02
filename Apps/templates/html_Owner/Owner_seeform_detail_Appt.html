@@ -7,16 +7,18 @@
 
     <div class="content">
       <h2 style="text-align: center;">{{ mes.message }}<br>（ {{ obj.date }} ）</h2>
+      <p style="text-align: center;font-size:80%;">玄関に向かってください。通話ボタンから通話を開始することもできます。</p>
       <form method="POST">
         {% csrf_token %}
         <br>
-        <div class="right">
+        <div style="text-align: center;">
           <button name="video_button" class="btn btn--circle">
             <b>通話</b><br>
             <i class="fa-solid fa-user" style="color: #ffffff;"></i>
             <i class="fa-regular fa-comments" style="color: #ffffff;"></i>
           </button>
         </div>
+        <br>
       </form>
     </div>
 

@@ -44,67 +44,66 @@ const token = new SkyWayAuthToken({
 }).encode('h2EJA53oF6yRNdzuYXWeaoRbyTBWHsRD0oiyx/FzZWM=');
 
 (async () => {
-  const joinButton = document.getElementById('join');
+  //const joinButton = document.getElementById('join');
 
-  const message = document.getElementById('message');
+  //const message = document.getElementById('message');
   const joiningMsg = document.getElementById('joining');
-  joiningMsg.innerText = "本当に通話を開始しますか？";
-  const closeButton = document.getElementById('close');
-  closeButton.style.display = "none";//none=非表示
-  const videoChat = document.getElementById('videoChat');
-  videoChat.style.display = "block";//block=表示する
+  //const closeButton = document.getElementById('close');
+  //closeButton.style.display = "none";//none=非表示
+  //const videoChat = document.getElementById('videoChat');
+  //videoChat.style.display = "block";//block=表示する
 
   const audio = await SkyWayStreamFactory.createMicrophoneAudioStream();
 
-  joinButton.onclick = async () => {
-    joinButton.style.display = "none";//参加ボタンを非表示にする
-    joiningMsg.innerText = "待機中...";//参加中...というメッセージを表示する
-    closeButton.style.display = "block";//退出ボタンを表示する
-    //message.style.display = "none";//参加しましょうor参加ボタンを押してくださいメッセージを非表示にする
+  //joinButton.onclick = async () => {
+  //joinButton.style.display = "none";//参加ボタンを非表示にする
+  joiningMsg.innerText = "待機中...";//参加中...というメッセージを表示する
+  //closeButton.style.display = "block";//退出ボタンを表示する
+  //message.style.display = "none";//参加しましょうor参加ボタンを押してくださいメッセージを非表示にする
 
-    const context = await SkyWayContext.Create(token);
-    const room = await SkyWayRoom.FindOrCreate(context, {
-      type: 'p2p',
-      name: 'VideoRoom',
-    });
-    const me = await room.join();
+  const context = await SkyWayContext.Create(token);
+  const room = await SkyWayRoom.FindOrCreate(context, {
+    type: 'p2p',
+    name: 'VideoRoom',
+  });
+  const me = await room.join();
 
-    //動画/音声の送信を開始
-    await me.publish(audio);
+  //動画/音声の送信を開始
+  await me.publish(audio);
 
-    //相手の映像と音声をsubscribeする
-    const subscribeAndAttach = async (publication) => {
-      if (publication.publisher.id === me.id) return;
+  //相手の映像と音声をsubscribeする
+  const subscribeAndAttach = async (publication) => {
+    if (publication.publisher.id === me.id) return;
 
-      const { stream } = await me.subscribe(publication.id);
-      joiningMsg.innerText = "通話が開始しました";//メッセージを表示する
+    const { stream } = await me.subscribe(publication.id);
+    joiningMsg.innerText = "通話が開始しました";//メッセージを表示する
 
-      switch (stream.contentType) {
-        case 'video':
-          {
-            const elm = document.getElementById('partner_video');
-            elm.playsInline = true;
-            elm.autoplay = true;
-            stream.attach(elm);
-          }
-          break;
-        case 'audio':
-          {
-            const elm = document.getElementById('partner_audio');
-            //elm.controls = true;
-            elm.autoplay = true;
-            stream.attach(elm);
-          }
-          break;
+    switch (stream.contentType) {
+      case 'video':
+        {
+          const elm = document.getElementById('partner_video');
+          elm.playsInline = true;
+          elm.autoplay = true;
+          stream.attach(elm);
         }
-    };
-
-    room.publications.forEach(subscribeAndAttach);
-    room.onStreamPublished.add((e) => subscribeAndAttach(e.publication));
+        break;
+      case 'audio':
+        {
+          const elm = document.getElementById('partner_audio');
+          //elm.controls = true;
+          elm.autoplay = true;
+          stream.attach(elm);
+        }
+        break;
+      }
   };
 
+  room.publications.forEach(subscribeAndAttach);
+  room.onStreamPublished.add((e) => subscribeAndAttach(e.publication));
+  //};
+
   closeButton.onclick = async () => {
-    videoChat.style.display = "none";//チャットエリアを非表示にする
+    history.back(-1);
   };
 
 })();
