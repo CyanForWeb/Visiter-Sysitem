@@ -51,8 +51,9 @@
               </div>
               <div>　</div>
               <div>
-                <p style="font-weight:bold;"><a href="{% url 'Owner_seeform_detail' obj.id %}">{{ obj.message }}</a></p>
-                <p style="color:gray; font-size:x-small;">{{ obj.date|date:"H時i分s秒" }}</p>
+                {% if forloop.first %}<p style="font-weight:bold;color:red;">New!</p>{% endif %}
+                <p style="font-weight:bold;"><a href="{% url 'Owner_seeform_detail' obj.id %}" style="color:{% if forloop.first %}#1E90FF{% else %}gray{% endif %}">{{ obj.message }}</a></p>
+                <p style="color:{% if forloop.first %}#1E90FF{% else %}gray{% endif %}; font-size:x-small;">{{ obj.date|date:"H時i分s秒" }}</p>
               </div>
               <div>
                 <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}

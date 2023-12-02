@@ -5,12 +5,14 @@
       <div class="content">
         <h3 style="text-align: center;"><b>投函物 / 不在票の<br>宛名読み取りを行います</b></h3>
         <!--<p style="font-size:small;text-align: center;color:#e15053;">※ 読み取りが正常に終了した場合のみ、郵便受けの利用可能</p>-->
-        <p style="text-align: center;color:#6495ED">※ 宛名の無い投函物の場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
+        <p style="text-align: center;color:#6495ED">※ 宛名が無い場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
 
         <br>
         <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
           <p>手順</p>
-          <p>① 宛名を画角に入れる<br>② 画面下部の<b>読み取り</b>ボタンを押す</p>
+          <p>① 宛名箇所を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
+          <p style="font-size:85%;color:gray;">
+            ※ 読み取り後、ポストが自動で開きます</p>
           <div style="text-align: center;">
           <video id="video" class="camera" playsinline autoplay></video>
           <button id="submitBtn" class="btn_06">
@@ -29,7 +31,7 @@
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
         //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
-        const constraints = { video: { width: 450, height: 480, facingMode: "environment"} };
+        const constraints = { video: { width: 350, height: 350, facingMode: "environment"} };
 
         // カメラを起動
         async function initCamera() {
@@ -44,6 +46,8 @@
         // スナップショットを撮影して保存
         function captureSnapshot() {
         	const context = canvas.getContext('2d');
+          canvas.width = 350
+          canvas.height = 350
         	context.drawImage(video, 0, 0, canvas.width, canvas.height);
         	const snapshotData_base64 = canvas.toDataURL('image/png');
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');

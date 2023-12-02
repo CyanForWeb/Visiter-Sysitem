@@ -17,7 +17,9 @@
 <script>
   message = document.getElementById('message');
   if ( "{{ mes.visitor }}" == "Delivery" ){
-    message.innerText = "玄関に向かってください。";
+    message.innerText = "ハンコを用意し、玄関に向かってください。";
+  }else if ( "{{ mes.visitor }}" == "Post_1" ){
+    message.innerText = "ポストに取りに行きましょう。";
   }
 </script>
 {% endblock %}

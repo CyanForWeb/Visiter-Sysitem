@@ -100,7 +100,10 @@ def guest(request):
 
 def guest_security(request):
     if request.method == 'POST':
-        newText = randrange(100000)
+        #実験のためにここをコメントアウトしてる
+        #newText = randrange(100000)
+        #下記newText=424は実験用のプログラム
+        newText = 424
         Owner_DB.objects.update(update_url_text=newText)
         return redirect('Owner_home')
     return render(request, 'html_Owner/Owner_guest_security.html')

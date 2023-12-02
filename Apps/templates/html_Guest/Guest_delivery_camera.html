@@ -4,13 +4,13 @@
 {% block content %}
       <div class="content">
         <div id="iru">
-          <h3 style="text-align: center;"><b>荷物の宛名 読み取りを行います</b></h3>
+          <h3 style="text-align: center;"><b>荷物の宛名読み取りを行います</b></h3>
           <p style="font-size:small;text-align: center;color:#e15053;">※ 読み取りが正常に終了した後、住人に通知します</p>
           <br>
 
           <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
             <p>手順</p>
-            <p>① 宛名を画角に入れる<br>② 画面下部の<b>読み取り</b>ボタンを押す</p>
+            <p>① 宛名箇所を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
             <video id="video" class="camera"  playsinline autoplay></video>
             <button id="submitBtn" class="btn_06">
               <i class="fa-solid fa-hourglass" style="color: #ffffff;"></i>　読み取り
@@ -48,7 +48,7 @@
         const submitBtn = document.getElementById('submitBtn');
         const submitMsg = document.getElementById('submitMsg');
         //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
-        const constraints = { video: { width: 450, height: 480, facingMode: "environment"} };
+        const constraints = { video: { width: 350, height: 350, facingMode: "environment"} };
         initCamera();
 
         // カメラを起動
@@ -64,6 +64,8 @@
         // スナップショットを撮影して保存
         function captureSnapshot() {
           const context = canvas.getContext('2d');
+          canvas.width = 350
+          canvas.height = 350
         	context.drawImage(video, 0, 0, canvas.width, canvas.height);
         	const snapshotData_base64 = canvas.toDataURL('image/png');
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');

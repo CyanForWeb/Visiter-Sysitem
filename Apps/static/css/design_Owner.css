@@ -201,7 +201,7 @@ button.btn--circle:hover {
   display: block;
 	text-align: right;
 }
-
+img { image-rendering: -webkit-optimize-contrast; }
 
 /*使ってない？
 .top-menu, .top-menu:hover, .top-menu:visited {
