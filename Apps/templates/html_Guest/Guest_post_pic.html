@@ -81,6 +81,7 @@
 
         // 撮影ボタンがクリックされた時にスナップショットを撮影する
         submitBtn.addEventListener('click', () => {
+          video.pause();
           //submitBtn.style.display = "block";//block=表示
           //submitMsg.style.display = "block";//block=表示
           captureSnapshot()
