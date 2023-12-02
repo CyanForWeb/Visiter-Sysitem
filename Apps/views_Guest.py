@@ -253,19 +253,10 @@ def save_geolocations(request):
         Owner_latitude = Owner_data.get('latitude', None)
         Owner_longitude = Owner_data.get('longitude', None)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7c4e0 (Risa 12/2)
         #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:        #console.log("a")
         num = 0.0005**2 + 0.00045**2
         r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
         if r <= num:
-<<<<<<< HEAD
-=======
-
-        #if latitude - 0.00045 <= Owner_latitude < latitude + 0.00045 and longitude - 0.0005 <= Owner_longitude < longitude + 0.0005:
->>>>>>> 7c7c4e0 (Risa 12/2)
 
         #num = 0.0005**2 + 0.00045**2
         #r = ((latitude-Owner_latitude)**2 + (longitude-Owner_longitude)**2)
@@ -282,10 +273,6 @@ def save_geolocations(request):
             #f.close()
 
             #requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7c4e0 (Risa 12/2)
             return JsonResponse({'redirect': True})
 
         else:
