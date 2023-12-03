@@ -8,10 +8,10 @@
           <h3 id="mes"><b>住民を呼び出しています<br>少々お待ちください</b></h3>
           <br>
           <!--待ち時間動画-->
-          <div id="video01" poster="" >
-            <p>動画が表示されない際のメッセージ.</p>
+          <div id="triviaVideo" poster="" playsinline controls metadata width='100%'>
+            <p>動画読み込み中...</p>
           </div>
-          <div id="video02" poster="" muted playsinline controls metadata width='100%' style="display: none;">
+          <!--<div id="video02" poster="" muted playsinline controls metadata width='100%' style="display: none;">
             <p>動画が表示されない際のメッセージ.</p>
           </div>
           <div id="video03" poster="" muted playsinline controls metadata width='100%' style="display: none;">
@@ -22,14 +22,14 @@
           </div>
           <div id="video05" poster="" muted playsinline controls metadata width='100%' style="display: none;">
             <p>動画が表示されない際のメッセージ.</p>
-          </div>
+          </div>-->
       </div>
 
       <!--ビデオチャットする機能-->
       <div id="videoChat" style="text-align:center;">
         <br>
         <p id="message"></p>
-        <button class="btn_06" onclick="location.href='{% url 'Appt_video' %}'">応答　
+        <button class="btn_06" onclick="location.href='{% url 'Appt_video' %}'">応答
         <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fff;"></i></button><br>
       </div>
 </div>
@@ -42,18 +42,20 @@
 
         const video = document.getElementById('videoChat');
         video.style.display = "none";//none=非表示
-
+        const mes = document.getElementById('mes');
         //待ち時間動画
-        var video01 = document.getElementById("video01");//17秒
-        video01.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
-        var video02 = document.getElementById("video02");//19秒
-        video02.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
-        var video03 = document.getElementById("video03");//16秒
-        video03.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
-        var video04 = document.getElementById("video04");//61秒
-        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
-        var video05 = document.getElementById("video05");//41秒
-        video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        var trivia = document.getElementById("triviaVideo");//17秒
+        trivia.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        //var video01 = document.getElementById("video01");//17秒
+        //video01.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031621_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        //var video02 = document.getElementById("video02");//19秒
+        //video02.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        //var video03 = document.getElementById("video03");//16秒
+        //video03.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        //var video04 = document.getElementById("video04");//61秒
+        //video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
+        //var video05 = document.getElementById("video05");//41秒
+        //video04.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
 
         // 5秒ごとにビデオステータスをチェック
         setInterval(updateVideoStatus, 1000);
@@ -65,18 +67,15 @@
                 success: function(data) {
                     if (data.video_status == 1) {
                       parent.getElementsByTagName('div')[0].style.display = "none";
-                      video01.style.display = "none";//非表示
-                      video02.style.display = "none";//非表示
-                      video03.style.display = "none";//非表示
-                      video04.style.display = "none";//非表示
-                      video05.style.display = "none";//非表示
                       parent.insertBefore(sort, firstChild);
                       video.style.display = "block";//表示
                       document.getElementById('message').innerText = "住人が 通話 を希望しています\n応答ボタンを押してください";
                     }else if(data.video_status == 0){
                       // ビデオステータスが0の場合非表示
                       video.style.display = "none";//非表示
-                      parent.getElementsByTagName('div')[1].style.display = "block";
+                      //parent.getElementsByTagName('div')[1].style.display = "block";
+                      mes.style.display = "block";
+                      trivia.style.display = "block";
                     }
                 }
             });
@@ -85,28 +84,26 @@
 
         // video01の再生が終わった場合
         setTimeout(() =>{
-            video01.style.display ="none";
-            video02.style.display ="block";
+            trivia.innerHTML =
+            "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         },17000)
           // video02の再生が終わった場合
         setTimeout(() =>{
-            video02.style.display ="none";
-            video03.style.display ="block";
+            trivia.innerHTML =
+            "<video src='https://www.nhk.or.jp/das/movie/D0002060/D0002060155_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         },36000)
           // video03の再生が終わった場合
         setTimeout(() =>{
-            video03.style.display ="none";
-            video04.style.display ="block";
+            trivia.innerHTML =
+            "<video src='https://www.nhk.or.jp/das/movie/D0002031/D0002031389_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         },52000)
           // video04の再生が終わった場合
         setTimeout(() =>{
-            video04.style.display ="none";
-            video05.style.display ="block";
+            trivia.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002030/D0002030670_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         },113000)
           // video05の再生が終わった場合
         setTimeout(() =>{
-            video05.style.display ="none";
-            video01.style.display ="block";
+            trivia.innerHTML = "<video src='https://www.nhk.or.jp/das/movie/D0002050/D0002050419_00000_V_000.mp4'width='100%'autoplay muted playsinline></video>";
         },154000)
 
       </script>
