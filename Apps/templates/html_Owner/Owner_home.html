@@ -15,7 +15,7 @@
             <p id="message" style="text-align: center;"></p>
             <div id="list_today">
               <br>
-              <p style="font-size:70%;">絞り込み検索ができます</p>
+              <p style="font-size:70%;">絞り込み検索</p>
                   <div class="item">
                       <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">全て</button>
                       <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>
@@ -56,6 +56,7 @@
                 <p style="color:{% if forloop.first %}#1E90FF{% else %}gray{% endif %}; font-size:x-small;">{{ obj.date|date:"H時i分s秒" }}</p>
               </div>
               <div>
+                {% if forloop.first %}<p>　</p>{% endif %}
                 <form method="post" action="{% url 'Owner_deleteForm' obj.id %}">{% csrf_token %}
                   <button type="submit" onclick='return confirm("本当に削除しますか？");'>
                     <i class="fa-regular fa-trash-can fa-xl" style="color: #6998b5;"></i>
@@ -71,7 +72,7 @@
 
           <div id="all_list" class="area">
                 <div id="list_all">
-                  <p style="font-size:70%;">絞り込み検索ができます</p>
+                  <p style="font-size:70%;">絞り込み検索</p>
                       <div class="item">
                           <button class="btn_03" id="all" style="font-size:40%;" onClick="filterItems('all');">全て</button>
                           <button class="btn_03" id="appt" style="font-size:40%;" onClick="filterItems('Appt');">アポあり</button>

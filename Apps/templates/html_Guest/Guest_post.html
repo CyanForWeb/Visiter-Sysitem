@@ -3,20 +3,22 @@
 
 {% block content %}
       <div class="content">
-        <h3 style="text-align: center;"><b>投函物 / 不在票の<br>宛名読み取りを行います</b></h3>
+        <h3 style="text-align: center;margin-top:30px;">
+          <b>投函物 / 不在票の宛名読み取り</b></h3>
         <!--<p style="font-size:small;text-align: center;color:#e15053;">※ 読み取りが正常に終了した場合のみ、郵便受けの利用可能</p>-->
-        <p style="text-align: center;color:#6495ED">※ 宛名が無い場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
-
+        <p style="text-align: center;color:#6495ED;font-size:small;">
+          ※ 宛名が無い場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
         <br>
+
         <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
-          <p>手順</p>
-          <p>① 宛名箇所を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
-          <p style="font-size:85%;color:gray;">
+          <p style="font-size:85%;">手順<br>
+          ① 宛名箇所を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
+          <p style="font-size:75%;color:gray;">
             ※ 読み取り後、ポストが自動で開きます</p>
           <div style="text-align: center;">
           <video id="video" class="camera" playsinline autoplay></video>
-          <button id="submitBtn" class="btn_06">
-            <i class="fa-solid fa-hourglass" style="color: #ffffff;"></i>　読み取り
+          <button id="submitBtn" class="btn_06" style="font-size:small;">
+            読み取り
           </button>
           <canvas id="canvas" class="camera"></canvas>
           </div>

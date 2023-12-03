@@ -121,7 +121,7 @@ a.btn_01 {
 	vertical-align: middle;
 	text-decoration: none;
 	margin: auto;
-	padding: 1rem 4rem;
+	padding: 0.8rem 2rem;
 	font-weight: bold;
 	border: 2px solid #4682B4;
   color: #336699;
@@ -136,9 +136,9 @@ button.btn_06 {
 	display: block;
 	text-decoration: none;
 	margin: auto;
-	padding: 1rem 5rem;
+	padding: 0.8rem 2rem;
 	font-weight: bold;
-	border-radius: 100vh;
+	border-radius: 5px;
   background: #4682B4;
 	color: #fff;
 }
@@ -151,9 +151,9 @@ button.btn_03 {
 	display: block;
 	text-decoration: none;
 	margin: auto;
-	padding: 1rem 1rem;
+	padding: 0.5rem 0.8rem;
 	font-weight: bold;
-	border-radius: 50vh;
+	border-radius: 5px;
   background: #fff;
 	color: #4682B4;
   border: 1px solid #4682B4;
@@ -202,7 +202,9 @@ button.btn--circle:hover {
 	text-align: right;
 }
 img { image-rendering: -webkit-optimize-contrast; }
-
+img{
+  border: none;
+}
 /*使ってない？
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;

@@ -1,8 +1,9 @@
-{% extends './Guest_base.html' %}
+{% extends './Guest_base_home.html' %}
 {% load static %}
 
 {% block content %}
 <div id="content" class="content" style="display:none;">
+  <br>
   <h3 style="text-align: center;">来訪目的を選択してください</h3><br>
 
       <a href="{% url 'Guest_delivery_camera' %}" class="btn_01">

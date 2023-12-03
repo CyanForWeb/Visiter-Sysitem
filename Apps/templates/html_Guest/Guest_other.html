@@ -3,12 +3,16 @@
 
 {% block content %}
       <div class="content" style="text-align: center;">
-        <br>
-      <h3><b>来訪目的に関する質問に<br>お答えください</b></h3>
-      <p style="font-size:small;color:#e15053;">※ 来訪用件を住民に通知することができます</p>
+      <!--<h3><b>来訪目的に関する質問にお答えください</b></h3>-->
+      <h3 style="margin-top:30px;margin-bottom:30px;"><b>来訪目的に関する質問</b></h3>
+      <p style="font-size:small;color:gray;">次ページからの質問にご回答ください。
+        <br>回答終了後、来訪用件を住民に通知します</p>
+      <!--<p style="font-size:small;color:#e15053;">※ 来訪用件を住民に通知することができます</p>-->
       <br>
       <a href="{% url 'Guest_other_form' %}" class="btn_01">
-        <i class="fa-solid fa-circle-play"></i> 回答開始</a><br>
+        回答をはじめる</a><br>
+        <!--<a href="{% url 'Guest_other_form' %}" class="btn_01">
+          <i class="fa-solid fa-circle-play"></i> はじめる</a><br>-->
       </div>
 
 {% endblock %}

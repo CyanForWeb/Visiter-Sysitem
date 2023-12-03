@@ -4,21 +4,23 @@
 {% block content %}
 
       <div class="content">
-        <h2>アポ済の客人用</h2>
-        <p style="font-size:small;">下記URLを来客予定の方に事前にお渡しください</p>
-        <p>→　<a id='appt_display'></a></p>
+        <h2 style="margin-top:30px;">アポありの客人用URL</h2>
+        <p style="font-size:small;color:gray">下記URLを来客予定の方に事前にお渡しください</p>
+        <p style="font-size:small;"><a id='appt_display'></a></p>
 
         <br><hr><br>
-        <h2>その他の客人用</h2>
-        <p style="font-size:small;">下記<b>QRコード生成</b>ボタンで生成したQRコードを<br>家先に設置してください</p>
+        <h2>その他の客人用URL</h2>
+        <p style="font-size:small;color:gray">下記<b>QRコード生成</b>ボタンで生成したQRコードを<br>家先に設置してください</p>
         <form method="post">
             {% csrf_token %}
-            <p>→　<a id='guest_display'></a></p>
+            <p style="font-size:small;"><a id='guest_display'></a></p>
             <input  id='url' name='url' type='hidden'>
-            <button class="btn_06">
-              <i class="fa-solid fa-qrcode" style="color: #ffffff;"></i> QRコード生成
+            <button class="btn_06" style="font-size:small;margin-top:20px;">
+              QRコード生成
             </button><br>
-            <img src="data:image/png;base64,{{ qr }}" alt onerror="this.onerror = null; this.src='';" width="30%" border="0"/><br>
+            <div style="text-align: center;">
+            <img src="data:image/png;base64,{{ qr }}" alt onerror="this.onerror = null; this.src='';" width="40%" border="none"/>
+            </div>
         </form>
       </div>
 

@@ -3,17 +3,17 @@
 
 {% block content %}
 <br>
-
 <div id="parent">
       <div class="content">
           <form method="POST">
           {% csrf_token %}
-          <p>貴方の名前／団体名を記入してください
+          <p style="margin-bottom:20px;">貴方の名前／団体名を記入してください
           <input name="form2_name" type="text" required style="width:100%; height:40px;"></p>
-          <p>貴方の連絡先を記入してください<br>（※こちらは任意回答です。）
+          <p><span>貴方の連絡先を記入してください　</span>
+            <span style="font-size:small;color:gray;">※任意回答</span>
           <input name="form2_contact" type="text" style="width:100%; height:40px;"></p>
           <br>
-          <button name="form2_submit"  class="btn_06"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
+          <button name="form2_submit"  class="btn_06" style="font-size:small;"><i class="fa-solid fa-circle-chevron-right"></i>　次の質問に答える</button>
           </form>
       </div>
 
