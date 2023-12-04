@@ -3,15 +3,15 @@
 
 {% block content %}
       <div class="content">
-        <h3 style="text-align: center;margin-top:30px;">
+        <h3 style="text-align: center;margin-top:25px;">
           <b>投函物 / 不在票の宛名読み取り</b></h3>
         <!--<p style="font-size:small;text-align: center;color:#e15053;">※ 読み取りが正常に終了した場合のみ、郵便受けの利用可能</p>-->
-        <p style="text-align: center;color:#6495ED;font-size:small;">
+        <p style="text-align: center;color:#6495ED;font-size:small;margin-bottom:20px;">
           ※ 宛名が無い場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
-        <br>
 
-        <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
-          <p style="font-size:85%;">手順<br>
+        <!--<div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">-->
+        <div style="padding: 10px; margin-bottom: 10px; background-color: white; border-radius: 5px;">
+          <p style="font-size:small;">手順<br>
           ① 宛名箇所を画角に入れる<br>② <b>読み取り</b>ボタンを押す</p>
           <p style="font-size:75%;color:gray;">
             ※ 読み取り後、ポストが自動で開きます</p>
@@ -40,6 +40,8 @@
         		try {
         				const stream = await navigator.mediaDevices.getUserMedia(constraints);
         				video.srcObject = stream;
+                video.style.height = '400';
+                video.style.width = 'auto';
         		} catch (err) {
         				console.error('カメラの起動に失敗しました: ', err);
         		}
@@ -47,9 +49,10 @@
 
         // スナップショットを撮影して保存
         function captureSnapshot() {
+          // Canvasのサイズをビデオと同じに設定
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
         	const context = canvas.getContext('2d');
-          canvas.width = 350
-          canvas.height = 350
         	context.drawImage(video, 0, 0, canvas.width, canvas.height);
         	const snapshotData_base64 = canvas.toDataURL('image/png');
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');

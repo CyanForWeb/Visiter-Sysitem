@@ -7,10 +7,12 @@
       <div id="videoChat" style="text-align:center;">
         <!--<div style="visibility:hidden;">
         </div>-->
-        <br>
-        <p id="joining"></p>
-
-        <video id="local-video" width="300px" muted playsinline  style="text-align:center"></video>
+        <!--<video id="local-video" width="300px" muted playsinline  style="text-align:center"></video>-->
+        <div class="video-container">
+          <p class="overlay_mes" id="joining"></p>
+          <div class="overlay"></div>
+          <video id="local-video" muted playsinline  style="text-align:center;-webkit-transform: scaleX(-1);"></video>
+        </div>
 
         <video id="partner_video"></video>
         <audio id="partner_audio"></<audio>

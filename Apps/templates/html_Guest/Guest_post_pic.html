@@ -4,16 +4,15 @@
 {% block content %}
       <div class="content">
         <!--<h3 style="text-align: center;"><b>写真撮影・送信が可能です</b></h3>-->
-        <h3 style="text-align: center;margin-top:30px;"><b>写真の撮影・送信</b></h3>
+        <h3 style="text-align: center;margin-top:25px;"><b>写真の撮影・送信</b></h3>
         <div style="text-align: center;">
-          <p style="font-size:small;color:#e15053;">
+          <p style="font-size:small;color:#e15053;margin-bottom:15px;">
           <b>ポストはご利用いただけません。ご了承ください。<br>
           　写真データとして住人に送信できます。</b></p>
         </div>
-        <br>
 
-        <div style="padding: 15px; margin-bottom: 10px; border: 1px dashed #e15053; border-radius: 10px;">
-          <p style="font-size:85%;">手順<br>
+        <div style="padding: 10px; margin-bottom: 10px; background-color: white; border-radius: 5px;">
+          <p style="font-size:small;">手順<br>
           ① 画角に内容全体が映るようにする<br>② <b>送信</b>ボタンを押す</p>
 
           <video id="video" class="camera"  playsinline autoplay></video>
@@ -38,6 +37,8 @@
         		try {
         				const stream = await navigator.mediaDevices.getUserMedia(constraints);
         				video.srcObject = stream;
+                video.style.height = '410';
+                video.style.width = 'auto';
         		} catch (err) {
         				console.error('カメラの起動に失敗しました: ', err);
         		}
@@ -45,9 +46,9 @@
 
         // スナップショットを撮影して保存
         function captureSnapshot() {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
         	const context = canvas.getContext('2d');
-          canvas.width = 350
-          canvas.height = 350
         	context.drawImage(video, 0, 0, canvas.width, canvas.height);
         	const snapshotData_base64 = canvas.toDataURL('image/png');
           const snapshotData = snapshotData_base64.replace(/^data:\w+\/\w+;base64,/, '');

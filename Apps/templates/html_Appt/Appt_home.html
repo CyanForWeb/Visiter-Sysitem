@@ -3,28 +3,29 @@
 
 {% block content %}
     <div class="content" id="content" style="display:none;text-align:center;">
-        <h3 style="text-align: center;margin-top:30px;"><b>来訪ありがとうございます!</b></h3>
-    <br>
+        <!--<h3 style="text-align: center;margin-top:30px;"><b>来訪ありがとうございます!</b></h3>-->
     <!--<h3>QRCode Reader</h3>-->
-    <p style="font-size:80%;">家先のQRコードを読み込んでください</p>
-
-    <section id="contents">
-      <div style="text-align:center;">
-      <!-- カメラ映像 -->
-      <video id="camera"playsinline autoplay></video>
-      <!-- 処理用 -->
-      <canvas id="picture" style="display:none;" ></canvas>
-      <!-- 読み取り結果 -->
-      <div id="result"  style="justify-content: center;" playsinline>
-        <small style="color:gray; "></small>
-      </div>
-      </div>
-    </section>
+    </div>
+    <div class="video-container">
+      <p class="overlay_mes"><b>家先のQRコードを読み込んでください</b></p>
+      <div class="overlay"></div>
+      <section id="contents">
+        <!--<div style="text-align:center;">-->
+        <!-- カメラ映像 -->
+        <video id="camera" playsinline autoplay></video>
+        <!-- 処理用 -->
+        <canvas id="picture" style="display:none;" ></canvas>
+        <!-- 読み取り結果 -->
+        <div id="result"  style="justify-content: center;" playsinline>
+          <small style="color:gray; "></small>
+        <!--</div>-->
+        </div>
+      </section>
+    </div>
     <!--<div id="scan">
       <a href="javascript:onbuttonStart()" class="btn_01">
         読み取り開始</a><br>
     </div>-->
-    </div>
 
 
     <script src="{% static 'js/jsQR.js' %}"></script>
@@ -38,13 +39,11 @@
           startGeolocation();
         }
       }
+      head = document.getElementById("head");
+      head.innerText = "来訪ありがとうございます！";
 
       const video  = $("#camera");
-      video.width = 320
-      video.height = 320
       const canvas = $("#picture");
-      canvas.width = 320
-      canvas.height = 320
       const ctx = canvas.getContext("2d");
       const result = $("#result");
       //function onbuttonStart(){
@@ -55,8 +54,8 @@
         const constraints = {
           audio: false,
           video: {
-            width: canvas.width,
-            height: canvas.height,
+            width: {ideal: 1280},
+            height: { ideal: 720 },
             //facingMode: "user"   // フロントカメラを利用する
             facingMode: "environment"   // フロントカメラを利用する
           }

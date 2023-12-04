@@ -48,8 +48,8 @@ const token = new SkyWayAuthToken({
 
   //const message = document.getElementById('message');
   const joiningMsg = document.getElementById('joining');
-  //const closeButton = document.getElementById('close');
-  //closeButton.style.display = "none";//none=非表示
+  const closeButton = document.getElementById('close');
+  closeButton.style.display = "none";//none=非表示
   //const videoChat = document.getElementById('videoChat');
   //videoChat.style.display = "block";//block=表示する
 
@@ -77,7 +77,7 @@ const token = new SkyWayAuthToken({
 
     const { stream } = await me.subscribe(publication.id);
     joiningMsg.innerText = "通話が開始しました";//メッセージを表示する
-
+    closeButton.style.display = "block";
     switch (stream.contentType) {
       case 'video':
         {

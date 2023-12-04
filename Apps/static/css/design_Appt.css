@@ -63,6 +63,64 @@ button.btn_06:hover {
 	color: #fff;
   background: #339966;
 }
+/*ビデオチャット*/
+/* ビデオのコンテナに相対的な位置を指定するためのスタイル */
+.video-container {
+  position: fixed;
+	bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* オーバーフローを隠すために追加 */
+}
+/* オーバーレイのスタイル */
+.overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.5); /* 透明度のある黒い色 */
+  z-index: 1; /* ビデオより手前に表示するための z-index の設定 */
+}
+/*メッセージ*/
+.overlay_mes {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%); /* 水平方向に中央寄せ */
+  color: white; /* 白色のテキスト */
+  z-index: 2; /* オーバーレイより手前に表示するための z-index の設定 */
+  white-space: nowrap; /* 改行を禁止するスタイル */
+}
+/* ビデオのスタイル */
+video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* アスペクト比を保ちつつ、ビデオをコンテナいっぱいに広げるために追加 */
+  z-index: 0; /* ビデオの z-index を設定（オーバーレイより奥に表示） */
+}
+/* カメラ映像と処理用canvasのスタイル */
+#contents {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* アスペクト比を保ちつつ、ビデオをコンテナいっぱいに広げるために追加 */
+  z-index: 0; /* ビデオの z-index を設定（オーバーレイより奥に表示） */
+}
+#picture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+}
 
 
 /* 使ってない？

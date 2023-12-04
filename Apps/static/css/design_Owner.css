@@ -144,7 +144,7 @@ button.btn_06 {
 }
 button.btn_06:hover {
 	color: #fff;
-  background: #4682B4; opacity:0.7;
+  background: #356094;
 }
 /*buttonタグのボタンスタイル*/
 button.btn_03 {
@@ -160,7 +160,7 @@ button.btn_03 {
 }
 button.btn_03:hover {
 	color: #ffffff;
-  background: #4682B4; opacity:0.7;
+  background: #4682B4;
 }
 /*Owner_seeform_detail_Other.htmlで回答フォームを表示する際のスタイル */
 .form{
@@ -204,6 +204,71 @@ button.btn--circle:hover {
 img { image-rendering: -webkit-optimize-contrast; }
 img{
   border: none;
+}
+/*ビデオチャット*/
+/* ビデオのコンテナに相対的な位置を指定するためのスタイル */
+.video-container {
+  position: fixed;
+	bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* オーバーフローを隠すために追加 */
+}
+/* オーバーレイのスタイル */
+.overlay_1 {
+  position: fixed;
+  top: 8%;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.5); /* 透明度のある黒い色 */
+  z-index: 1; /* ビデオより手前に表示するための z-index の設定 */
+}
+.overlay_2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.5); /* 透明度のある黒い色 */
+  z-index: 1; /* ビデオより手前に表示するための z-index の設定 */
+}
+/* 通話終了ボタンのスタイル */
+/*buttonタグのボタンスタイル*/
+button.btn_07 {
+	display: block;
+	padding: 0.8rem 2rem;
+	font-weight: bold;
+	border-radius: 5px;
+  background: #4682B4;
+	color: #fff;
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+button.btn_07:hover {
+	color: #fff;
+  background: #356094;
+}
+/*メッセージ*/
+.overlay_mes {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%); /* 水平方向に中央寄せ */
+  color: white; /* 白色のテキスト */
+  z-index: 2; /* オーバーレイより手前に表示するための z-index の設定 */
+  white-space: nowrap; /* 改行を禁止するスタイル */
+}
+/* ビデオのスタイル */
+video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* アスペクト比を保ちつつ、ビデオをコンテナいっぱいに広げるために追加 */
+  z-index: 0; /* ビデオの z-index を設定（オーバーレイより奥に表示） */
 }
 /*使ってない？
 .top-menu, .top-menu:hover, .top-menu:visited {

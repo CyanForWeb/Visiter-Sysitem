@@ -1,16 +1,30 @@
-{% extends './Guest_base.html' %}
 {% load static %}
-
-{% block content %}
+<!doctype html>
+<html>
+    <head>
+        <title>Visiter System</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/design_Guest.css' %}">
+        <!--fontawesomeの機能を利用するために使用-->
+        <script src="https://kit.fontawesome.com/e050036233.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <header class="two">
+      </header>
 
       <!--ビデオチャットを表示する機能-->
       <div id="videoChat" style="text-align:center;">
         <!--<div style="visibility:hidden;">
         </div>-->
-        <br>
-        <p id="joining"></p>
-
-        <video id="local-video" width="300px" muted playsinline  style="text-align:center"></video>
+        <div class="video-container">
+          <p class="overlay_mes" id="joining"></p>
+          <div class="overlay"></div>
+          <video id="local-video" muted playsinline  style="text-align:center;-webkit-transform: scaleX(-1);"></video>
+        </div>
 
         <video id="partner_video"></video>
         <audio id="partner_audio"></<audio>
@@ -40,5 +54,5 @@
 
       </script>
 
-
-{% endblock %}
+  </body>
+</html>
