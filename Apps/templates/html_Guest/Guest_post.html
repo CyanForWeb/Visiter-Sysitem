@@ -3,8 +3,9 @@
 
 {% block content %}
       <div class="content">
-        <h3 style="text-align: center;margin-top:25px;">
-          <b>投函物 / 不在票の宛名読み取り</b></h3>
+        <h3 id="top_mes" style="text-align: center;margin-top:25px;font-weight:bold;"></h3>
+          <!--<h3 style="text-align: center;margin-top:25px;">
+            <b>投函物 / 不在票の宛名読み取り</b></h3>-->
         <!--<p style="font-size:small;text-align: center;color:#e15053;">※ 読み取りが正常に終了した場合のみ、郵便受けの利用可能</p>-->
         <p style="text-align: center;color:#6495ED;font-size:small;margin-bottom:20px;">
           ※ 宛名が無い場合は <b><a href="{% url 'Guest_post_pic' %}" style="color:#6495ED;text-decoration: underline;">コチラ</a></b></p>
@@ -34,6 +35,15 @@
         const submitMsg = document.getElementById('submitMsg');
         //内カメconst constraints = { video: { width: 640, height: 480, facingMode: "user"} };
         const constraints = { video: { width: 350, height: 350, facingMode: "environment"} };
+        const top_mes = document.getElementById('top_mes');
+
+        //直前のページのurl
+        const ref = document.referrer;
+        if(ref.indexOf("Guest_home/424")!== -1){
+          top_mes.innerText = "投函物の宛名読み取り";
+        }else{
+          top_mes.innerText = "不在票の宛名読み取り";
+        }
 
         // カメラを起動
         async function initCamera() {

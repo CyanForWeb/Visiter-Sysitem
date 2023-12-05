@@ -29,7 +29,7 @@ def end(request):
     #住民のiftttのkeyを入力する↓
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "qrcode"}
-    payload = json.dumps({"value1": "アポ済みのお客さんが到着しました！今すぐ玄関へ！"})
+    payload = json.dumps({"value1": "アポ済みのお客さんが到着しました！アプリを開いて電話をかけてください！"})
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/dPMcKW7OLMVpEKmN9HwjxZ", headers=headers, cookies=cookies, data=payload)
     requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=payload)
     return render(request, 'html_Appt/Appt_end.html',)
@@ -46,7 +46,8 @@ def save_qrcode(request):
 
         headers = {"Content-Type": "application/json"}
         cookies = {"test_cookie": "qrcode"}
-        payload = json.dumps({"value1": qrData})
+        #payload = json.dumps({"value1": qrData})
+        payload = json.dumps({"value1": "アポ済みのお客さんが到着しました！アプリを開いて通話をするか玄関に向かってください！"})
         #if "https://0cab-133-99-163-253.ngrok-free.app/Guest_home/" in qrData:
         if ".ngrok-free.app/Guest_home/" in qrData:
             #デバックの時に使う

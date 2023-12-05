@@ -177,8 +177,8 @@ def post_end1(request):
     true_number = Owner_DB.objects.get(owner='Owner')
     context = {'number':true_number.update_url_text}
     #POSTリクエストを送信　宛名認証をクリアしたら：住民に通知
-    #requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
-    requests.post("https://maker.ifttt.com/trigger/post/with/key/dPMcKW7OLMVpEKmN9HwjxZ")
+    requests.post("https://maker.ifttt.com/trigger/post/with/key/bmJJC2vwlzldgPEhoZmrk3")
+    #requests.post("https://maker.ifttt.com/trigger/post/with/key/dPMcKW7OLMVpEKmN9HwjxZ")
     headers = {"Content-Type": "application/json"}
     cookies = {"test_cookie": "aaa"}
     data = json.dumps({"value1": "宛名がある郵便物が投函されました！"})
