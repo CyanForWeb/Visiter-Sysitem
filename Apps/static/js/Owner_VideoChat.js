@@ -64,7 +64,7 @@ const token = new SkyWayAuthToken({
   const context = await SkyWayContext.Create(token);
   const room = await SkyWayRoom.FindOrCreate(context, {
     type: 'p2p',
-    name: 'VideoRoom_2',
+    name: 'VideoRoom_3',
   });
   const me = await room.join();
 

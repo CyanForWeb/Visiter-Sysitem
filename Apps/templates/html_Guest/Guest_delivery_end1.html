@@ -26,7 +26,7 @@
         window.addEventListener('load', () => {
           setTimeout(function() {
             loading.classList.add('hide');
-          }, 3000);
+          }, 2000);
         });
       </script>
 
@@ -40,8 +40,8 @@
       </div>-->
       <div width='80%'>
         <br>
-        <video id="video" width="100%" height="auto" metadata playsinline loop muted style="border:2px solid;">
-        <source src="{% static 'video/video_2.mp4' %}"type="video/mp4">
+        <video id="video" width="100%" height="auto" poster="{% static 'video/top.png' %}" metadata playsinline loop muted style="border:2px solid;">
+        <source src="{% static 'video/video.mp4' %}"type="video/mp4">
       </video>
     </div>
       <script>
@@ -49,7 +49,7 @@
       setTimeout(function(){
         video.play();
         //video.muted = false;
-      },7000);
+      },2000);
       </script>
 
 
