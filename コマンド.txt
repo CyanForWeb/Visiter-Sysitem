@@ -12,13 +12,6 @@ python -m http.server 8080
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/
 
-【マイグレーション】
-python manage.py makemigrations ⚫︎⚫︎　（マイグレーションファイル削除後に実行）
-python manage.py migrate ⚫︎⚫︎　（マイグレーション実行）
-
-【クリエイトスーパーユーザー】
-python manage.py createsuperuser
-
 【gitにコードをアップする】
 git status
 git add --all .
@@ -30,10 +23,6 @@ git push
 git log
 git pull origin master
 git log
-
-【PythonAnyWhere】
-cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
-git pull
 
 【ngrok立ち上げ】
 一方のターミナル：python manage.py runserver
